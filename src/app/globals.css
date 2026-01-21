@@ -1,26 +1,86 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Colors */
+  --cream: #FBF9F6;
+  --white: #FFFFFF;
+  --terracotta: #D35233;
+  --terracotta-dark: #B5412A;
+  --terracotta-light: #FADDD6;
+  --brown: #1F1A17;
+  --brown-mid: #6B5D54;
+  --sand: #EBE6DF;
+
+  /* Border Radius */
+  --radius-sm: 16px;
+  --radius-md: 24px;
+  --radius-lg: 32px;
+  --radius-xl: 48px;
+
+  /* Backgrounds */
+  --background: var(--cream);
+  --foreground: var(--brown);
 }
 
 @theme inline {
+  --color-cream: var(--cream);
+  --color-terracotta: var(--terracotta);
+  --color-terracotta-dark: var(--terracotta-dark);
+  --color-terracotta-light: var(--terracotta-light);
+  --color-brown: var(--brown);
+  --color-brown-mid: var(--brown-mid);
+  --color-sand: var(--sand);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --font-sans: 'Outfit', sans-serif;
+  --font-serif: 'Playfair Display', serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--terracotta);
+  color: white;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--sand);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--brown-mid);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--terracotta);
+}
+
+/* Utility classes */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
