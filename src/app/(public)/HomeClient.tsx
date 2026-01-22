@@ -11,8 +11,9 @@ import {
   Star,
   Calendar,
   Clock,
-  MapPin
+  MapPin,
 } from "lucide-react";
+import { SITE_CONFIG } from "@/lib/constants";
 
 const usps = [
   {
@@ -37,64 +38,67 @@ const usps = [
   },
 ];
 
-const courses = [
-  {
-    title: "Skupinové kurzy",
-    subtitle: "Semestrální výuka",
-    description: "Učte se v přátelské partě maximálně 4 lidí na podobné úrovni.",
-    icon: "👥",
-    badge: "Nejoblíbenější",
-    href: "/kurzy#skupinove",
-  },
-  {
-    title: "Individuální výuka",
-    subtitle: "Výuka šitá na míru",
-    description: "Tempo, obsah i čas určujete vy. Pro ty, kdo ví, co potřebují.",
-    icon: "👤",
-    href: "/kurzy#individualni",
-  },
-  {
-    title: "Intenzivní kurzy",
-    subtitle: "Dvoutýdenní programy",
-    description: "Rychlý pokrok za krátkou dobu. Ideální před cestou do Španělska.",
-    icon: "⚡",
-    badge: "Léto 2025",
-    href: "/kurzy#intenzivni",
-  },
-  {
-    title: "Příprava na DELE",
-    subtitle: "Mezinárodní certifikát",
-    description: "Připravíme vás na zkoušku Intermedio i Superior.",
-    icon: "🎓",
-    href: "/kurzy#dele",
-  },
-];
+interface Course {
+  id: number;
+  title: string;
+  subtitle: string | null;
+  description: string | null;
+  icon: string | null;
+  badge: string | null;
+  category: string;
+  featured: boolean | null;
+}
 
-const testimonials = [
-  {
-    text: "Skvělá atmosféra a perfektní lektoři. Po roce už se dokážu bez problémů domluvit ve Španělsku!",
-    author: "Petra K.",
-    role: "Studentka B1",
-  },
-  {
-    text: "Malé skupiny jsou velká výhoda. Konečně mám prostor mluvit a nebojím se dělat chyby.",
-    author: "Martin V.",
-    role: "Student A2",
-  },
-  {
-    text: "Rodrigo a Olga jsou skvělý tým. Výuka je zábavná a člověk se těší na každou hodinu.",
-    author: "Jana M.",
-    role: "Studentka B2",
-  },
-];
+interface Testimonial {
+  id: number;
+  text: string;
+  author: string;
+  role: string | null;
+}
 
-export default function HomePage() {
+interface ContentMap {
+  [section: string]: { [key: string]: string };
+}
+
+interface HomeClientProps {
+  courses: Course[];
+  testimonials: Testimonial[];
+  content: ContentMap;
+}
+
+// Helper to get content with fallback
+function c(content: ContentMap, section: string, key: string, fallback: string): string {
+  return content[section]?.[key] || fallback;
+}
+
+export default function HomeClient({ courses, testimonials, content }: HomeClientProps) {
+  // Take only first 4 featured courses for homepage
+  const featuredCourses = courses.filter((c) => c.featured).slice(0, 4);
+  // Take only first 3 testimonials for homepage
+  const featuredTestimonials = testimonials.slice(0, 3);
+
+  // Get dynamic content with fallbacks
+  const heroTitle = c(content, "hero", "title", "Naučte se španělsky");
+  const heroSubtitle = c(content, "hero", "subtitle", "s radostí");
+  const heroDescription = c(content, "hero", "description", "Malé skupiny, osobní přístup a dva lektoři v každém kurzu. Učíme španělsky tak, aby vás to bavilo a výsledky se dostavily.");
+  const heroCtaText = c(content, "hero", "cta_text", "Zkušební hodina zdarma");
+  const aboutTitle = c(content, "about", "title", "Proč se učit u nás?");
+  const aboutDescription = c(content, "about", "description", "Kombinujeme osobní přístup s profesionální výukou");
+  const ctaTitle = c(content, "cta", "title", "Připraveni začít?");
+  const ctaDescription = c(content, "cta", "description", "První hodina je zdarma. Vyzkoušejte si, jak u nás výuka probíhá, a pak se rozhodněte.");
+  const ctaButtonText = c(content, "cta", "button_text", "Zkušební hodina zdarma");
+
+  // Quick info - uses content from DB with maintainable fallbacks from constants
+  const semesterText = c(content, "quick_info", "semester_text", SITE_CONFIG.semester.displayText);
+  const scheduleText = c(content, "quick_info", "schedule_text", SITE_CONFIG.schedule.frequency);
+  const locationText = c(content, "quick_info", "location_text", SITE_CONFIG.contact.addressShort);
+
   return (
     <div className="bg-[#FBF9F6]">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16 px-6">
         {/* Background gradient */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-radial from-[#FADDD6] to-transparent opacity-40 pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-radial from-[#FFE5E5] to-transparent opacity-40 pointer-events-none" />
 
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <motion.div
@@ -102,7 +106,7 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-flex items-center gap-2 bg-white text-[#D35233] px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm mb-8">
+            <span className="inline-flex items-center gap-2 bg-white text-[#C41E3A] px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm mb-8">
               <span>🇪🇸</span> Kurzy španělštiny v Brně
             </span>
           </motion.div>
@@ -113,10 +117,10 @@ export default function HomePage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#1F1A17] leading-tight mb-6"
           >
-            Naučte se španělsky
+            {heroTitle}
             <br />
-            <span className="font-[family-name:var(--font-playfair)] italic font-medium text-[#D35233]">
-              s radostí
+            <span className="font-[family-name:var(--font-playfair)] italic font-medium text-[#C41E3A]">
+              {heroSubtitle}
             </span>
           </motion.h1>
 
@@ -126,8 +130,7 @@ export default function HomePage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg sm:text-xl text-[#6B5D54] max-w-2xl mx-auto mb-10 leading-relaxed"
           >
-            Malé skupiny, osobní přístup a dva lektoři v každém kurzu.
-            Učíme španělsky tak, aby vás to bavilo a výsledky se dostavily.
+            {heroDescription}
           </motion.p>
 
           <motion.div
@@ -138,14 +141,14 @@ export default function HomePage() {
           >
             <Link
               href="/kontakt"
-              className="inline-flex items-center justify-center gap-2 bg-[#D35233] text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg shadow-[#D35233]/30 hover:bg-[#B5412A] hover:-translate-y-1 transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 bg-[#C41E3A] text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg shadow-[#C41E3A]/30 hover:bg-[#9E1830] hover:-translate-y-1 transition-all duration-200"
             >
-              Zkušební hodina zdarma
+              {heroCtaText}
               <ArrowRight className="h-5 w-5" />
             </Link>
             <Link
               href="/kurzy"
-              className="inline-flex items-center justify-center gap-2 bg-white text-[#1F1A17] px-8 py-4 rounded-full font-semibold text-lg border-2 border-[#EBE6DF] hover:border-[#D35233] hover:text-[#D35233] transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 bg-white text-[#1F1A17] px-8 py-4 rounded-full font-semibold text-lg border-2 border-[#EBE6DF] hover:border-[#C41E3A] hover:text-[#C41E3A] transition-all duration-200"
             >
               Prohlédnout kurzy
             </Link>
@@ -160,15 +163,15 @@ export default function HomePage() {
           >
             <span className="flex items-center gap-2">
               <Calendar className="h-4 w-4" />
-              Zimní semestr od 15.9.2025
+              {semesterText}
             </span>
             <span className="flex items-center gap-2">
               <Clock className="h-4 w-4" />
-              2× týdně 90 minut
+              {scheduleText}
             </span>
             <span className="flex items-center gap-2">
               <MapPin className="h-4 w-4" />
-              Zábrdovická 2, Brno
+              {locationText}
             </span>
           </motion.div>
         </div>
@@ -179,13 +182,17 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#1F1A17] mb-4">
-              Proč se učit{" "}
-              <span className="font-[family-name:var(--font-playfair)] italic text-[#D35233]">
-                u nás?
-              </span>
+              {aboutTitle.includes(" ") ? (
+                <>
+                  {aboutTitle.split(" ").slice(0, -1).join(" ")}{" "}
+                  <span className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A]">
+                    {aboutTitle.split(" ").slice(-1)}
+                  </span>
+                </>
+              ) : aboutTitle}
             </h2>
             <p className="text-lg text-[#6B5D54] max-w-xl mx-auto">
-              Kombinujeme osobní přístup s profesionální výukou
+              {aboutDescription}
             </p>
           </div>
 
@@ -197,9 +204,9 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-[32px] p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-2 border-transparent hover:border-[#D35233]"
+                className="bg-white rounded-[32px] p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-2 border-transparent hover:border-[#C41E3A]"
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-[#D35233] to-[#B5412A] rounded-2xl flex items-center justify-center mb-6">
+                <div className="w-14 h-14 bg-gradient-to-br from-[#C41E3A] to-[#9E1830] rounded-2xl flex items-center justify-center mb-6">
                   <usp.icon className="h-7 w-7 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-[#1F1A17] mb-2">
@@ -220,7 +227,7 @@ export default function HomePage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#1F1A17] mb-4">
               Vyberte si{" "}
-              <span className="font-[family-name:var(--font-playfair)] italic text-[#D35233]">
+              <span className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A]">
                 svůj kurz
               </span>
             </h2>
@@ -230,34 +237,34 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {courses.map((course, index) => (
+            {featuredCourses.map((course, index) => (
               <motion.div
-                key={course.title}
+                key={course.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
                 <Link
-                  href={course.href}
-                  className="group block bg-[#FBF9F6] rounded-[32px] p-8 hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-[#D35233] relative overflow-hidden"
+                  href={`/kurzy#${course.category}`}
+                  className="group block bg-[#FBF9F6] rounded-[32px] p-8 hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-[#C41E3A] relative overflow-hidden"
                 >
                   {course.badge && (
-                    <span className="absolute top-6 right-6 bg-[#D35233] text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide">
+                    <span className="absolute top-6 right-6 bg-[#C41E3A] text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide">
                       {course.badge}
                     </span>
                   )}
                   <span className="text-5xl mb-6 block">{course.icon}</span>
-                  <h3 className="text-2xl font-bold text-[#1F1A17] mb-1 group-hover:text-[#D35233] transition-colors">
+                  <h3 className="text-2xl font-bold text-[#1F1A17] mb-1 group-hover:text-[#C41E3A] transition-colors">
                     {course.title}
                   </h3>
-                  <p className="font-[family-name:var(--font-playfair)] italic text-[#D35233] mb-4">
+                  <p className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A] mb-4">
                     {course.subtitle}
                   </p>
                   <p className="text-[#6B5D54] leading-relaxed mb-6">
                     {course.description}
                   </p>
-                  <span className="inline-flex items-center gap-2 text-[#D35233] font-semibold group-hover:gap-3 transition-all">
+                  <span className="inline-flex items-center gap-2 text-[#C41E3A] font-semibold group-hover:gap-3 transition-all">
                     Více informací
                     <ArrowRight className="h-4 w-4" />
                   </span>
@@ -269,7 +276,7 @@ export default function HomePage() {
           <div className="text-center mt-12">
             <Link
               href="/kurzy"
-              className="inline-flex items-center justify-center gap-2 bg-[#1F1A17] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-[#D35233] transition-colors duration-200"
+              className="inline-flex items-center justify-center gap-2 bg-[#1F1A17] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-[#C41E3A] transition-colors duration-200"
             >
               Zobrazit všechny kurzy
               <ArrowRight className="h-5 w-5" />
@@ -284,16 +291,16 @@ export default function HomePage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#1F1A17] mb-4">
               Co říkají{" "}
-              <span className="font-[family-name:var(--font-playfair)] italic text-[#D35233]">
+              <span className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A]">
                 naši studenti
               </span>
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
+            {featuredTestimonials.map((testimonial, index) => (
               <motion.div
-                key={testimonial.author}
+                key={testimonial.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -304,7 +311,7 @@ export default function HomePage() {
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className="h-5 w-5 fill-[#D35233] text-[#D35233]"
+                      className="h-5 w-5 fill-[#C41E3A] text-[#C41E3A]"
                     />
                   ))}
                 </div>
@@ -322,7 +329,7 @@ export default function HomePage() {
           <div className="text-center mt-12">
             <Link
               href="/reference"
-              className="inline-flex items-center gap-2 text-[#D35233] font-semibold hover:gap-3 transition-all"
+              className="inline-flex items-center gap-2 text-[#C41E3A] font-semibold hover:gap-3 transition-all"
             >
               Přečíst další reference
               <ArrowRight className="h-4 w-4" />
@@ -334,26 +341,29 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="bg-gradient-to-br from-[#D35233] to-[#B5412A] rounded-[48px] p-12 md:p-16 text-center relative overflow-hidden">
+          <div className="bg-gradient-to-br from-[#C41E3A] to-[#9E1830] rounded-[48px] p-12 md:p-16 text-center relative overflow-hidden">
             {/* Decorative circle */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
 
             <div className="relative z-10">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
-                Připraveni{" "}
-                <span className="font-[family-name:var(--font-playfair)] italic font-medium">
-                  začít?
-                </span>
+                {ctaTitle.includes(" ") ? (
+                  <>
+                    {ctaTitle.split(" ").slice(0, -1).join(" ")}{" "}
+                    <span className="font-[family-name:var(--font-playfair)] italic font-medium">
+                      {ctaTitle.split(" ").slice(-1)}
+                    </span>
+                  </>
+                ) : ctaTitle}
               </h2>
               <p className="text-white/90 text-lg max-w-xl mx-auto mb-8">
-                První hodina je zdarma. Vyzkoušejte si, jak u nás výuka probíhá,
-                a pak se rozhodněte.
+                {ctaDescription}
               </p>
               <Link
                 href="/kontakt"
-                className="inline-flex items-center justify-center gap-2 bg-white text-[#D35233] px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 bg-white text-[#C41E3A] px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200"
               >
-                Zkušební hodina zdarma
+                {ctaButtonText}
                 <ArrowRight className="h-5 w-5" />
               </Link>
             </div>

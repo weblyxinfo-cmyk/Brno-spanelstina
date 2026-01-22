@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { MapPin, Mail, Phone, Clock } from "lucide-react";
+import { MapPin, Mail, Clock, Facebook } from "lucide-react";
+import PageViewCounter from "@/components/PageViewCounter";
+import { SITE_CONFIG } from "@/lib/constants";
 
 const footerLinks = {
   kurzy: [
@@ -25,7 +27,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block">
               <span className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-[#1F1A17]">
-                Španělština <span className="text-[#D35233]">Brno</span>
+                Španělština <span className="text-[#C41E3A]">Brno</span>
               </span>
             </Link>
             <p className="mt-4 text-[#6B5D54] text-sm leading-relaxed max-w-xs">
@@ -43,7 +45,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-[#1F1A17] hover:text-[#D35233] transition-colors text-sm"
+                    className="text-[#1F1A17] hover:text-[#C41E3A] transition-colors text-sm"
                   >
                     {link.name}
                   </Link>
@@ -62,7 +64,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-[#1F1A17] hover:text-[#D35233] transition-colors text-sm"
+                    className="text-[#1F1A17] hover:text-[#C41E3A] transition-colors text-sm"
                   >
                     {link.name}
                   </Link>
@@ -79,36 +81,38 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="https://maps.google.com/?q=Zábrdovická+2,+Brno"
+                  href={SITE_CONFIG.contact.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-2 text-[#1F1A17] hover:text-[#D35233] transition-colors text-sm"
+                  className="flex items-start gap-2 text-[#1F1A17] hover:text-[#C41E3A] transition-colors text-sm"
                 >
                   <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                  <span>Zábrdovická 2, 615 00 Brno</span>
+                  <span>{SITE_CONFIG.contact.address}</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:info@brno-spanelstina.cz"
-                  className="flex items-center gap-2 text-[#1F1A17] hover:text-[#D35233] transition-colors text-sm"
+                  href={`mailto:${SITE_CONFIG.contact.email}`}
+                  className="flex items-center gap-2 text-[#1F1A17] hover:text-[#C41E3A] transition-colors text-sm"
                 >
                   <Mail className="h-4 w-4 flex-shrink-0" />
-                  <span>info@brno-spanelstina.cz</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="tel:+420123456789"
-                  className="flex items-center gap-2 text-[#1F1A17] hover:text-[#D35233] transition-colors text-sm"
-                >
-                  <Phone className="h-4 w-4 flex-shrink-0" />
-                  <span>+420 123 456 789</span>
+                  <span>{SITE_CONFIG.contact.email}</span>
                 </a>
               </li>
               <li className="flex items-center gap-2 text-[#6B5D54] text-sm">
                 <Clock className="h-4 w-4 flex-shrink-0" />
-                <span>Tramvaj 2, 3 – zastávka Tkalcovská</span>
+                <span>{SITE_CONFIG.location.transport}</span>
+              </li>
+              <li>
+                <a
+                  href={SITE_CONFIG.contact.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-[#1F1A17] hover:text-[#C41E3A] transition-colors text-sm"
+                >
+                  <Facebook className="h-4 w-4 flex-shrink-0" />
+                  <span>Facebook</span>
+                </a>
               </li>
             </ul>
           </div>
@@ -119,13 +123,14 @@ export default function Footer() {
           <p className="text-sm text-[#6B5D54]">
             © {new Date().getFullYear()} Rodrigo Valenzuela. Všechna práva vyhrazena.
           </p>
+          <PageViewCounter />
           <p className="text-sm text-[#6B5D54]">
             Vytvořil{" "}
             <a
               href="https://weblyx.cz"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#D35233] hover:underline"
+              className="text-[#C41E3A] hover:underline"
             >
               Weblyx.cz
             </a>

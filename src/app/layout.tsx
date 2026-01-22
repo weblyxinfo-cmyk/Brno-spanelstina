@@ -1,8 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Outfit, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import Analytics from "@/components/Analytics";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#C41E3A",
+};
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -19,31 +25,46 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: "Španělština Brno | Kurzy španělštiny s rodilým mluvčím",
-    template: "%s | Španělština Brno",
+    default: "Spanelstina Brno | Kurzy spanelstiny s rodilym mluvcim",
+    template: "%s | Spanelstina Brno",
   },
   description:
-    "Kurzy španělštiny v Brně s rodilým mluvčím z Chile. Malé skupiny max 4 studenti, dva lektoři, příprava na DELE. První hodina zdarma!",
+    "Kurzy spanelstiny v Brne s rodilym mluvcim z Chile. Male skupiny max 4 studenti, dva lektori, priprava na DELE. Prvni hodina zdarma!",
   keywords: [
-    "kurzy španělštiny Brno",
-    "španělština Brno",
-    "výuka španělštiny",
-    "DELE příprava Brno",
-    "intenzivní kurz španělštiny",
-    "individuální výuka španělštiny",
-    "španělština pro začátečníky Brno",
-    "obchodní španělština",
+    "kurzy spanelstiny Brno",
+    "spanelstina Brno",
+    "vyuka spanelstiny",
+    "DELE priprava Brno",
+    "intenzivni kurz spanelstiny",
+    "individualni vyuka spanelstiny",
+    "spanelstina pro zacatecniky Brno",
+    "obchodni spanelstina",
   ],
   authors: [{ name: "Rodrigo Valenzuela" }],
   creator: "Weblyx.cz",
+  applicationName: "Spanelstina Brno",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Spanelstina Brno",
+  },
+  icons: {
+    icon: [
+      { url: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   openGraph: {
     type: "website",
     locale: "cs_CZ",
     url: "https://brno-spanelstina.cz",
-    siteName: "Španělština Brno",
-    title: "Španělština Brno | Kurzy španělštiny s rodilým mluvčím",
+    siteName: "Spanelstina Brno",
+    title: "Spanelstina Brno | Kurzy spanelstiny s rodilym mluvcim",
     description:
-      "Kurzy španělštiny v Brně s rodilým mluvčím z Chile. Malé skupiny max 4 studenti, dva lektoři, příprava na DELE.",
+      "Kurzy spanelstiny v Brne s rodilym mluvcim z Chile. Male skupiny max 4 studenti, dva lektori, priprava na DELE.",
   },
   robots: {
     index: true,
@@ -59,9 +80,8 @@ export default function RootLayout({
   return (
     <html lang="cs">
       <body className={`${outfit.variable} ${playfair.variable} antialiased`}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <Analytics />
+        {children}
       </body>
     </html>
   );
