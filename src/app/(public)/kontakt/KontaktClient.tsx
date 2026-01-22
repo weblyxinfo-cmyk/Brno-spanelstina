@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Mail, Clock, Send, CreditCard, Car, Facebook } from "lucide-react";
+import { MapPin, Mail, Clock, Send, CreditCard, TramFront, Facebook } from "lucide-react";
 import { useState } from "react";
 import { submitContactForm } from "@/app/actions/contact";
 
@@ -58,7 +58,7 @@ export default function KontaktClient({ content }: KontaktClientProps) {
       subtitle: "Odpovídáme do 24 hodin",
     },
     {
-      icon: Car,
+      icon: TramFront,
       title: "Doprava",
       content: "Tram. č. 2, 3 – Vojenská nemocnice",
       subtitle: "Možnost parkování v areálu",
@@ -111,7 +111,7 @@ export default function KontaktClient({ content }: KontaktClientProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-flex items-center gap-2 bg-white text-[#C41E3A] px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm mb-6 uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 bg-white text-[#E07B53] px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm mb-6 uppercase tracking-wider">
               <span>📬</span> Kontakt
             </span>
           </motion.div>
@@ -123,7 +123,7 @@ export default function KontaktClient({ content }: KontaktClientProps) {
             className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#1F1A17] leading-tight mb-6"
           >
             {heroTitle.replace(heroSubtitle, "").trim()}{" "}
-            <span className="font-[family-name:var(--font-playfair)] italic font-medium text-[#C41E3A]">
+            <span className="font-[family-name:var(--font-playfair)] italic font-medium text-[#E07B53]">
               {heroSubtitle}
             </span>
           </motion.h1>
@@ -172,7 +172,7 @@ export default function KontaktClient({ content }: KontaktClientProps) {
                   </p>
                   <button
                     onClick={() => setIsSubmitted(false)}
-                    className="mt-6 text-[#C41E3A] font-semibold hover:underline"
+                    className="mt-6 text-[#E07B53] font-semibold hover:underline"
                   >
                     Odeslat další zprávu
                   </button>
@@ -193,7 +193,7 @@ export default function KontaktClient({ content }: KontaktClientProps) {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 rounded-2xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors bg-[#FBF9F6]"
+                      className="w-full px-5 py-4 rounded-2xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors bg-[#FBF9F6]"
                       placeholder="Jan Novák"
                     />
                   </div>
@@ -213,7 +213,7 @@ export default function KontaktClient({ content }: KontaktClientProps) {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-5 py-4 rounded-2xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors bg-[#FBF9F6]"
+                        className="w-full px-5 py-4 rounded-2xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors bg-[#FBF9F6]"
                         placeholder="jan@email.cz"
                       />
                     </div>
@@ -230,7 +230,7 @@ export default function KontaktClient({ content }: KontaktClientProps) {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-5 py-4 rounded-2xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors bg-[#FBF9F6]"
+                        className="w-full px-5 py-4 rounded-2xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors bg-[#FBF9F6]"
                         placeholder="+420 777 123 456"
                       />
                     </div>
@@ -248,7 +248,7 @@ export default function KontaktClient({ content }: KontaktClientProps) {
                       name="courseType"
                       value={formData.courseType}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 rounded-2xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors bg-[#FBF9F6] appearance-none"
+                      className="w-full px-5 py-4 rounded-2xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors bg-[#FBF9F6] appearance-none"
                     >
                       <option value="">Vyberte typ kurzu...</option>
                       {courseTypes.map((type) => (
@@ -273,7 +273,7 @@ export default function KontaktClient({ content }: KontaktClientProps) {
                       rows={4}
                       value={formData.message}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 rounded-2xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors bg-[#FBF9F6] resize-none"
+                      className="w-full px-5 py-4 rounded-2xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors bg-[#FBF9F6] resize-none"
                       placeholder="Napište nám, co vás zajímá..."
                     />
                   </div>
@@ -281,7 +281,7 @@ export default function KontaktClient({ content }: KontaktClientProps) {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full inline-flex items-center justify-center gap-2 bg-[#C41E3A] text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg shadow-[#C41E3A]/30 hover:bg-[#9E1830] hover:-translate-y-1 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-[#E07B53] text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg shadow-[#E07B53]/30 hover:bg-[#C4613D] hover:-translate-y-1 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                   >
                     {isSubmitting ? (
                       "Odesílám..."
@@ -312,12 +312,12 @@ export default function KontaktClient({ content }: KontaktClientProps) {
                     {...wrapperProps}
                     className={`bg-white rounded-[32px] p-6 flex items-start gap-5 ${item.link ? 'hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer' : ''}`}
                   >
-                    <div className="w-14 h-14 bg-gradient-to-br from-[#C41E3A] to-[#9E1830] rounded-2xl flex items-center justify-center flex-shrink-0">
+                    <div className="w-14 h-14 bg-gradient-to-br from-[#E07B53] to-[#C4613D] rounded-2xl flex items-center justify-center flex-shrink-0">
                       <item.icon className="h-6 w-6 text-white" />
                     </div>
                     <div>
                       <p className="text-sm text-[#6B5D54] mb-1">{item.title}</p>
-                      <p className={`text-lg font-bold ${item.link ? 'text-[#C41E3A]' : 'text-[#1F1A17]'}`}>
+                      <p className={`text-lg font-bold ${item.link ? 'text-[#E07B53]' : 'text-[#1F1A17]'}`}>
                         {item.content}
                       </p>
                       <p className="text-sm text-[#6B5D54]">{item.subtitle}</p>
@@ -350,7 +350,7 @@ export default function KontaktClient({ content }: KontaktClientProps) {
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#1F1A17] mb-4">
               Časté{" "}
-              <span className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A]">
+              <span className="font-[family-name:var(--font-playfair)] italic text-[#E07B53]">
                 dotazy
               </span>
             </h2>

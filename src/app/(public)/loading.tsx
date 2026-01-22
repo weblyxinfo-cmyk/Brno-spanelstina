@@ -5,7 +5,7 @@ export default function Loading() {
         {/* Spinner */}
         <div className="relative w-16 h-16 mx-auto mb-6">
           <div className="absolute inset-0 rounded-full border-4 border-[#EBE6DF]" />
-          <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-[#C41E3A] animate-spin" />
+          <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-[#E07B53] animate-spin" />
         </div>
 
         {/* Text skeleton */}

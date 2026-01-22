@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jazykové úrovně | Španělština Brno – Rodrigo Valenzuela</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --cream: #FBF9F6;
+      --white: #FFFFFF;
+      --terracotta: #D35233;
+      --terracotta-dark: #B5412A;
+      --terracotta-light: #FADDD6;
+      --brown: #1F1A17;
+      --brown-mid: #6B5D54;
+      --sand: #EBE6DF;
+      --radius-sm: 16px;
+      --radius-md: 24px;
+      --radius-lg: 32px;
+      --radius-xl: 48px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--cream);
+      color: var(--brown);
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection { background: var(--terracotta); color: white; }
+
+    header {
+      position: fixed;
+      top: 1rem; left: 1rem; right: 1rem;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--brown);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .logo span { color: var(--terracotta); }
+    nav { display: flex; gap: 2rem; align-items: center; }
+    nav a {
+      color: var(--brown-mid);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    nav a:hover, nav a.active { color: var(--terracotta); }
+    .nav-cta {
+      background: var(--terracotta);
+      color: white !important;
+      padding: 0.75rem 1.5rem;
+      border-radius: 100px;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+    .nav-cta:hover {
+      background: var(--terracotta-dark) !important;
+      transform: translateY(-2px);
+    }
+
+    .page-hero {
+      padding: 10rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, var(--terracotta-light) 0%, transparent 70%);
+      opacity: 0.4;
+      z-index: 0;
+    }
+    .page-hero-content { position: relative; z-index: 1; }
+    .page-hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      color: var(--terracotta);
+      padding: 0.6rem 1.25rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .page-hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .page-hero h1 .outline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--terracotta);
+    }
+    .page-hero p {
+      font-size: 1.2rem;
+      color: var(--brown-mid);
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    .levels-intro {
+      padding: 0 2rem 4rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .levels-intro p {
+      font-size: 1.1rem;
+      color: var(--brown-mid);
+      line-height: 1.8;
+    }
+
+    .levels-section {
+      padding: 0 2rem 6rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .level-card {
+      background: white;
+      border-radius: var(--radius-xl);
+      padding: 3rem;
+      margin-bottom: 2rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2.5rem;
+      align-items: start;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+    .level-card:hover {
+      border-color: var(--terracotta);
+      transform: translateX(10px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+    }
+    .level-badge {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      flex-shrink: 0;
+    }
+    .level-badge-code {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .level-badge-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.9;
+    }
+    .level-content h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .level-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--terracotta);
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .level-content p {
+      color: var(--brown-mid);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    .level-grammar {
+      background: var(--cream);
+      padding: 1.25rem 1.5rem;
+      border-radius: var(--radius-md);
+    }
+    .level-grammar-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--brown-mid);
+      margin-bottom: 0.75rem;
+    }
+    .level-grammar-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .grammar-tag {
+      background: white;
+      padding: 0.4rem 0.9rem;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--brown);
+      border: 1px solid var(--sand);
+    }
+
+    .level-card.beginner .level-badge {
+      background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
+    }
+    .level-card.intermediate .level-badge {
+      background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+    }
+    .level-card.advanced .level-badge {
+      background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
+    }
+
+    .test-section {
+      padding: 6rem 2rem;
+      background: var(--brown);
+    }
+    .test-container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      color: white;
+    }
+    .test-container h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      margin-bottom: 1rem;
+    }
+    .test-container h2 .serif {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--terracotta-light);
+    }
+    .test-container p {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+      max-width: 550px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .test-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: white;
+      color: var(--brown);
+      padding: 1.25rem 2.5rem;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .test-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    .cta {
+      padding: 6rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .cta h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      margin-bottom: 1rem;
+    }
+    .cta h2 .serif {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--terracotta);
+    }
+    .cta p {
+      color: var(--brown-mid);
+      font-size: 1.15rem;
+      margin-bottom: 2rem;
+      max-width: 550px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--terracotta);
+      color: white;
+      padding: 1.25rem 2.5rem;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 30px rgba(211,82,51,0.3);
+    }
+    .cta-btn:hover {
+      background: var(--terracotta-dark);
+      transform: translateY(-3px);
+    }
+
+    footer {
+      padding: 4rem 2rem;
+      background: white;
+      border-top: 1px solid var(--sand);
+    }
+    .footer-container { max-width: 1400px; margin: 0 auto; }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .footer-brand span { color: var(--terracotta); }
+    .footer-desc {
+      color: var(--brown-mid);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 300px;
+    }
+    .footer-column h4 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1.25rem;
+      color: var(--brown-mid);
+    }
+    .footer-column ul { list-style: none; }
+    .footer-column li { margin-bottom: 0.6rem; }
+    .footer-column a {
+      color: var(--brown);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+    .footer-column a:hover { color: var(--terracotta); }
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid var(--sand);
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--brown-mid);
+    }
+
+    @media (max-width: 1024px) {
+      header { margin: 0.75rem; left: 0.75rem; right: 0.75rem; top: 0.75rem; }
+      nav a:not(.nav-cta) { display: none; }
+      .level-card { grid-template-columns: 1fr; gap: 1.5rem; }
+      .level-badge { width: 80px; height: 80px; }
+      .level-badge-code { font-size: 2rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+    @media (max-width: 640px) {
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="brno-spanelstina-FINAL-homepage.html" class="logo">Španělština <span>Brno</span></a>
+    <nav>
+      <a href="brno-spanelstina-FINAL-kurzy.html">Kurzy</a>
+      <a href="brno-spanelstina-FINAL-o-nas.html">O nás</a>
+      <a href="brno-spanelstina-FINAL-lektori.html">Lektoři</a>
+      <a href="brno-spanelstina-FINAL-reference.html">Reference</a>
+      <a href="brno-spanelstina-FINAL-kontakt.html">Kontakt</a>
+      <a href="#" class="nav-cta">Zkusit zdarma</a>
+    </nav>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-hero-tag">📊 CEFR</div>
+      <h1>Jak poznám svoji <span class="outline">jazykovou úroveň?</span></h1>
+      <p>Používáme mezinárodní klasifikaci CEFR (Společný evropský referenční rámec). Zde najdete přehled úrovní a co na každé z nich zvládnete.</p>
+    </div>
+  </section>
+
+  <section class="levels-intro">
+    <p>Nevíte, do které skupiny patříte? Níže najdete popis jednotlivých úrovní včetně gramatiky, kterou byste měli ovládat. Pokud si stále nejste jistí, přijďte na <strong>bezplatnou konzultaci</strong> – rádi vám pomůžeme.</p>
+  </section>
+
+  <section class="levels-section">
+
+    <div class="level-card beginner">
+      <div class="level-badge">
+        <span class="level-badge-code">A1</span>
+        <span class="level-badge-label">Začátečník</span>
+      </div>
+      <div class="level-content">
+        <h2>Úplný začátečník</h2>
+        <div class="level-subtitle">Pro ty, kteří začínají od nuly</div>
+        <p>Na této úrovni se naučíte základní fráze pro každodenní komunikaci. Umíte se představit, zeptat se na jednoduché věci a odpovědět na základní otázky o sobě, své rodině a bydlišti.</p>
+        <div class="level-grammar">
+          <div class="level-grammar-title">Co se naučíte</div>
+          <div class="level-grammar-list">
+            <span class="grammar-tag">Základní slovní zásoba</span>
+            <span class="grammar-tag">Představování</span>
+            <span class="grammar-tag">Čísla, barvy</span>
+            <span class="grammar-tag">Přítomný čas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="level-card beginner">
+      <div class="level-badge">
+        <span class="level-badge-code">A2</span>
+        <span class="level-badge-label">Základy</span>
+      </div>
+      <div class="level-content">
+        <h2>Mírně pokročilý začátečník</h2>
+        <div class="level-subtitle">Základní konverzace</div>
+        <p>Rozumíte větám týkajícím se běžných témat (nakupování, rodina, práce). Dokážete komunikovat v jednoduchých situacích a popsat své okolí a potřeby.</p>
+        <div class="level-grammar">
+          <div class="level-grammar-title">Předpokládané znalosti</div>
+          <div class="level-grammar-list">
+            <span class="grammar-tag">ser, estar</span>
+            <span class="grammar-tag">gustar, hay</span>
+            <span class="grammar-tag">Pravidelná slovesa v presente</span>
+            <span class="grammar-tag">Nepravidelná slovesa v presente</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="level-card intermediate">
+      <div class="level-badge">
+        <span class="level-badge-code">A2-B1</span>
+        <span class="level-badge-label">Přechod</span>
+      </div>
+      <div class="level-content">
+        <h2>Přechodová úroveň</h2>
+        <div class="level-subtitle">Minulé časy</div>
+        <p>Na této úrovni se začínáte učit mluvit o minulosti. Zvládnete vyprávět příběhy, popsat události a sdílet své zážitky. Kurz začíná výukou minulých časů.</p>
+        <div class="level-grammar">
+          <div class="level-grammar-title">Náplň kurzu</div>
+          <div class="level-grammar-list">
+            <span class="grammar-tag">Préterito perfecto</span>
+            <span class="grammar-tag">Préterito indefinido</span>
+            <span class="grammar-tag">Préterito imperfecto</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="level-card intermediate">
+      <div class="level-badge">
+        <span class="level-badge-code">B1</span>
+        <span class="level-badge-label">Střední</span>
+      </div>
+      <div class="level-content">
+        <h2>Středně pokročilý</h2>
+        <div class="level-subtitle">Samostatná komunikace</div>
+        <p>Rozumíte hlavním myšlenkám textů na běžná témata. Dokážete si poradit ve většině situací při cestování. Umíte napsat jednoduchý souvislý text a popsat své zážitky, plány a názory.</p>
+        <div class="level-grammar">
+          <div class="level-grammar-title">Kurz začíná opakováním</div>
+          <div class="level-grammar-list">
+            <span class="grammar-tag">Préterito perfecto</span>
+            <span class="grammar-tag">Préterito indefinido</span>
+            <span class="grammar-tag">Préterito imperfecto</span>
+            <span class="grammar-tag">Budoucí čas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="level-card advanced">
+      <div class="level-badge">
+        <span class="level-badge-code">B1+</span>
+        <span class="level-badge-label">Pokročilý</span>
+      </div>
+      <div class="level-content">
+        <h2>Vyšší středně pokročilý</h2>
+        <div class="level-subtitle">Subjuntivo a komplexní struktury</div>
+        <p>Na této úrovni se ponoříte do složitějších gramatických struktur. Kurz začíná opakováním subjuntivu a pokračuje k pokročilejším tématům. Dokážete vést plynulou konverzaci na široké spektrum témat.</p>
+        <div class="level-grammar">
+          <div class="level-grammar-title">Kurz začíná opakováním</div>
+          <div class="level-grammar-list">
+            <span class="grammar-tag">Subjuntivo presente</span>
+            <span class="grammar-tag">Podmínkové věty</span>
+            <span class="grammar-tag">Komplexní struktury</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="level-card advanced">
+      <div class="level-badge">
+        <span class="level-badge-code">B2+</span>
+        <span class="level-badge-label">Expert</span>
+      </div>
+      <div class="level-content">
+        <h2>Pokročilý / Příprava DELE</h2>
+        <div class="level-subtitle">Pro certifikát a plynulost</div>
+        <p>Rozumíte náročným textům včetně abstraktních témat. Dokážete se spontánně a plynule vyjadřovat. Na této úrovni vás připravíme na mezinárodní zkoušky DELE Intermedio a DELE Superior.</p>
+        <div class="level-grammar">
+          <div class="level-grammar-title">Zaměření</div>
+          <div class="level-grammar-list">
+            <span class="grammar-tag">DELE Intermedio</span>
+            <span class="grammar-tag">DELE Superior</span>
+            <span class="grammar-tag">Plynulá konverzace</span>
+            <span class="grammar-tag">Akademická španělština</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="test-section">
+    <div class="test-container">
+      <h2>Nejste si <span class="serif">jistí?</span></h2>
+      <p>Přijďte na bezplatnou konzultaci. Probereme vaše dosavadní zkušenosti a zařadíme vás do správné skupiny.</p>
+      <a href="brno-spanelstina-FINAL-kontakt.html" class="test-btn">
+        Domluvit konzultaci
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Připraveni <span class="serif">začít?</span></h2>
+    <p>První hodina je zdarma. Vyzkoušejte si, jak u nás výuka probíhá, a pak se rozhodněte.</p>
+    <a href="#" class="cta-btn">
+      Zkušební hodina zdarma
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">Španělština <span>Brno</span></div>
+          <p class="footer-desc">Učíme španělsky s osobním přístupem od roku 2010. Malé skupiny, velké výsledky.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Kurzy</h4>
+          <ul>
+            <li><a href="#">Skupinové</a></li>
+            <li><a href="#">Individuální</a></li>
+            <li><a href="#">Intenzivní</a></li>
+            <li><a href="#">DELE příprava</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Škola</h4>
+          <ul>
+            <li><a href="#">O nás</a></li>
+            <li><a href="#">Lektoři</a></li>
+            <li><a href="#">Reference</a></li>
+            <li><a href="#">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Kontakt</h4>
+          <ul>
+            <li><a href="#">Zábrdovická 2, Brno</a></li>
+            <li><a href="#">info@brno-spanelstina.cz</a></li>
+            <li><a href="#">Tramvaj 2, 3</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Rodrigo Valenzuela</span>
+        <span>Vytvořil Weblyx.cz</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

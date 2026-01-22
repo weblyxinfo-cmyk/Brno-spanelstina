@@ -101,7 +101,7 @@ export default function TestimonialForm() {
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-[#1F1A17] mb-4">
             Přidejte svou{" "}
-            <span className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A]">
+            <span className="font-[family-name:var(--font-playfair)] italic text-[#E07B53]">
               referenci
             </span>
           </h2>
@@ -114,7 +114,7 @@ export default function TestimonialForm() {
           <div className="text-center">
             <button
               onClick={() => setShowForm(true)}
-              className="inline-flex items-center gap-2 bg-[#C41E3A] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-[#9E1830] hover:-translate-y-1 transition-all duration-200"
+              className="inline-flex items-center gap-2 bg-[#E07B53] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-[#C4613D] hover:-translate-y-1 transition-all duration-200"
             >
               Napsat recenzi
               <Star className="h-5 w-5" />
@@ -140,7 +140,7 @@ export default function TestimonialForm() {
                 setSubmitted(false);
                 setShowForm(false);
               }}
-              className="text-[#C41E3A] font-semibold hover:underline"
+              className="text-[#E07B53] font-semibold hover:underline"
             >
               Napsat další recenzi
             </button>
@@ -178,7 +178,7 @@ export default function TestimonialForm() {
                 className={`w-full px-5 py-4 rounded-2xl border-2 ${
                   getFieldError("author")
                     ? "border-red-400 focus:border-red-500"
-                    : "border-[#EBE6DF] focus:border-[#C41E3A]"
+                    : "border-[#EBE6DF] focus:border-[#E07B53]"
                 } focus:outline-none transition-colors bg-white`}
                 placeholder="Jan N."
               />
@@ -199,7 +199,7 @@ export default function TestimonialForm() {
                 id="course"
                 value={formData.course}
                 onChange={(e) => setFormData({ ...formData, course: e.target.value })}
-                className="w-full px-5 py-4 rounded-2xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors bg-white appearance-none cursor-pointer"
+                className="w-full px-5 py-4 rounded-2xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors bg-white appearance-none cursor-pointer"
                 style={{
                   backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B5D54'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
                   backgroundRepeat: "no-repeat",
@@ -233,7 +233,7 @@ export default function TestimonialForm() {
                     <Star
                       className={`w-8 h-8 transition-colors ${
                         star <= formData.rating
-                          ? "text-[#C41E3A] fill-[#C41E3A]"
+                          ? "text-[#E07B53] fill-[#E07B53]"
                           : "text-[#EBE6DF]"
                       }`}
                     />
@@ -262,7 +262,7 @@ export default function TestimonialForm() {
                 className={`w-full px-5 py-4 rounded-2xl border-2 ${
                   getFieldError("text")
                     ? "border-red-400 focus:border-red-500"
-                    : "border-[#EBE6DF] focus:border-[#C41E3A]"
+                    : "border-[#EBE6DF] focus:border-[#E07B53]"
                 } focus:outline-none transition-colors bg-white resize-none`}
                 placeholder="Napište, jak se vám u nás líbilo..."
               />
@@ -283,7 +283,7 @@ export default function TestimonialForm() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex-1 inline-flex items-center justify-center gap-2 bg-[#C41E3A] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-[#9E1830] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 inline-flex items-center justify-center gap-2 bg-[#E07B53] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-[#C4613D] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
                   "Odesílám..."

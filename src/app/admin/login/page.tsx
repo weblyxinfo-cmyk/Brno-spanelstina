@@ -27,7 +27,7 @@ function LoginForm() {
       <div className="w-full max-w-md">
         {/* Logo/Brand */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-[#C41E3A] rounded-2xl mb-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-[#E07B53] rounded-2xl mb-4">
             <Lock className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-2xl font-bold text-[#1F1A17] font-['Outfit']">
@@ -70,7 +70,7 @@ function LoginForm() {
                 autoComplete="current-password"
                 required
                 disabled={isPending}
-                className="w-full px-4 py-3 bg-[#FBF9F6] border border-[#EBE6DF] rounded-xl text-[#1F1A17] placeholder-[#6B5D54]/50 focus:outline-none focus:ring-2 focus:ring-[#C41E3A] focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed font-['Outfit']"
+                className="w-full px-4 py-3 bg-[#FBF9F6] border border-[#EBE6DF] rounded-xl text-[#1F1A17] placeholder-[#6B5D54]/50 focus:outline-none focus:ring-2 focus:ring-[#E07B53] focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed font-['Outfit']"
                 placeholder="Zadejte heslo"
               />
             </div>
@@ -79,7 +79,7 @@ function LoginForm() {
             <button
               type="submit"
               disabled={isPending}
-              className="w-full py-3 px-4 bg-[#C41E3A] text-white font-semibold rounded-xl hover:bg-[#9E1830] focus:outline-none focus:ring-2 focus:ring-[#C41E3A] focus:ring-offset-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-['Outfit']"
+              className="w-full py-3 px-4 bg-[#E07B53] text-white font-semibold rounded-xl hover:bg-[#C4613D] focus:outline-none focus:ring-2 focus:ring-[#E07B53] focus:ring-offset-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-['Outfit']"
             >
               {isPending ? (
                 <>
@@ -96,7 +96,7 @@ function LoginForm() {
           <div className="mt-6 pt-6 border-t border-[#EBE6DF] text-center">
             <a
               href="/"
-              className="text-sm text-[#6B5D54] hover:text-[#C41E3A] transition-colors font-['Outfit']"
+              className="text-sm text-[#6B5D54] hover:text-[#E07B53] transition-colors font-['Outfit']"
             >
               Zpet na web
             </a>
@@ -117,7 +117,7 @@ export default function AdminLoginPage() {
     <Suspense
       fallback={
         <div className="min-h-screen bg-[#EBE6DF] flex items-center justify-center">
-          <Loader2 className="w-8 h-8 animate-spin text-[#C41E3A]" />
+          <Loader2 className="w-8 h-8 animate-spin text-[#E07B53]" />
         </div>
       }
     >

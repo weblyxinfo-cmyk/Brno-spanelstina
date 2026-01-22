@@ -150,7 +150,7 @@ export default function AdminUrovnePage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C41E3A]"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#E07B53]"></div>
       </div>
     );
   }
@@ -168,7 +168,7 @@ export default function AdminUrovnePage() {
               setFormData((prev) => ({ ...prev, sortOrder: levels.length }));
               setIsCreating(true);
             }}
-            className="inline-flex items-center gap-2 bg-[#C41E3A] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#9E1830] transition-colors"
+            className="inline-flex items-center gap-2 bg-[#E07B53] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#C4613D] transition-colors"
           >
             <Plus className="w-5 h-5" />
             Přidat úroveň
@@ -202,7 +202,7 @@ export default function AdminUrovnePage() {
                   required
                   value={formData.code}
                   onChange={(e) => setFormData({ ...formData, code: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. A1"
                 />
               </div>
@@ -215,7 +215,7 @@ export default function AdminUrovnePage() {
                   type="text"
                   value={formData.label}
                   onChange={(e) => setFormData({ ...formData, label: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. Začátečník"
                 />
               </div>
@@ -228,7 +228,7 @@ export default function AdminUrovnePage() {
                   type="number"
                   value={formData.sortOrder}
                   onChange={(e) => setFormData({ ...formData, sortOrder: parseInt(e.target.value) || 0 })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                 />
               </div>
 
@@ -241,7 +241,7 @@ export default function AdminUrovnePage() {
                   required
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. Úplný začátečník"
                 />
               </div>
@@ -254,7 +254,7 @@ export default function AdminUrovnePage() {
                   type="text"
                   value={formData.subtitle}
                   onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. Breakthrough"
                 />
               </div>
@@ -267,7 +267,7 @@ export default function AdminUrovnePage() {
                   <select
                     value={formData.color}
                     onChange={(e) => setFormData({ ...formData, color: e.target.value })}
-                    className="flex-1 px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                    className="flex-1 px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   >
                     {colorOptions.map((opt) => (
                       <option key={opt.value} value={opt.value}>
@@ -291,7 +291,7 @@ export default function AdminUrovnePage() {
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 rows={3}
-                className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors resize-none"
+                className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors resize-none"
                 placeholder="Co student zvládne na této úrovni..."
               />
             </div>
@@ -304,7 +304,7 @@ export default function AdminUrovnePage() {
                 type="text"
                 value={formData.grammarTitle}
                 onChange={(e) => setFormData({ ...formData, grammarTitle: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                 placeholder="např. Co se naučíte"
               />
             </div>
@@ -321,7 +321,7 @@ export default function AdminUrovnePage() {
                       type="text"
                       value={item}
                       onChange={(e) => updateGrammar(index, e.target.value)}
-                      className="flex-1 px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                      className="flex-1 px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                       placeholder="např. Přítomný čas pravidelných sloves"
                     />
                     <button
@@ -336,7 +336,7 @@ export default function AdminUrovnePage() {
                 <button
                   type="button"
                   onClick={addGrammarItem}
-                  className="text-sm text-[#C41E3A] font-semibold hover:underline"
+                  className="text-sm text-[#E07B53] font-semibold hover:underline"
                 >
                   + Přidat bod
                 </button>
@@ -346,7 +346,7 @@ export default function AdminUrovnePage() {
             <div className="flex gap-3">
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 bg-[#C41E3A] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#9E1830] transition-colors"
+                className="inline-flex items-center gap-2 bg-[#E07B53] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#C4613D] transition-colors"
               >
                 <Check className="w-5 h-5" />
                 {editingId ? "Uložit změny" : "Vytvořit úroveň"}
@@ -399,7 +399,7 @@ export default function AdminUrovnePage() {
                   onClick={() => startEdit(level)}
                   className="p-2 hover:bg-[#FFE5E5] rounded-lg transition-colors"
                 >
-                  <Pencil className="w-4 h-4 text-[#C41E3A]" />
+                  <Pencil className="w-4 h-4 text-[#E07B53]" />
                 </button>
                 <button
                   onClick={() => handleDelete(level.id)}

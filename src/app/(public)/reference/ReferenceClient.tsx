@@ -64,7 +64,7 @@ export default function ReferenceClient({ testimonials, stats, content }: Refere
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-flex items-center gap-2 bg-white text-[#C41E3A] px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm mb-6 uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 bg-white text-[#E07B53] px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm mb-6 uppercase tracking-wider">
               <span>⭐</span> Reference
             </span>
           </motion.div>
@@ -76,7 +76,7 @@ export default function ReferenceClient({ testimonials, stats, content }: Refere
             className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#1F1A17] leading-tight mb-6"
           >
             {heroTitle.replace(heroSubtitle, "").trim()}{" "}
-            <span className="font-[family-name:var(--font-playfair)] italic font-medium text-[#C41E3A]">
+            <span className="font-[family-name:var(--font-playfair)] italic font-medium text-[#E07B53]">
               {heroSubtitle}
             </span>
           </motion.h1>
@@ -104,7 +104,7 @@ export default function ReferenceClient({ testimonials, stats, content }: Refere
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
                 className="bg-white rounded-[32px] p-6 text-center"
               >
-                <p className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-[#C41E3A] mb-1">
+                <p className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-[#E07B53] mb-1">
                   {stat.number}
                 </p>
                 <p className="text-[#6B5D54] text-sm">{stat.label}</p>
@@ -132,7 +132,7 @@ export default function ReferenceClient({ testimonials, stats, content }: Refere
                   {[...Array(testimonial.rating || 5)].map((_, i) => (
                     <Star
                       key={i}
-                      className="h-5 w-5 fill-[#C41E3A] text-[#C41E3A]"
+                      className="h-5 w-5 fill-[#E07B53] text-[#E07B53]"
                     />
                   ))}
                 </div>
@@ -149,7 +149,7 @@ export default function ReferenceClient({ testimonials, stats, content }: Refere
                   </p>
                   <p className="text-sm text-[#6B5D54]">{testimonial.role}</p>
                   {testimonial.course && (
-                    <span className="inline-block mt-2 text-xs bg-[#FFE5E5] text-[#9E1830] px-3 py-1 rounded-full font-medium">
+                    <span className="inline-block mt-2 text-xs bg-[#FFE5E5] text-[#C4613D] px-3 py-1 rounded-full font-medium">
                       {testimonial.course}
                     </span>
                   )}
@@ -180,7 +180,7 @@ export default function ReferenceClient({ testimonials, stats, content }: Refere
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-[#1F1A17] mb-6">
               Proč nám studenti{" "}
-              <span className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A]">
+              <span className="font-[family-name:var(--font-playfair)] italic text-[#E07B53]">
                 věří?
               </span>
             </h2>
@@ -224,7 +224,7 @@ export default function ReferenceClient({ testimonials, stats, content }: Refere
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-[#C41E3A] to-[#9E1830] rounded-[48px] p-12 md:p-16 text-center relative overflow-hidden"
+            className="bg-gradient-to-br from-[#E07B53] to-[#C4613D] rounded-[48px] p-12 md:p-16 text-center relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
 
@@ -244,7 +244,7 @@ export default function ReferenceClient({ testimonials, stats, content }: Refere
               </p>
               <Link
                 href="/kontakt"
-                className="inline-flex items-center justify-center gap-2 bg-white text-[#C41E3A] px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 bg-white text-[#E07B53] px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200"
               >
                 Zkušební hodina zdarma
                 <ArrowRight className="h-5 w-5" />

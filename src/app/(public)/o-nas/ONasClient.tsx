@@ -110,7 +110,7 @@ export default function ONasClient({ content }: ONasClientProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-flex items-center gap-2 bg-white text-[#C41E3A] px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm mb-6 uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 bg-white text-[#E07B53] px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm mb-6 uppercase tracking-wider">
               <span>🏫</span> Naše škola
             </span>
           </motion.div>
@@ -122,7 +122,7 @@ export default function ONasClient({ content }: ONasClientProps) {
             className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#1F1A17] leading-tight mb-6"
           >
             {heroTitle.replace(heroSubtitle, "").trim()}{" "}
-            <span className="font-[family-name:var(--font-playfair)] italic font-medium text-[#C41E3A]">
+            <span className="font-[family-name:var(--font-playfair)] italic font-medium text-[#E07B53]">
               {heroSubtitle}
             </span>
           </motion.h1>
@@ -150,7 +150,7 @@ export default function ONasClient({ content }: ONasClientProps) {
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
                 className="bg-white rounded-[32px] p-6 text-center"
               >
-                <p className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-[#C41E3A] mb-1">
+                <p className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-[#E07B53] mb-1">
                   {stat.number}
                 </p>
                 <p className="text-[#6B5D54] text-sm">{stat.label}</p>
@@ -168,7 +168,7 @@ export default function ONasClient({ content }: ONasClientProps) {
               {missionTitle.includes(" ") ? (
                 <>
                   {missionTitle.split(" ").slice(0, -1).join(" ")}{" "}
-                  <span className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A]">
+                  <span className="font-[family-name:var(--font-playfair)] italic text-[#E07B53]">
                     {missionTitle.split(" ").slice(-1)}
                   </span>
                 </>
@@ -189,7 +189,7 @@ export default function ONasClient({ content }: ONasClientProps) {
                 viewport={{ once: true }}
                 className="bg-white rounded-[32px] p-6 md:p-8 grid grid-cols-[auto_1fr] gap-6 items-start hover:shadow-lg transition-shadow"
               >
-                <div className="w-20 h-20 bg-gradient-to-br from-[#C41E3A] to-[#9E1830] rounded-[16px] flex items-center justify-center text-white font-bold text-xl">
+                <div className="w-20 h-20 bg-gradient-to-br from-[#E07B53] to-[#C4613D] rounded-[16px] flex items-center justify-center text-white font-bold text-xl">
                   {item.year}
                 </div>
                 <div>
@@ -214,7 +214,7 @@ export default function ONasClient({ content }: ONasClientProps) {
               {valuesTitle.includes(" ") ? (
                 <>
                   {valuesTitle.split(" ").slice(0, -1).join(" ")}{" "}
-                  <span className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A]">
+                  <span className="font-[family-name:var(--font-playfair)] italic text-[#E07B53]">
                     {valuesTitle.split(" ").slice(-1)}
                   </span>
                 </>
@@ -233,15 +233,15 @@ export default function ONasClient({ content }: ONasClientProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-[#FBF9F6] rounded-[32px] p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-2 border-transparent hover:border-[#C41E3A]"
+                className="bg-[#FBF9F6] rounded-[32px] p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-2 border-transparent hover:border-[#E07B53]"
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-[#C41E3A] to-[#9E1830] rounded-2xl flex items-center justify-center mb-6">
+                <div className="w-14 h-14 bg-gradient-to-br from-[#E07B53] to-[#C4613D] rounded-2xl flex items-center justify-center mb-6">
                   <value.icon className="h-7 w-7 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-[#1F1A17] mb-1">
                   {value.title}
                 </h3>
-                <p className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A] mb-4">
+                <p className="font-[family-name:var(--font-playfair)] italic text-[#E07B53] mb-4">
                   {value.subtitle}
                 </p>
                 <p className="text-[#6B5D54] leading-relaxed">
@@ -295,8 +295,17 @@ export default function ONasClient({ content }: ONasClientProps) {
                 dáme vám kávu.
               </p>
             </div>
-            <div className="bg-gradient-to-br from-[#FFE5E5] to-[#EBE6DF] rounded-[32px] h-64 flex items-center justify-center">
-              <span className="text-6xl">📍</span>
+            <div className="bg-white rounded-[32px] h-64 overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2607.0307846692927!2d16.621847!3d49.200897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4712943a8a9d1b9d%3A0x400af0f6614b1b0!2sZ%C3%A1brdovick%C3%A1%202%2C%20615%2000%20Brno-Husovice!5e0!3m2!1scs!2scz!4v1705849200000!5m2!1scs!2scz"
+                width="100%"
+                height="100%"
+                style={{ border: 0, borderRadius: "24px" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Mapa - Španělština Brno"
+              ></iframe>
             </div>
           </motion.div>
         </div>
@@ -310,7 +319,7 @@ export default function ONasClient({ content }: ONasClientProps) {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-[#C41E3A] to-[#9E1830] rounded-[48px] p-12 md:p-16 text-center relative overflow-hidden"
+            className="bg-gradient-to-br from-[#E07B53] to-[#C4613D] rounded-[48px] p-12 md:p-16 text-center relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
 
@@ -327,7 +336,7 @@ export default function ONasClient({ content }: ONasClientProps) {
               </p>
               <Link
                 href="/kontakt"
-                className="inline-flex items-center justify-center gap-2 bg-white text-[#C41E3A] px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 bg-white text-[#E07B53] px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200"
               >
                 Zkušební hodina zdarma
                 <ArrowRight className="h-5 w-5" />

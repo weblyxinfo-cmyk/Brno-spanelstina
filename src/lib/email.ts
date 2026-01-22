@@ -29,7 +29,7 @@ export async function sendContactNotification(data: ContactEmailData) {
       subject: `Nová zpráva od ${data.name}${data.courseType ? ` - ${data.courseType}` : ""}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: linear-gradient(135deg, #C41E3A, #9E1830); padding: 24px; border-radius: 16px 16px 0 0;">
+          <div style="background: linear-gradient(135deg, #E07B53, #C4613D); padding: 24px; border-radius: 16px 16px 0 0;">
             <h1 style="color: white; margin: 0; font-size: 24px;">Nová zpráva z webu</h1>
           </div>
 
@@ -41,12 +41,12 @@ export async function sendContactNotification(data: ContactEmailData) {
               </tr>
               <tr>
                 <td style="padding: 8px 0; color: #6B5D54;">Email:</td>
-                <td style="padding: 8px 0;"><a href="mailto:${data.email}" style="color: #C41E3A;">${data.email}</a></td>
+                <td style="padding: 8px 0;"><a href="mailto:${data.email}" style="color: #E07B53;">${data.email}</a></td>
               </tr>
               ${data.phone ? `
               <tr>
                 <td style="padding: 8px 0; color: #6B5D54;">Telefon:</td>
-                <td style="padding: 8px 0;"><a href="tel:${data.phone}" style="color: #C41E3A;">${data.phone}</a></td>
+                <td style="padding: 8px 0;"><a href="tel:${data.phone}" style="color: #E07B53;">${data.phone}</a></td>
               </tr>
               ` : ""}
               ${data.courseType ? `
@@ -64,7 +64,7 @@ export async function sendContactNotification(data: ContactEmailData) {
 
             <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #EBE6DF;">
               <a href="mailto:${data.email}?subject=Re: Dotaz na kurzy španělštiny"
-                 style="display: inline-block; background: #C41E3A; color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: bold;">
+                 style="display: inline-block; background: #E07B53; color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: bold;">
                 Odpovědět
               </a>
             </div>
@@ -102,7 +102,7 @@ export async function sendConfirmationEmail(data: ContactEmailData) {
       subject: "Děkujeme za váš zájem o kurzy španělštiny",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: linear-gradient(135deg, #C41E3A, #9E1830); padding: 24px; border-radius: 16px 16px 0 0;">
+          <div style="background: linear-gradient(135deg, #E07B53, #C4613D); padding: 24px; border-radius: 16px 16px 0 0;">
             <h1 style="color: white; margin: 0; font-size: 24px;">¡Hola ${data.name}!</h1>
           </div>
 
@@ -112,8 +112,8 @@ export async function sendConfirmationEmail(data: ContactEmailData) {
             </p>
 
             <p style="color: #6B5D54; font-size: 14px; line-height: 1.6; margin-top: 16px;">
-              Mezitím se můžete podívat na naše <a href="https://${SITE_CONFIG.email.domain}/kurzy" style="color: #C41E3A;">kurzy</a>
-              nebo si přečíst <a href="https://${SITE_CONFIG.email.domain}/reference" style="color: #C41E3A;">reference</a> od našich studentů.
+              Mezitím se můžete podívat na naše <a href="https://${SITE_CONFIG.email.domain}/kurzy" style="color: #E07B53;">kurzy</a>
+              nebo si přečíst <a href="https://${SITE_CONFIG.email.domain}/reference" style="color: #E07B53;">reference</a> od našich studentů.
             </p>
 
             <div style="margin-top: 24px; padding: 16px; background: white; border-radius: 12px; border: 1px solid #EBE6DF;">
@@ -130,7 +130,7 @@ export async function sendConfirmationEmail(data: ContactEmailData) {
           <div style="text-align: center; margin-top: 24px;">
             <p style="color: #6B5D54; font-size: 12px; margin: 0;">
               ${SITE_CONFIG.email.fromName} | ${SITE_CONFIG.contact.address}<br>
-              <a href="mailto:${SITE_CONFIG.contact.email}" style="color: #C41E3A;">${SITE_CONFIG.contact.email}</a>
+              <a href="mailto:${SITE_CONFIG.contact.email}" style="color: #E07B53;">${SITE_CONFIG.contact.email}</a>
             </p>
           </div>
         </div>

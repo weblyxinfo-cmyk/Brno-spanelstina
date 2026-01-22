@@ -64,10 +64,10 @@ export default function AdminClient({ messages: initialMessages }: AdminClientPr
                   onClick={() => setSelectedMessage(msg)}
                   className={`w-full text-left p-4 rounded-2xl transition-all ${
                     selectedMessage?.id === msg.id
-                      ? "bg-[#C41E3A] text-white"
+                      ? "bg-[#E07B53] text-white"
                       : msg.read
                       ? "bg-white hover:bg-[#EBE6DF]"
-                      : "bg-white border-l-4 border-[#C41E3A] hover:bg-[#EBE6DF]"
+                      : "bg-white border-l-4 border-[#E07B53] hover:bg-[#EBE6DF]"
                   }`}
                 >
                   <div className="flex items-center gap-2 mb-1">
@@ -78,7 +78,7 @@ export default function AdminClient({ messages: initialMessages }: AdminClientPr
                         className={`w-2 h-2 rounded-full ${
                           selectedMessage?.id === msg.id
                             ? "bg-white"
-                            : "bg-[#C41E3A]"
+                            : "bg-[#E07B53]"
                         }`}
                       />
                     )}
@@ -116,7 +116,7 @@ export default function AdminClient({ messages: initialMessages }: AdminClientPr
                       {selectedMessage.name}
                     </h2>
                     {selectedMessage.courseType && (
-                      <span className="inline-block mt-2 text-xs bg-[#FFE5E5] text-[#9E1830] px-3 py-1 rounded-full font-medium">
+                      <span className="inline-block mt-2 text-xs bg-[#FFE5E5] text-[#C4613D] px-3 py-1 rounded-full font-medium">
                         {selectedMessage.courseType}
                       </span>
                     )}
@@ -124,7 +124,7 @@ export default function AdminClient({ messages: initialMessages }: AdminClientPr
                   {!selectedMessage.read && (
                     <button
                       onClick={() => handleMarkAsRead(selectedMessage.id)}
-                      className="inline-flex items-center gap-2 bg-[#C41E3A] text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#9E1830] transition-colors"
+                      className="inline-flex items-center gap-2 bg-[#E07B53] text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#C4613D] transition-colors"
                     >
                       <Check className="w-4 h-4" />
                       Označit jako přečtené
@@ -137,7 +137,7 @@ export default function AdminClient({ messages: initialMessages }: AdminClientPr
                     <Mail className="w-4 h-4" />
                     <a
                       href={`mailto:${selectedMessage.email}`}
-                      className="hover:text-[#C41E3A] transition-colors"
+                      className="hover:text-[#E07B53] transition-colors"
                     >
                       {selectedMessage.email}
                     </a>
@@ -147,7 +147,7 @@ export default function AdminClient({ messages: initialMessages }: AdminClientPr
                       <Phone className="w-4 h-4" />
                       <a
                         href={`tel:${selectedMessage.phone}`}
-                        className="hover:text-[#C41E3A] transition-colors"
+                        className="hover:text-[#E07B53] transition-colors"
                       >
                         {selectedMessage.phone}
                       </a>
@@ -175,7 +175,7 @@ export default function AdminClient({ messages: initialMessages }: AdminClientPr
                 <div className="mt-8 flex gap-3">
                   <a
                     href={`mailto:${selectedMessage.email}?subject=Re: Dotaz na kurzy španělštiny`}
-                    className="inline-flex items-center gap-2 bg-[#C41E3A] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#9E1830] transition-colors"
+                    className="inline-flex items-center gap-2 bg-[#E07B53] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#C4613D] transition-colors"
                   >
                     <Mail className="w-4 h-4" />
                     Odpovědět emailem
@@ -183,7 +183,7 @@ export default function AdminClient({ messages: initialMessages }: AdminClientPr
                   {selectedMessage.phone && (
                     <a
                       href={`tel:${selectedMessage.phone}`}
-                      className="inline-flex items-center gap-2 bg-white text-[#1F1A17] px-6 py-3 rounded-full font-semibold border-2 border-[#EBE6DF] hover:border-[#C41E3A] transition-colors"
+                      className="inline-flex items-center gap-2 bg-white text-[#1F1A17] px-6 py-3 rounded-full font-semibold border-2 border-[#EBE6DF] hover:border-[#E07B53] transition-colors"
                     >
                       <Phone className="w-4 h-4" />
                       Zavolat

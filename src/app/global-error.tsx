@@ -47,7 +47,7 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
               alignItems: "center",
               gap: "8px",
               backgroundColor: "#FFFFFF",
-              color: "#C41E3A",
+              color: "#E07B53",
               padding: "10px 20px",
               borderRadius: "9999px",
               fontSize: "14px",
@@ -83,7 +83,7 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
               lineHeight: 1.2,
             }}
           >
-            <span style={{ color: "#C41E3A" }}>Ay!</span> Něco se pokazilo
+            <span style={{ color: "#E07B53" }}>Ay!</span> Něco se pokazilo
           </h1>
 
           <p
@@ -104,7 +104,7 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
               width: "100px",
               height: "100px",
               margin: "0 auto 32px",
-              background: "linear-gradient(135deg, #C41E3A 0%, #9E1830 100%)",
+              background: "linear-gradient(135deg, #E07B53 0%, #C4613D 100%)",
               borderRadius: "24px",
               display: "flex",
               alignItems: "center",
@@ -145,7 +145,7 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "8px",
-                backgroundColor: "#C41E3A",
+                backgroundColor: "#E07B53",
                 color: "#FFFFFF",
                 padding: "16px 32px",
                 borderRadius: "9999px",
@@ -157,11 +157,11 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
                 boxShadow: "0 10px 30px rgba(211, 82, 51, 0.3)",
               }}
               onMouseOver={(e) => {
-                e.currentTarget.style.backgroundColor = "#9E1830";
+                e.currentTarget.style.backgroundColor = "#C4613D";
                 e.currentTarget.style.transform = "translateY(-2px)";
               }}
               onMouseOut={(e) => {
-                e.currentTarget.style.backgroundColor = "#C41E3A";
+                e.currentTarget.style.backgroundColor = "#E07B53";
                 e.currentTarget.style.transform = "translateY(0)";
               }}
             >
@@ -200,8 +200,8 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
                 transition: "all 0.2s ease",
               }}
               onMouseOver={(e) => {
-                e.currentTarget.style.borderColor = "#C41E3A";
-                e.currentTarget.style.color = "#C41E3A";
+                e.currentTarget.style.borderColor = "#E07B53";
+                e.currentTarget.style.color = "#E07B53";
               }}
               onMouseOut={(e) => {
                 e.currentTarget.style.borderColor = "#EBE6DF";

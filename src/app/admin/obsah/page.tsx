@@ -142,7 +142,7 @@ export default function AdminObsahPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C41E3A]"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#E07B53]"></div>
       </div>
     );
   }
@@ -157,7 +157,7 @@ export default function AdminObsahPage() {
         <button
           onClick={handleSave}
           disabled={saving || !hasChanges}
-          className="inline-flex items-center gap-2 bg-[#C41E3A] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#9E1830] transition-colors disabled:opacity-50"
+          className="inline-flex items-center gap-2 bg-[#E07B53] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#C4613D] transition-colors disabled:opacity-50"
         >
           <Save className="w-5 h-5" />
           {saving ? "Ukládám..." : "Uložit změny"}
@@ -180,7 +180,7 @@ export default function AdminObsahPage() {
               className="w-full flex items-center justify-between p-6 hover:bg-[#FBF9F6] transition-colors"
             >
               <div className="flex items-center gap-3">
-                <FileText className="w-5 h-5 text-[#C41E3A]" />
+                <FileText className="w-5 h-5 text-[#E07B53]" />
                 <span className="font-bold text-[#1F1A17]">
                   {pageLabels[pageName] || pageName}
                 </span>
@@ -212,7 +212,7 @@ export default function AdminObsahPage() {
                                 handleChange(pageName, sectionName, fieldKey, e.target.value)
                               }
                               rows={3}
-                              className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors resize-none"
+                              className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors resize-none"
                             />
                           ) : (
                             <input
@@ -221,7 +221,7 @@ export default function AdminObsahPage() {
                               onChange={(e) =>
                                 handleChange(pageName, sectionName, fieldKey, e.target.value)
                               }
-                              className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                              className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                             />
                           )}
                         </div>

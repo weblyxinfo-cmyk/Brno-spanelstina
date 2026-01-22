@@ -23,49 +23,49 @@ export default async function AdminDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
         <Link
           href="/admin/kurzy"
-          className="bg-white rounded-xl p-5 hover:shadow-md transition-all border border-[#EBE6DF] hover:border-[#C41E3A] group"
+          className="bg-white rounded-xl p-5 hover:shadow-md transition-all border border-[#EBE6DF] hover:border-[#E07B53] group"
         >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-[#6B5D54] mb-1">Kurzů</p>
               <p className="text-2xl font-bold text-[#1F1A17]">{stats.courses}</p>
             </div>
-            <BookOpen className="w-5 h-5 text-[#6B5D54] group-hover:text-[#C41E3A] transition-colors" />
+            <BookOpen className="w-5 h-5 text-[#6B5D54] group-hover:text-[#E07B53] transition-colors" />
           </div>
         </Link>
 
         <Link
           href="/admin/lektori"
-          className="bg-white rounded-xl p-5 hover:shadow-md transition-all border border-[#EBE6DF] hover:border-[#C41E3A] group"
+          className="bg-white rounded-xl p-5 hover:shadow-md transition-all border border-[#EBE6DF] hover:border-[#E07B53] group"
         >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-[#6B5D54] mb-1">Lektorů</p>
               <p className="text-2xl font-bold text-[#1F1A17]">{stats.lektori}</p>
             </div>
-            <Users className="w-5 h-5 text-[#6B5D54] group-hover:text-[#C41E3A] transition-colors" />
+            <Users className="w-5 h-5 text-[#6B5D54] group-hover:text-[#E07B53] transition-colors" />
           </div>
         </Link>
 
         <Link
           href="/admin/reference"
-          className="bg-white rounded-xl p-5 hover:shadow-md transition-all border border-[#EBE6DF] hover:border-[#C41E3A] group"
+          className="bg-white rounded-xl p-5 hover:shadow-md transition-all border border-[#EBE6DF] hover:border-[#E07B53] group"
         >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-[#6B5D54] mb-1">Referencí</p>
               <p className="text-2xl font-bold text-[#1F1A17]">{stats.testimonials}</p>
             </div>
-            <Star className="w-5 h-5 text-[#6B5D54] group-hover:text-[#C41E3A] transition-colors" />
+            <Star className="w-5 h-5 text-[#6B5D54] group-hover:text-[#E07B53] transition-colors" />
           </div>
         </Link>
 
         <Link
           href="/admin/zpravy"
-          className="bg-white rounded-xl p-5 hover:shadow-md transition-all border border-[#EBE6DF] hover:border-[#C41E3A] group relative"
+          className="bg-white rounded-xl p-5 hover:shadow-md transition-all border border-[#EBE6DF] hover:border-[#E07B53] group relative"
         >
           {stats.unreadMessages > 0 && (
-            <span className="absolute -top-2 -right-2 bg-[#C41E3A] text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+            <span className="absolute -top-2 -right-2 bg-[#E07B53] text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
               {stats.unreadMessages}
             </span>
           )}
@@ -74,7 +74,7 @@ export default async function AdminDashboard() {
               <p className="text-sm text-[#6B5D54] mb-1">Zpráv</p>
               <p className="text-2xl font-bold text-[#1F1A17]">{stats.messages}</p>
             </div>
-            <Mail className="w-5 h-5 text-[#6B5D54] group-hover:text-[#C41E3A] transition-colors" />
+            <Mail className="w-5 h-5 text-[#6B5D54] group-hover:text-[#E07B53] transition-colors" />
           </div>
         </Link>
 
@@ -95,7 +95,7 @@ export default async function AdminDashboard() {
           <h2 className="text-xl font-bold text-[#1F1A17]">Poslední zprávy</h2>
           <Link
             href="/admin/zpravy"
-            className="text-[#C41E3A] font-medium text-sm hover:underline flex items-center gap-1"
+            className="text-[#E07B53] font-medium text-sm hover:underline flex items-center gap-1"
           >
             Zobrazit vše <ArrowRight className="w-4 h-4" />
           </Link>
@@ -111,7 +111,7 @@ export default async function AdminDashboard() {
                 className={`p-4 rounded-xl border ${
                   msg.read
                     ? "border-[#EBE6DF] bg-[#FBF9F6]"
-                    : "border-[#C41E3A] bg-[#FFE5E5]/30"
+                    : "border-[#E07B53] bg-[#FFE5E5]/30"
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">

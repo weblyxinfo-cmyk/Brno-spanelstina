@@ -165,7 +165,7 @@ export default function AdminLektoriPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C41E3A]"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#E07B53]"></div>
       </div>
     );
   }
@@ -180,7 +180,7 @@ export default function AdminLektoriPage() {
         {!isCreating && !editingId && (
           <button
             onClick={() => setIsCreating(true)}
-            className="inline-flex items-center gap-2 bg-[#C41E3A] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#9E1830] transition-colors"
+            className="inline-flex items-center gap-2 bg-[#E07B53] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#C4613D] transition-colors"
           >
             <Plus className="w-5 h-5" />
             Přidat lektora
@@ -214,7 +214,7 @@ export default function AdminLektoriPage() {
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. Rodrigo García"
                 />
               </div>
@@ -227,7 +227,7 @@ export default function AdminLektoriPage() {
                   type="text"
                   value={formData.role}
                   onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. Hlavní lektor"
                 />
               </div>
@@ -240,7 +240,7 @@ export default function AdminLektoriPage() {
                   type="text"
                   value={formData.origin}
                   onChange={(e) => setFormData({ ...formData, origin: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. Madrid, Španělsko"
                 />
               </div>
@@ -253,7 +253,7 @@ export default function AdminLektoriPage() {
                   type="text"
                   value={formData.originFlag}
                   onChange={(e) => setFormData({ ...formData, originFlag: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. 🇪🇸"
                 />
               </div>
@@ -266,7 +266,7 @@ export default function AdminLektoriPage() {
                   type="text"
                   value={formData.badge}
                   onChange={(e) => setFormData({ ...formData, badge: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. Rodilý mluvčí"
                 />
               </div>
@@ -279,7 +279,7 @@ export default function AdminLektoriPage() {
                   type="text"
                   value={formData.badgeIcon}
                   onChange={(e) => setFormData({ ...formData, badgeIcon: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. 🎯"
                 />
               </div>
@@ -292,7 +292,7 @@ export default function AdminLektoriPage() {
                   type="text"
                   value={formData.avatar}
                   onChange={(e) => setFormData({ ...formData, avatar: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="URL obrázku lektora"
                 />
               </div>
@@ -310,7 +310,7 @@ export default function AdminLektoriPage() {
                       value={paragraph}
                       onChange={(e) => updateBio(index, e.target.value)}
                       rows={2}
-                      className="flex-1 px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors resize-none"
+                      className="flex-1 px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors resize-none"
                       placeholder="Odstavec bio..."
                     />
                     <button
@@ -325,7 +325,7 @@ export default function AdminLektoriPage() {
                 <button
                   type="button"
                   onClick={addBioParagraph}
-                  className="text-sm text-[#C41E3A] font-semibold hover:underline"
+                  className="text-sm text-[#E07B53] font-semibold hover:underline"
                 >
                   + Přidat odstavec
                 </button>
@@ -344,14 +344,14 @@ export default function AdminLektoriPage() {
                       type="text"
                       value={highlight.icon}
                       onChange={(e) => updateHighlight(index, "icon", e.target.value)}
-                      className="w-20 px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors text-center"
+                      className="w-20 px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors text-center"
                       placeholder="🎓"
                     />
                     <input
                       type="text"
                       value={highlight.text}
                       onChange={(e) => updateHighlight(index, "text", e.target.value)}
-                      className="flex-1 px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                      className="flex-1 px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                       placeholder="např. 10 let zkušeností"
                     />
                     <button
@@ -366,7 +366,7 @@ export default function AdminLektoriPage() {
                 <button
                   type="button"
                   onClick={addHighlight}
-                  className="text-sm text-[#C41E3A] font-semibold hover:underline"
+                  className="text-sm text-[#E07B53] font-semibold hover:underline"
                 >
                   + Přidat highlight
                 </button>
@@ -376,7 +376,7 @@ export default function AdminLektoriPage() {
             <div className="flex gap-3">
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 bg-[#C41E3A] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#9E1830] transition-colors"
+                className="inline-flex items-center gap-2 bg-[#E07B53] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#C4613D] transition-colors"
               >
                 <Check className="w-5 h-5" />
                 {editingId ? "Uložit změny" : "Vytvořit lektora"}
@@ -405,7 +405,7 @@ export default function AdminLektoriPage() {
                 onClick={() => startEdit(lektor)}
                 className="p-2 bg-[#FBF9F6] hover:bg-[#FFE5E5] rounded-lg transition-colors"
               >
-                <Pencil className="w-4 h-4 text-[#C41E3A]" />
+                <Pencil className="w-4 h-4 text-[#E07B53]" />
               </button>
               <button
                 onClick={() => handleDelete(lektor.id)}
@@ -424,7 +424,7 @@ export default function AdminLektoriPage() {
                     className="w-full h-full rounded-2xl object-cover"
                   />
                 ) : (
-                  <User className="w-8 h-8 text-[#C41E3A]" />
+                  <User className="w-8 h-8 text-[#E07B53]" />
                 )}
               </div>
               <div>
@@ -442,7 +442,7 @@ export default function AdminLektoriPage() {
                 </span>
               )}
               {lektor.badge && (
-                <span className="text-xs bg-[#FFE5E5] text-[#C41E3A] px-3 py-1 rounded-full">
+                <span className="text-xs bg-[#FFE5E5] text-[#E07B53] px-3 py-1 rounded-full">
                   {lektor.badgeIcon} {lektor.badge}
                 </span>
               )}

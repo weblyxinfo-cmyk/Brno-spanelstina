@@ -137,7 +137,7 @@ export default function AdminSeoPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C41E3A]"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#E07B53]"></div>
       </div>
     );
   }
@@ -158,7 +158,7 @@ export default function AdminSeoPage() {
               key={page.id}
               onClick={() => setExpandedPage(expandedPage === page.id ? null : page.id)}
               className={`bg-white rounded-xl p-4 text-center hover:shadow-lg transition-shadow ${
-                expandedPage === page.id ? "ring-2 ring-[#C41E3A]" : ""
+                expandedPage === page.id ? "ring-2 ring-[#E07B53]" : ""
               }`}
             >
               <div
@@ -271,7 +271,7 @@ export default function AdminSeoPage() {
                           type="text"
                           value={formData[page.id]?.title || ""}
                           onChange={(e) => handleChange(page.id, "title", e.target.value)}
-                          className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                          className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                           placeholder="Nadpis stránky | Španělština Brno"
                         />
                       </div>
@@ -286,7 +286,7 @@ export default function AdminSeoPage() {
                           value={formData[page.id]?.description || ""}
                           onChange={(e) => handleChange(page.id, "description", e.target.value)}
                           rows={2}
-                          className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors resize-none"
+                          className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors resize-none"
                           placeholder="Stručný popis stránky pro vyhledávače..."
                         />
                       </div>
@@ -298,7 +298,7 @@ export default function AdminSeoPage() {
                           type="text"
                           value={formData[page.id]?.keywords || ""}
                           onChange={(e) => handleChange(page.id, "keywords", e.target.value)}
-                          className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                          className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                           placeholder="španělština, kurzy, brno, výuka"
                         />
                       </div>
@@ -320,7 +320,7 @@ export default function AdminSeoPage() {
                           type="text"
                           value={formData[page.id]?.ogTitle || ""}
                           onChange={(e) => handleChange(page.id, "ogTitle", e.target.value)}
-                          className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                          className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                           placeholder="Nadpis pro sociální sítě"
                         />
                       </div>
@@ -332,7 +332,7 @@ export default function AdminSeoPage() {
                           value={formData[page.id]?.ogDescription || ""}
                           onChange={(e) => handleChange(page.id, "ogDescription", e.target.value)}
                           rows={2}
-                          className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors resize-none"
+                          className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors resize-none"
                           placeholder="Popis pro sociální sítě..."
                         />
                       </div>
@@ -344,7 +344,7 @@ export default function AdminSeoPage() {
                           type="text"
                           value={formData[page.id]?.ogImage || ""}
                           onChange={(e) => handleChange(page.id, "ogImage", e.target.value)}
-                          className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                          className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                           placeholder="https://brno-spanelstina.cz/og-image.jpg"
                         />
                       </div>
@@ -354,7 +354,7 @@ export default function AdminSeoPage() {
                   <button
                     onClick={() => handleSave(page.id)}
                     disabled={saving === page.id}
-                    className="inline-flex items-center gap-2 bg-[#C41E3A] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#9E1830] transition-colors disabled:opacity-50"
+                    className="inline-flex items-center gap-2 bg-[#E07B53] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#C4613D] transition-colors disabled:opacity-50"
                   >
                     <Save className="w-5 h-5" />
                     {saving === page.id ? "Ukládám..." : "Uložit SEO"}

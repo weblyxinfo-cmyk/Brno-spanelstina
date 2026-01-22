@@ -73,7 +73,7 @@ export default function AdminZpravyPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C41E3A]"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#E07B53]"></div>
       </div>
     );
   }
@@ -95,7 +95,7 @@ export default function AdminZpravyPage() {
             onClick={() => setFilter("all")}
             className={`px-4 py-2 rounded-xl font-medium text-sm transition-colors ${
               filter === "all"
-                ? "bg-[#C41E3A] text-white"
+                ? "bg-[#E07B53] text-white"
                 : "bg-white text-[#6B5D54] hover:bg-[#FBF9F6]"
             }`}
           >
@@ -105,7 +105,7 @@ export default function AdminZpravyPage() {
             onClick={() => setFilter("unread")}
             className={`px-4 py-2 rounded-xl font-medium text-sm transition-colors ${
               filter === "unread"
-                ? "bg-[#C41E3A] text-white"
+                ? "bg-[#E07B53] text-white"
                 : "bg-white text-[#6B5D54] hover:bg-[#FBF9F6]"
             }`}
           >
@@ -115,7 +115,7 @@ export default function AdminZpravyPage() {
             onClick={() => setFilter("read")}
             className={`px-4 py-2 rounded-xl font-medium text-sm transition-colors ${
               filter === "read"
-                ? "bg-[#C41E3A] text-white"
+                ? "bg-[#E07B53] text-white"
                 : "bg-white text-[#6B5D54] hover:bg-[#FBF9F6]"
             }`}
           >
@@ -130,7 +130,7 @@ export default function AdminZpravyPage() {
           <div
             key={msg.id}
             className={`bg-white rounded-2xl overflow-hidden transition-shadow ${
-              !msg.read ? "ring-2 ring-[#C41E3A]/30" : ""
+              !msg.read ? "ring-2 ring-[#E07B53]/30" : ""
             }`}
           >
             {/* Message Header */}
@@ -147,7 +147,7 @@ export default function AdminZpravyPage() {
                   {msg.read ? (
                     <MailOpen className="w-6 h-6 text-[#6B5D54]" />
                   ) : (
-                    <Mail className="w-6 h-6 text-[#C41E3A]" />
+                    <Mail className="w-6 h-6 text-[#E07B53]" />
                   )}
                 </div>
 
@@ -155,7 +155,7 @@ export default function AdminZpravyPage() {
                   <div className="flex items-center gap-3 mb-1">
                     <h3 className="font-bold text-[#1F1A17]">{msg.name}</h3>
                     {!msg.read && (
-                      <span className="w-2 h-2 bg-[#C41E3A] rounded-full"></span>
+                      <span className="w-2 h-2 bg-[#E07B53] rounded-full"></span>
                     )}
                     {msg.courseType && (
                       <span className="text-xs bg-[#FBF9F6] text-[#6B5D54] px-2 py-1 rounded-full">
@@ -190,7 +190,7 @@ export default function AdminZpravyPage() {
                   <div className="flex flex-wrap gap-4">
                     <a
                       href={`mailto:${msg.email}`}
-                      className="inline-flex items-center gap-2 text-sm text-[#C41E3A] hover:underline"
+                      className="inline-flex items-center gap-2 text-sm text-[#E07B53] hover:underline"
                     >
                       <Mail className="w-4 h-4" />
                       {msg.email}
@@ -198,7 +198,7 @@ export default function AdminZpravyPage() {
                     {msg.phone && (
                       <a
                         href={`tel:${msg.phone}`}
-                        className="inline-flex items-center gap-2 text-sm text-[#C41E3A] hover:underline"
+                        className="inline-flex items-center gap-2 text-sm text-[#E07B53] hover:underline"
                       >
                         <Phone className="w-4 h-4" />
                         {msg.phone}
@@ -215,7 +215,7 @@ export default function AdminZpravyPage() {
                   <div className="flex gap-3">
                     <a
                       href={`mailto:${msg.email}?subject=Re: Dotaz na kurzy španělštiny`}
-                      className="inline-flex items-center gap-2 bg-[#C41E3A] text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-[#9E1830] transition-colors"
+                      className="inline-flex items-center gap-2 bg-[#E07B53] text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-[#C4613D] transition-colors"
                     >
                       <Mail className="w-4 h-4" />
                       Odpovědět
@@ -223,7 +223,7 @@ export default function AdminZpravyPage() {
                     {msg.phone && (
                       <a
                         href={`tel:${msg.phone}`}
-                        className="inline-flex items-center gap-2 bg-white text-[#1F1A17] px-5 py-2.5 rounded-xl font-semibold text-sm border-2 border-[#EBE6DF] hover:border-[#C41E3A] transition-colors"
+                        className="inline-flex items-center gap-2 bg-white text-[#1F1A17] px-5 py-2.5 rounded-xl font-semibold text-sm border-2 border-[#EBE6DF] hover:border-[#E07B53] transition-colors"
                       >
                         <Phone className="w-4 h-4" />
                         Zavolat

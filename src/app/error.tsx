@@ -22,7 +22,7 @@ export default function Error({ error, reset }: ErrorProps) {
 
       <div className="relative z-10 max-w-2xl mx-auto text-center">
         {/* Error badge */}
-        <div className="inline-flex items-center gap-2 bg-white text-[#C41E3A] px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm mb-8">
+        <div className="inline-flex items-center gap-2 bg-white text-[#E07B53] px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm mb-8">
           <AlertTriangle className="h-4 w-4" />
           Ups! Nastala chyba
         </div>
@@ -30,7 +30,7 @@ export default function Error({ error, reset }: ErrorProps) {
         {/* Main heading */}
         <h1 className="text-4xl sm:text-5xl font-bold text-[#1F1A17] mb-4">
           Algo salio{" "}
-          <span className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A]">
+          <span className="font-[family-name:var(--font-playfair)] italic text-[#E07B53]">
             mal
           </span>
         </h1>
@@ -46,7 +46,7 @@ export default function Error({ error, reset }: ErrorProps) {
 
         {/* Error icon */}
         <div className="mb-10">
-          <div className="w-28 h-28 mx-auto bg-gradient-to-br from-[#C41E3A] to-[#9E1830] rounded-[32px] flex items-center justify-center shadow-lg shadow-[#C41E3A]/30">
+          <div className="w-28 h-28 mx-auto bg-gradient-to-br from-[#E07B53] to-[#C4613D] rounded-[32px] flex items-center justify-center shadow-lg shadow-[#E07B53]/30">
             <AlertTriangle className="h-14 w-14 text-white" />
           </div>
         </div>
@@ -55,14 +55,14 @@ export default function Error({ error, reset }: ErrorProps) {
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
           <button
             onClick={() => reset()}
-            className="inline-flex items-center justify-center gap-2 bg-[#C41E3A] text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg shadow-[#C41E3A]/30 hover:bg-[#9E1830] hover:-translate-y-1 transition-all duration-200 cursor-pointer"
+            className="inline-flex items-center justify-center gap-2 bg-[#E07B53] text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg shadow-[#E07B53]/30 hover:bg-[#C4613D] hover:-translate-y-1 transition-all duration-200 cursor-pointer"
           >
             <RefreshCcw className="h-5 w-5" />
             Zkusit znovu
           </button>
           <Link
             href="/"
-            className="inline-flex items-center justify-center gap-2 bg-white text-[#1F1A17] px-8 py-4 rounded-full font-semibold text-lg border-2 border-[#EBE6DF] hover:border-[#C41E3A] hover:text-[#C41E3A] transition-all duration-200"
+            className="inline-flex items-center justify-center gap-2 bg-white text-[#1F1A17] px-8 py-4 rounded-full font-semibold text-lg border-2 border-[#EBE6DF] hover:border-[#E07B53] hover:text-[#E07B53] transition-all duration-200"
           >
             <Home className="h-5 w-5" />
             Hlavní stránka
@@ -76,7 +76,7 @@ export default function Error({ error, reset }: ErrorProps) {
           </p>
           <Link
             href="/kontakt"
-            className="inline-flex items-center gap-2 text-[#C41E3A] font-semibold hover:text-[#9E1830] transition-colors"
+            className="inline-flex items-center gap-2 text-[#E07B53] font-semibold hover:text-[#C4613D] transition-colors"
           >
             <Mail className="h-4 w-4" />
             Napište nám

@@ -122,7 +122,7 @@ export default function AdminKurzyPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C41E3A]"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#E07B53]"></div>
       </div>
     );
   }
@@ -137,7 +137,7 @@ export default function AdminKurzyPage() {
         {!isCreating && !editingId && (
           <button
             onClick={() => setIsCreating(true)}
-            className="inline-flex items-center gap-2 bg-[#C41E3A] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#9E1830] transition-colors"
+            className="inline-flex items-center gap-2 bg-[#E07B53] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#C4613D] transition-colors"
           >
             <Plus className="w-5 h-5" />
             Přidat kurz
@@ -171,7 +171,7 @@ export default function AdminKurzyPage() {
                   required
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. Skupinové kurzy"
                 />
               </div>
@@ -183,7 +183,7 @@ export default function AdminKurzyPage() {
                 <select
                   value={formData.category}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                 >
                   {categories.map((cat) => (
                     <option key={cat} value={cat}>
@@ -201,7 +201,7 @@ export default function AdminKurzyPage() {
                   type="text"
                   value={formData.subtitle}
                   onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. 2-6 studentů ve skupině"
                 />
               </div>
@@ -214,7 +214,7 @@ export default function AdminKurzyPage() {
                   type="text"
                   value={formData.icon}
                   onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. 👥"
                 />
               </div>
@@ -227,7 +227,7 @@ export default function AdminKurzyPage() {
                   type="text"
                   value={formData.badge}
                   onChange={(e) => setFormData({ ...formData, badge: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. Nejoblíbenější"
                 />
               </div>
@@ -240,7 +240,7 @@ export default function AdminKurzyPage() {
                     onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
                     className="sr-only peer"
                   />
-                  <div className="w-11 h-6 bg-[#EBE6DF] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#C41E3A]"></div>
+                  <div className="w-11 h-6 bg-[#EBE6DF] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#E07B53]"></div>
                 </label>
                 <span className="text-sm font-semibold text-[#1F1A17]">
                   Zobrazit na homepage
@@ -256,7 +256,7 @@ export default function AdminKurzyPage() {
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 rows={3}
-                className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors resize-none"
+                className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors resize-none"
                 placeholder="Popis kurzu..."
               />
             </div>
@@ -264,7 +264,7 @@ export default function AdminKurzyPage() {
             <div className="flex gap-3">
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 bg-[#C41E3A] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#9E1830] transition-colors"
+                className="inline-flex items-center gap-2 bg-[#E07B53] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#C4613D] transition-colors"
               >
                 <Check className="w-5 h-5" />
                 {editingId ? "Uložit změny" : "Vytvořit kurz"}
@@ -310,7 +310,7 @@ export default function AdminKurzyPage() {
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-[#FFE5E5] rounded-xl flex items-center justify-center text-xl">
-                        {course.icon || <BookOpen className="w-5 h-5 text-[#C41E3A]" />}
+                        {course.icon || <BookOpen className="w-5 h-5 text-[#E07B53]" />}
                       </div>
                       <div>
                         <p className="font-semibold text-[#1F1A17]">{course.title}</p>
@@ -327,7 +327,7 @@ export default function AdminKurzyPage() {
                   </td>
                   <td className="px-6 py-4">
                     {course.badge && (
-                      <span className="inline-block bg-[#FFE5E5] text-[#C41E3A] text-xs font-semibold px-3 py-1 rounded-full">
+                      <span className="inline-block bg-[#FFE5E5] text-[#E07B53] text-xs font-semibold px-3 py-1 rounded-full">
                         {course.badge}
                       </span>
                     )}
@@ -345,7 +345,7 @@ export default function AdminKurzyPage() {
                         onClick={() => startEdit(course)}
                         className="p-2 hover:bg-[#FFE5E5] rounded-lg transition-colors group"
                       >
-                        <Pencil className="w-4 h-4 text-[#6B5D54] group-hover:text-[#C41E3A]" />
+                        <Pencil className="w-4 h-4 text-[#6B5D54] group-hover:text-[#E07B53]" />
                       </button>
                       <button
                         onClick={() => handleDelete(course.id)}

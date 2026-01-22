@@ -37,7 +37,7 @@ export default function AdminLayout({
       {/* Top header */}
       <header className="fixed top-0 left-0 right-0 h-16 bg-[#1F1A17] z-50 flex items-center px-6">
         <Link href="/admin" className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-[#C41E3A] rounded-lg flex items-center justify-center">
+          <div className="w-8 h-8 bg-[#E07B53] rounded-lg flex items-center justify-center">
             <Settings className="w-4 h-4 text-white" />
           </div>
           <span className="font-bold text-white">Admin Panel</span>
@@ -59,9 +59,9 @@ export default function AdminLayout({
             <Link
               key={item.name}
               href={item.href}
-              className="flex items-center gap-3 px-4 py-3 rounded-xl text-[#6B5D54] hover:bg-[#FBF9F6] hover:text-[#C41E3A] transition-colors group"
+              className="flex items-center gap-3 px-4 py-3 rounded-xl text-[#6B5D54] hover:bg-[#FBF9F6] hover:text-[#E07B53] transition-colors group"
             >
-              <item.icon className="w-5 h-5 group-hover:text-[#C41E3A]" />
+              <item.icon className="w-5 h-5 group-hover:text-[#E07B53]" />
               <span className="font-medium">{item.name}</span>
             </Link>
           ))}
@@ -72,10 +72,10 @@ export default function AdminLayout({
             <LogoutButton />
           </div>
           <div className="bg-[#FFE5E5] rounded-xl p-4">
-            <p className="text-sm font-semibold text-[#9E1830] mb-1">
+            <p className="text-sm font-semibold text-[#C4613D] mb-1">
               Španělština Brno
             </p>
-            <p className="text-xs text-[#9E1830]/70">CMS v1.0</p>
+            <p className="text-xs text-[#C4613D]/70">CMS v1.0</p>
           </div>
         </div>
       </aside>

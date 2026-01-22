@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kurzy | Španělština Brno – Rodrigo Valenzuela</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --cream: #FBF9F6;
+      --white: #FFFFFF;
+      --terracotta: #D35233;
+      --terracotta-dark: #B5412A;
+      --terracotta-light: #FADDD6;
+      --brown: #1F1A17;
+      --brown-mid: #6B5D54;
+      --sand: #EBE6DF;
+      --radius-sm: 16px;
+      --radius-md: 24px;
+      --radius-lg: 32px;
+      --radius-xl: 48px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--cream);
+      color: var(--brown);
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection { background: var(--terracotta); color: white; }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 1rem; left: 1rem; right: 1rem;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--brown);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .logo span { color: var(--terracotta); }
+    nav { display: flex; gap: 2rem; align-items: center; }
+    nav a {
+      color: var(--brown-mid);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    nav a:hover, nav a.active { color: var(--terracotta); }
+    .nav-cta {
+      background: var(--terracotta);
+      color: white !important;
+      padding: 0.75rem 1.5rem;
+      border-radius: 100px;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+    .nav-cta:hover {
+      background: var(--terracotta-dark) !important;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(211,82,51,0.3);
+    }
+
+    /* Page Hero */
+    .page-hero {
+      padding: 10rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, var(--terracotta-light) 0%, transparent 70%);
+      opacity: 0.4;
+      z-index: 0;
+    }
+    .page-hero-content { position: relative; z-index: 1; }
+    .page-hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      color: var(--terracotta);
+      padding: 0.6rem 1.25rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .page-hero h1 {
+      font-size: clamp(3rem, 7vw, 5rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .page-hero h1 .outline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--terracotta);
+    }
+    .page-hero p {
+      font-size: 1.2rem;
+      color: var(--brown-mid);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* Filter tabs */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 0 2rem;
+      margin-bottom: 4rem;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      padding: 0.75rem 1.5rem;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: 2px solid var(--sand);
+      background: white;
+      color: var(--brown-mid);
+    }
+    .filter-tab:hover { border-color: var(--terracotta); color: var(--terracotta); }
+    .filter-tab.active {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      color: white;
+    }
+
+    /* Courses Grid */
+    .courses-section {
+      padding: 0 2rem 6rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    .course-card-large {
+      background: white;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+    }
+    .course-card-large:hover {
+      border-color: var(--terracotta);
+      transform: translateY(-5px);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.1);
+    }
+    .course-card-image {
+      background: linear-gradient(135deg, var(--terracotta-light) 0%, var(--sand) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      min-height: 280px;
+      position: relative;
+    }
+    .course-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0; left: 0;
+    }
+    .course-badge {
+      position: absolute;
+      top: 1rem; left: 1rem;
+      background: var(--terracotta);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .course-card-content {
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .course-card-content h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .course-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--terracotta);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .course-card-content p {
+      color: var(--brown-mid);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    .course-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--sand);
+    }
+    .course-detail {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: var(--brown-mid);
+    }
+    .course-detail-icon { font-size: 1rem; }
+    .course-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--cream);
+      color: var(--brown);
+      padding: 0.9rem 1.5rem;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    .course-btn:hover {
+      background: var(--terracotta);
+      color: white;
+    }
+
+    /* Featured course */
+    .featured-course {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+    }
+    .featured-course .course-card-image { min-height: 400px; }
+    .featured-course .course-card-content { padding: 3rem; }
+    .featured-course h3 { font-size: 2rem; }
+
+    /* Pricing section */
+    .pricing-section {
+      padding: 6rem 2rem;
+      background: var(--brown);
+    }
+    .pricing-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .pricing-header {
+      text-align: center;
+      color: white;
+      margin-bottom: 4rem;
+    }
+    .pricing-header h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+    }
+    .pricing-header h2 .serif {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--terracotta-light);
+    }
+    .pricing-header p {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.1rem;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .pricing-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      text-align: center;
+      color: white;
+      transition: all 0.3s ease;
+    }
+    .pricing-card:hover {
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-5px);
+    }
+    .pricing-card.featured {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      transform: scale(1.05);
+    }
+    .pricing-card.featured:hover { transform: scale(1.05) translateY(-5px); }
+    .pricing-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .pricing-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .pricing-desc {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-bottom: 1.5rem;
+    }
+    .pricing-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .pricing-period {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      margin-bottom: 2rem;
+    }
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+    .pricing-features li {
+      padding: 0.5rem 0;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .pricing-btn {
+      display: block;
+      background: white;
+      color: var(--brown);
+      padding: 1rem;
+      border-radius: 100px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    .pricing-btn:hover { transform: scale(1.02); }
+    .pricing-card.featured .pricing-btn {
+      background: var(--brown);
+      color: white;
+    }
+
+    /* CTA */
+    .cta {
+      padding: 6rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .cta h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      margin-bottom: 1rem;
+    }
+    .cta h2 .serif {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--terracotta);
+    }
+    .cta p {
+      color: var(--brown-mid);
+      font-size: 1.15rem;
+      margin-bottom: 2rem;
+      max-width: 550px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--terracotta);
+      color: white;
+      padding: 1.25rem 2.5rem;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 30px rgba(211,82,51,0.3);
+    }
+    .cta-btn:hover {
+      background: var(--terracotta-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(211,82,51,0.4);
+    }
+
+    /* Footer */
+    footer {
+      padding: 4rem 2rem;
+      background: white;
+      border-top: 1px solid var(--sand);
+    }
+    .footer-container { max-width: 1400px; margin: 0 auto; }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .footer-brand span { color: var(--terracotta); }
+    .footer-desc {
+      color: var(--brown-mid);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 300px;
+    }
+    .footer-column h4 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1.25rem;
+      color: var(--brown-mid);
+    }
+    .footer-column ul { list-style: none; }
+    .footer-column li { margin-bottom: 0.6rem; }
+    .footer-column a {
+      color: var(--brown);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+    .footer-column a:hover { color: var(--terracotta); }
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid var(--sand);
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--brown-mid);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      header { margin: 0.75rem; left: 0.75rem; right: 0.75rem; top: 0.75rem; }
+      nav a:not(.nav-cta) { display: none; }
+      .courses-grid { grid-template-columns: 1fr; }
+      .course-card-large, .featured-course { grid-template-columns: 1fr; }
+      .featured-course { grid-column: span 1; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-card.featured { transform: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+    @media (max-width: 640px) {
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="brno-spanelstina-FINAL-homepage.html" class="logo">Španělština <span>Brno</span></a>
+    <nav>
+      <a href="#" class="active">Kurzy</a>
+      <a href="#">O nás</a>
+      <a href="#">Lektoři</a>
+      <a href="#">Reference</a>
+      <a href="#">Kontakt</a>
+      <a href="#" class="nav-cta">Zkusit zdarma</a>
+    </nav>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-hero-tag">📚 Nabídka kurzů</div>
+      <h1>Vyberte si svůj <span class="outline">kurz</span></h1>
+      <p>Od prvních slov po plynulou konverzaci. Najdeme cestu, která sedí právě vám – ať už preferujete skupinu nebo individuální výuku.</p>
+    </div>
+  </section>
+
+  <div class="filter-tabs">
+    <div class="filter-tab active">Všechny kurzy</div>
+    <div class="filter-tab">Skupinové</div>
+    <div class="filter-tab">Individuální</div>
+    <div class="filter-tab">Intenzivní</div>
+    <div class="filter-tab">Specializované</div>
+  </div>
+
+  <section class="courses-section">
+    <div class="courses-grid">
+
+      <!-- Featured: Skupinové kurzy -->
+      <div class="course-card-large featured-course">
+        <div class="course-card-image">
+          <img src="http://www.brno-spanelstina.cz/images/slideshow/6.jpg" alt="Skupinové kurzy">
+          <div class="course-badge">Nejoblíbenější</div>
+        </div>
+        <div class="course-card-content">
+          <h3>Skupinové kurzy</h3>
+          <div class="course-subtitle">Semestrální výuka v malých skupinách</div>
+          <p>Naše vlajková loď. Učte se v přátelské partě maximálně 4 lidí, kteří jsou na podobné úrovni. Dva lektoři se střídají – poznáte španělštinu z obou břehů Atlantiku. Možnost zapůjčení jazykových knih s CD.</p>
+          <div class="course-details">
+            <span class="course-detail"><span class="course-detail-icon">👥</span> Max 4 studenti</span>
+            <span class="course-detail"><span class="course-detail-icon">📅</span> Zimní semestr od 15.9.2025</span>
+            <span class="course-detail"><span class="course-detail-icon">⏰</span> 2× týdně 90 min</span>
+            <span class="course-detail"><span class="course-detail-icon">🎯</span> Všechny úrovně</span>
+          </div>
+          <a href="#" class="course-btn">Více informací →</a>
+        </div>
+      </div>
+
+      <!-- Intenzivní kurzy -->
+      <div class="course-card-large">
+        <div class="course-card-image">
+          <img src="http://www.brno-spanelstina.cz/images/slideshow/1.jpg" alt="Intenzivní kurzy">
+          <div class="course-badge">Léto 2025</div>
+        </div>
+        <div class="course-card-content">
+          <h3>Intenzivní kurzy</h3>
+          <div class="course-subtitle">Dvoutýdenní programy</div>
+          <p>Rychlý pokrok za krátkou dobu. Ideální před cestou do Španělska nebo Latinské Ameriky, nebo jako restart pro ty, kdo se španělštinou začínali a chtějí navázat.</p>
+          <div class="course-details">
+            <span class="course-detail"><span class="course-detail-icon">⚡</span> Intenzivní</span>
+            <span class="course-detail"><span class="course-detail-icon">📅</span> 4.8. – 12.9.2025</span>
+            <span class="course-detail"><span class="course-detail-icon">🔄</span> Dvoutýdenní cykly</span>
+          </div>
+          <a href="#" class="course-btn">Více informací →</a>
+        </div>
+      </div>
+
+      <!-- Individuální výuka -->
+      <div class="course-card-large">
+        <div class="course-card-image">
+          <img src="http://www.brno-spanelstina.cz/images/slideshow/7.jpg" alt="Individuální výuka">
+        </div>
+        <div class="course-card-content">
+          <h3>Individuální výuka</h3>
+          <div class="course-subtitle">Výuka šitá na míru</div>
+          <p>Jen vy a lektor. Tempo, obsah i čas určujete vy. Pro ty, kdo vědí přesně co potřebují, mají specifické cíle nebo nestandardní časové možnosti.</p>
+          <div class="course-details">
+            <span class="course-detail"><span class="course-detail-icon">👤</span> 1 na 1</span>
+            <span class="course-detail"><span class="course-detail-icon">🕐</span> Flexibilní termíny</span>
+            <span class="course-detail"><span class="course-detail-icon">🎯</span> Na míru</span>
+          </div>
+          <a href="#" class="course-btn">Více informací →</a>
+        </div>
+      </div>
+
+      <!-- DELE příprava -->
+      <div class="course-card-large">
+        <div class="course-card-image">
+          🎓
+          <div class="course-badge">Certifikát</div>
+        </div>
+        <div class="course-card-content">
+          <h3>Příprava na DELE</h3>
+          <div class="course-subtitle">Mezinárodní certifikát</div>
+          <p>Diplomas de Español como Lengua Extranjera – mezinárodně uznávaný certifikát. Připravíme vás na zkoušku Intermedio i Superior a dodáme sebevědomí.</p>
+          <div class="course-details">
+            <span class="course-detail"><span class="course-detail-icon">🏆</span> Intermedio</span>
+            <span class="course-detail"><span class="course-detail-icon">🏆</span> Superior</span>
+            <span class="course-detail"><span class="course-detail-icon">📝</span> Zkoušky</span>
+          </div>
+          <a href="#" class="course-btn">Více informací →</a>
+        </div>
+      </div>
+
+      <!-- Obchodní španělština -->
+      <div class="course-card-large">
+        <div class="course-card-image">
+          💼
+        </div>
+        <div class="course-card-content">
+          <h3>Obchodní španělština</h3>
+          <div class="course-subtitle">Pro profesionály</div>
+          <p>Španělština pro váš byznys. Prezentace, jednání, emaily, telefonování. Pro jednotlivce i firemní týmy, kteří potřebují španělštinu v práci.</p>
+          <div class="course-details">
+            <span class="course-detail"><span class="course-detail-icon">🏢</span> Pro firmy</span>
+            <span class="course-detail"><span class="course-detail-icon">👤</span> Jednotlivci</span>
+            <span class="course-detail"><span class="course-detail-icon">📊</span> Business focus</span>
+          </div>
+          <a href="#" class="course-btn">Více informací →</a>
+        </div>
+      </div>
+
+      <!-- Erasmus v Telči -->
+      <div class="course-card-large">
+        <div class="course-card-image">
+          <img src="http://www.brno-spanelstina.cz/images/slideshow/8.jpg" alt="Erasmus v Telči">
+          <div class="course-badge">Speciální</div>
+        </div>
+        <div class="course-card-content">
+          <h3>Erasmus v Telči</h3>
+          <div class="course-subtitle">Pobytový kurz</div>
+          <p>Intenzivní kurz v historickém městě UNESCO. Kombinace výuky a zážitků. Španělština v krásném prostředí, nové přátelství a nezapomenutelné vzpomínky.</p>
+          <div class="course-details">
+            <span class="course-detail"><span class="course-detail-icon">🏰</span> Telč</span>
+            <span class="course-detail"><span class="course-detail-icon">🏨</span> Pobyt</span>
+            <span class="course-detail"><span class="course-detail-icon">🎭</span> Zážitky</span>
+          </div>
+          <a href="#" class="course-btn">Více informací →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="pricing-section">
+    <div class="pricing-container">
+      <div class="pricing-header">
+        <h2>Transparentní <span class="serif">ceník</span></h2>
+        <p>Žádné skryté poplatky. Víte přesně, co platíte.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-icon">👤</div>
+          <div class="pricing-name">Individuální</div>
+          <div class="pricing-desc">Výuka 1 na 1</div>
+          <div class="pricing-price">450 Kč</div>
+          <div class="pricing-period">za 60 minut</div>
+          <ul class="pricing-features">
+            <li>✓ Flexibilní termíny</li>
+            <li>✓ Tempo na míru</li>
+            <li>✓ Vlastní obsah</li>
+            <li>✓ Materiály v ceně</li>
+          </ul>
+          <a href="#" class="pricing-btn">Mám zájem</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-icon">👥</div>
+          <div class="pricing-name">Skupinový</div>
+          <div class="pricing-desc">Max 4 studenti</div>
+          <div class="pricing-price">3 200 Kč</div>
+          <div class="pricing-period">za měsíc</div>
+          <ul class="pricing-features">
+            <li>✓ 2× týdně 90 min</li>
+            <li>✓ Dva lektoři</li>
+            <li>✓ Káva zdarma</li>
+            <li>✓ Materiály v ceně</li>
+            <li>✓ 1. hodina zdarma</li>
+          </ul>
+          <a href="#" class="pricing-btn">Mám zájem</a>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-icon">⚡</div>
+          <div class="pricing-name">Intenzivní</div>
+          <div class="pricing-desc">2 týdny</div>
+          <div class="pricing-price">5 900 Kč</div>
+          <div class="pricing-period">za kurz</div>
+          <ul class="pricing-features">
+            <li>✓ Každý den 3 hodiny</li>
+            <li>✓ Rychlý pokrok</li>
+            <li>✓ Malá skupina</li>
+            <li>✓ Materiály v ceně</li>
+          </ul>
+          <a href="#" class="pricing-btn">Mám zájem</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Nevíte, který kurz <span class="serif">vybrat?</span></h2>
+    <p>Přijďte na bezplatnou konzultaci. Probereme vaše cíle, úroveň a najdeme kurz, který vám bude sedět.</p>
+    <a href="#" class="cta-btn">
+      Domluvit konzultaci zdarma
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">Španělština <span>Brno</span></div>
+          <p class="footer-desc">Učíme španělsky s osobním přístupem od roku 2010. Malé skupiny, velké výsledky.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Kurzy</h4>
+          <ul>
+            <li><a href="#">Skupinové</a></li>
+            <li><a href="#">Individuální</a></li>
+            <li><a href="#">Intenzivní</a></li>
+            <li><a href="#">DELE příprava</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Škola</h4>
+          <ul>
+            <li><a href="#">O nás</a></li>
+            <li><a href="#">Lektoři</a></li>
+            <li><a href="#">Reference</a></li>
+            <li><a href="#">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Kontakt</h4>
+          <ul>
+            <li><a href="#">Zábrdovická 2, Brno</a></li>
+            <li><a href="#"><span class="__cf_email__" data-cfemail="40292e262f0022322e2f6d3330212e252c3334292e216e233a">[email&#160;protected]</span></a></li>
+            <li><a href="#">Tramvaj 2, 3</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Rodrigo Valenzuela</sp

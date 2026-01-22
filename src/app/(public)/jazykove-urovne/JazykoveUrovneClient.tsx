@@ -57,7 +57,7 @@ export default function JazykoveUrovneClient({ levels, content }: JazykoveUrovne
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-flex items-center gap-2 bg-white text-[#C41E3A] px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm mb-6 uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 bg-white text-[#E07B53] px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm mb-6 uppercase tracking-wider">
               <span>📊</span> CEFR
             </span>
           </motion.div>
@@ -69,7 +69,7 @@ export default function JazykoveUrovneClient({ levels, content }: JazykoveUrovne
             className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#1F1A17] leading-tight mb-6"
           >
             {heroTitle.replace(heroSubtitle, "").trim()}{" "}
-            <span className="font-[family-name:var(--font-playfair)] italic font-medium text-[#C41E3A]">
+            <span className="font-[family-name:var(--font-playfair)] italic font-medium text-[#E07B53]">
               {heroSubtitle}
             </span>
           </motion.h1>
@@ -105,7 +105,7 @@ export default function JazykoveUrovneClient({ levels, content }: JazykoveUrovne
       <section className="px-6 pb-20">
         <div className="max-w-4xl mx-auto space-y-6">
           {levels.map((level, index) => {
-            const gradientClass = colorMap[level.color || "#4CAF50"] || "from-[#C41E3A] to-[#9E1830]";
+            const gradientClass = colorMap[level.color || "#4CAF50"] || "from-[#E07B53] to-[#C4613D]";
             return (
               <motion.div
                 key={level.id}
@@ -113,7 +113,7 @@ export default function JazykoveUrovneClient({ levels, content }: JazykoveUrovne
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-[48px] p-8 md:p-10 grid grid-cols-1 md:grid-cols-[auto_1fr] gap-6 md:gap-10 items-start border-2 border-transparent hover:border-[#C41E3A] hover:translate-x-2 hover:shadow-xl transition-all duration-300"
+                className="bg-white rounded-[48px] p-8 md:p-10 grid grid-cols-1 md:grid-cols-[auto_1fr] gap-6 md:gap-10 items-start border-2 border-transparent hover:border-[#E07B53] hover:translate-x-2 hover:shadow-xl transition-all duration-300"
               >
                 {/* Badge */}
                 <div
@@ -132,7 +132,7 @@ export default function JazykoveUrovneClient({ levels, content }: JazykoveUrovne
                   <h2 className="text-xl md:text-2xl font-bold text-[#1F1A17] mb-1">
                     {level.title}
                   </h2>
-                  <p className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A] mb-4">
+                  <p className="font-[family-name:var(--font-playfair)] italic text-[#E07B53] mb-4">
                     {level.subtitle}
                   </p>
                   <p className="text-[#6B5D54] leading-relaxed mb-6">
@@ -202,7 +202,7 @@ export default function JazykoveUrovneClient({ levels, content }: JazykoveUrovne
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-[#1F1A17] mb-4">
             Připraveni{" "}
-            <span className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A]">
+            <span className="font-[family-name:var(--font-playfair)] italic text-[#E07B53]">
               začít?
             </span>
           </h2>
@@ -212,7 +212,7 @@ export default function JazykoveUrovneClient({ levels, content }: JazykoveUrovne
           </p>
           <Link
             href="/kontakt"
-            className="inline-flex items-center justify-center gap-2 bg-[#C41E3A] text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg shadow-[#C41E3A]/30 hover:bg-[#9E1830] hover:-translate-y-1 transition-all duration-200"
+            className="inline-flex items-center justify-center gap-2 bg-[#E07B53] text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg shadow-[#E07B53]/30 hover:bg-[#C4613D] hover:-translate-y-1 transition-all duration-200"
           >
             Zkušební hodina zdarma
             <ArrowRight className="h-5 w-5" />

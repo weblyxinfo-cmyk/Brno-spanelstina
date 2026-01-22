@@ -143,7 +143,7 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-flex items-center gap-2 bg-white text-[#C41E3A] px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm mb-6 uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 bg-white text-[#E07B53] px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm mb-6 uppercase tracking-wider">
               <span>📚</span> Nabídka kurzů
             </span>
           </motion.div>
@@ -155,7 +155,7 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
             className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#1F1A17] leading-tight mb-6"
           >
             {heroTitle.replace(heroSubtitle, "").trim()}{" "}
-            <span className="font-[family-name:var(--font-playfair)] italic font-medium text-[#C41E3A]">
+            <span className="font-[family-name:var(--font-playfair)] italic font-medium text-[#E07B53]">
               {heroSubtitle}
             </span>
           </motion.h1>
@@ -185,8 +185,8 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
               onClick={() => setActiveFilter(filter.id)}
               className={`px-6 py-3 rounded-full text-sm font-semibold transition-all duration-200 border-2 ${
                 activeFilter === filter.id
-                  ? "bg-[#C41E3A] border-[#C41E3A] text-white"
-                  : "bg-white border-[#EBE6DF] text-[#6B5D54] hover:border-[#C41E3A] hover:text-[#C41E3A]"
+                  ? "bg-[#E07B53] border-[#E07B53] text-white"
+                  : "bg-white border-[#EBE6DF] text-[#6B5D54] hover:border-[#E07B53] hover:text-[#E07B53]"
               }`}
             >
               {filter.label}
@@ -208,7 +208,7 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className={`bg-white rounded-[32px] overflow-hidden border-2 border-transparent hover:border-[#C41E3A] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${
+                  className={`bg-white rounded-[32px] overflow-hidden border-2 border-transparent hover:border-[#E07B53] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${
                     course.featured ? "lg:col-span-2" : ""
                   }`}
                 >
@@ -227,7 +227,7 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
                         <span className="text-7xl">{course.icon}</span>
                       )}
                       {course.badge && (
-                        <span className="absolute top-4 left-4 bg-[#C41E3A] text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wide z-10">
+                        <span className="absolute top-4 left-4 bg-[#E07B53] text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wide z-10">
                           {course.badge}
                         </span>
                       )}
@@ -238,7 +238,7 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
                       <h3 className="text-2xl font-bold text-[#1F1A17] mb-1">
                         {course.title}
                       </h3>
-                      <p className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A] mb-4">
+                      <p className="font-[family-name:var(--font-playfair)] italic text-[#E07B53] mb-4">
                         {course.subtitle}
                       </p>
                       <p className="text-[#6B5D54] leading-relaxed mb-6 flex-grow">
@@ -263,7 +263,7 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
 
                       <Link
                         href="/kontakt"
-                        className="inline-flex items-center justify-center gap-2 bg-[#FBF9F6] text-[#1F1A17] px-6 py-3 rounded-full font-semibold hover:bg-[#C41E3A] hover:text-white transition-all duration-200 self-start"
+                        className="inline-flex items-center justify-center gap-2 bg-[#FBF9F6] text-[#1F1A17] px-6 py-3 rounded-full font-semibold hover:bg-[#E07B53] hover:text-white transition-all duration-200 self-start"
                       >
                         Více informací
                         <ArrowRight className="w-4 h-4" />
@@ -302,7 +302,7 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
                 viewport={{ once: true }}
                 className={`rounded-[32px] p-8 text-center text-white transition-all duration-300 hover:-translate-y-1 ${
                   plan.featured
-                    ? "bg-[#C41E3A] scale-105"
+                    ? "bg-[#E07B53] scale-105"
                     : "bg-white/5 border border-white/10 hover:bg-white/10"
                 }`}
               >
@@ -346,7 +346,7 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#1F1A17] mb-4">
               Co u nás{" "}
-              <span className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A]">
+              <span className="font-[family-name:var(--font-playfair)] italic text-[#E07B53]">
                 získáte
               </span>
             </h2>
@@ -393,7 +393,7 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
               {ctaTitle.includes(" ") ? (
                 <>
                   {ctaTitle.split(" ").slice(0, -1).join(" ")}{" "}
-                  <span className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A]">
+                  <span className="font-[family-name:var(--font-playfair)] italic text-[#E07B53]">
                     {ctaTitle.split(" ").slice(-1)}
                   </span>
                 </>
@@ -404,7 +404,7 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
             </p>
             <Link
               href="/kontakt"
-              className="inline-flex items-center justify-center gap-2 bg-[#C41E3A] text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg shadow-[#C41E3A]/30 hover:bg-[#9E1830] hover:-translate-y-1 transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 bg-[#E07B53] text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg shadow-[#E07B53]/30 hover:bg-[#C4613D] hover:-translate-y-1 transition-all duration-200"
             >
               Domluvit konzultaci zdarma
               <ArrowRight className="h-5 w-5" />

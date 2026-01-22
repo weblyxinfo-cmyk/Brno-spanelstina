@@ -68,7 +68,7 @@ export default function LektoriClient({ lektori, content }: LektoriClientProps) 
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-flex items-center gap-2 bg-white text-[#C41E3A] px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm mb-6 uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 bg-white text-[#E07B53] px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm mb-6 uppercase tracking-wider">
               <span>👨‍🏫</span> Náš tým
             </span>
           </motion.div>
@@ -80,7 +80,7 @@ export default function LektoriClient({ lektori, content }: LektoriClientProps) 
             className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#1F1A17] leading-tight mb-6"
           >
             {heroTitle.replace(heroSubtitle, "").trim()}{" "}
-            <span className="font-[family-name:var(--font-playfair)] italic font-medium text-[#C41E3A]">
+            <span className="font-[family-name:var(--font-playfair)] italic font-medium text-[#E07B53]">
               {heroSubtitle}
             </span>
           </motion.h1>
@@ -130,7 +130,7 @@ export default function LektoriClient({ lektori, content }: LektoriClientProps) 
                 <div
                   className={`absolute -bottom-4 ${
                     index % 2 === 1 ? "left-4 lg:-left-4" : "right-4 lg:-right-4"
-                  } bg-[#C41E3A] text-white px-6 py-4 rounded-[24px] shadow-lg`}
+                  } bg-[#E07B53] text-white px-6 py-4 rounded-[24px] shadow-lg`}
                 >
                   <span className="text-2xl block mb-1">{lektor.badgeIcon}</span>
                   <span className="font-bold text-sm">{lektor.badge}</span>
@@ -139,7 +139,7 @@ export default function LektoriClient({ lektori, content }: LektoriClientProps) 
 
               {/* Content */}
               <div className={index % 2 === 1 ? "lg:order-1" : ""}>
-                <span className="inline-flex items-center gap-2 bg-[#FFE5E5] text-[#9E1830] px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                <span className="inline-flex items-center gap-2 bg-[#FFE5E5] text-[#C4613D] px-4 py-2 rounded-full text-sm font-semibold mb-4">
                   {lektor.originFlag} {lektor.origin}
                 </span>
 
@@ -147,7 +147,7 @@ export default function LektoriClient({ lektori, content }: LektoriClientProps) 
                   {lektor.name}
                 </h2>
 
-                <p className="font-[family-name:var(--font-playfair)] italic text-xl text-[#C41E3A] mb-6">
+                <p className="font-[family-name:var(--font-playfair)] italic text-xl text-[#E07B53] mb-6">
                   {lektor.role}
                 </p>
 
@@ -203,7 +203,7 @@ export default function LektoriClient({ lektori, content }: LektoriClientProps) 
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#1F1A17] mb-4">
               Proč učíme{" "}
-              <span className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A]">
+              <span className="font-[family-name:var(--font-playfair)] italic text-[#E07B53]">
                 ve dvou?
               </span>
             </h2>
@@ -221,10 +221,10 @@ export default function LektoriClient({ lektori, content }: LektoriClientProps) 
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-[32px] p-8 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-2 border-transparent hover:border-[#C41E3A]"
+                className="bg-white rounded-[32px] p-8 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-2 border-transparent hover:border-[#E07B53]"
               >
                 <span className="text-5xl block mb-4">{stat.icon}</span>
-                <p className="font-[family-name:var(--font-playfair)] text-5xl font-bold text-[#C41E3A] mb-2">
+                <p className="font-[family-name:var(--font-playfair)] text-5xl font-bold text-[#E07B53] mb-2">
                   {stat.number}
                 </p>
                 <p className="text-[#6B5D54]">{stat.label}</p>
@@ -242,7 +242,7 @@ export default function LektoriClient({ lektori, content }: LektoriClientProps) 
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-[#C41E3A] to-[#9E1830] rounded-[48px] p-12 md:p-16 relative overflow-hidden"
+            className="bg-gradient-to-br from-[#E07B53] to-[#C4613D] rounded-[48px] p-12 md:p-16 relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
 
@@ -263,7 +263,7 @@ export default function LektoriClient({ lektori, content }: LektoriClientProps) 
               <div className="flex flex-col sm:flex-row gap-4 lg:justify-end">
                 <Link
                   href="/kontakt"
-                  className="inline-flex items-center justify-center gap-2 bg-white text-[#C41E3A] px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-[#E07B53] px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200"
                 >
                   Zkušební hodina zdarma
                   <ArrowRight className="h-5 w-5" />

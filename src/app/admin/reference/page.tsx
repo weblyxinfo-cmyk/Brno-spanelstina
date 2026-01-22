@@ -124,7 +124,7 @@ export default function AdminReferencePage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C41E3A]"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#E07B53]"></div>
       </div>
     );
   }
@@ -144,7 +144,7 @@ export default function AdminReferencePage() {
           {!isCreating && !editingId && (
             <button
               onClick={() => setIsCreating(true)}
-              className="inline-flex items-center gap-2 bg-[#C41E3A] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#9E1830] transition-colors"
+              className="inline-flex items-center gap-2 bg-[#E07B53] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#C4613D] transition-colors"
             >
               <Plus className="w-5 h-5" />
               Přidat referenci
@@ -159,7 +159,7 @@ export default function AdminReferencePage() {
           onClick={() => setFilter("all")}
           className={`px-4 py-2 rounded-xl font-medium text-sm transition-colors ${
             filter === "all"
-              ? "bg-[#C41E3A] text-white"
+              ? "bg-[#E07B53] text-white"
               : "bg-white text-[#6B5D54] hover:bg-[#FBF9F6]"
           }`}
         >
@@ -169,7 +169,7 @@ export default function AdminReferencePage() {
           onClick={() => setFilter("pending")}
           className={`px-4 py-2 rounded-xl font-medium text-sm transition-colors flex items-center gap-2 ${
             filter === "pending"
-              ? "bg-[#C41E3A] text-white"
+              ? "bg-[#E07B53] text-white"
               : "bg-white text-[#6B5D54] hover:bg-[#FBF9F6]"
           }`}
         >
@@ -180,7 +180,7 @@ export default function AdminReferencePage() {
           onClick={() => setFilter("approved")}
           className={`px-4 py-2 rounded-xl font-medium text-sm transition-colors flex items-center gap-2 ${
             filter === "approved"
-              ? "bg-[#C41E3A] text-white"
+              ? "bg-[#E07B53] text-white"
               : "bg-white text-[#6B5D54] hover:bg-[#FBF9F6]"
           }`}
         >
@@ -214,7 +214,7 @@ export default function AdminReferencePage() {
                 value={formData.text}
                 onChange={(e) => setFormData({ ...formData, text: e.target.value })}
                 rows={4}
-                className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors resize-none"
+                className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors resize-none"
                 placeholder="Reference od studenta..."
               />
             </div>
@@ -229,7 +229,7 @@ export default function AdminReferencePage() {
                   required
                   value={formData.author}
                   onChange={(e) => setFormData({ ...formData, author: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. Jan N."
                 />
               </div>
@@ -242,7 +242,7 @@ export default function AdminReferencePage() {
                   type="text"
                   value={formData.role}
                   onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. Student skupinového kurzu"
                 />
               </div>
@@ -255,7 +255,7 @@ export default function AdminReferencePage() {
                   type="text"
                   value={formData.course}
                   onChange={(e) => setFormData({ ...formData, course: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. Skupinový kurz B1"
                 />
               </div>
@@ -294,7 +294,7 @@ export default function AdminReferencePage() {
                     onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
                     className="sr-only peer"
                   />
-                  <div className="w-11 h-6 bg-[#EBE6DF] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#C41E3A]"></div>
+                  <div className="w-11 h-6 bg-[#EBE6DF] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#E07B53]"></div>
                 </label>
                 <span className="text-sm font-semibold text-[#1F1A17]">
                   Featured
@@ -322,7 +322,7 @@ export default function AdminReferencePage() {
             <div className="flex gap-3">
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 bg-[#C41E3A] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#9E1830] transition-colors"
+                className="inline-flex items-center gap-2 bg-[#E07B53] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#C4613D] transition-colors"
               >
                 <Check className="w-5 h-5" />
                 {editingId ? "Uložit změny" : "Vytvořit referenci"}
@@ -387,7 +387,7 @@ export default function AdminReferencePage() {
                 onClick={() => startEdit(testimonial)}
                 className="p-2 bg-[#FBF9F6] hover:bg-[#FFE5E5] rounded-lg transition-colors"
               >
-                <Pencil className="w-4 h-4 text-[#C41E3A]" />
+                <Pencil className="w-4 h-4 text-[#E07B53]" />
               </button>
               <button
                 onClick={() => handleDelete(testimonial.id)}
@@ -429,7 +429,7 @@ export default function AdminReferencePage() {
                     </span>
                   )}
                   {testimonial.featured && (
-                    <span className="text-xs bg-[#FFE5E5] text-[#C41E3A] px-2 py-1 rounded-full">
+                    <span className="text-xs bg-[#FFE5E5] text-[#E07B53] px-2 py-1 rounded-full">
                       Featured
                     </span>
                   )}

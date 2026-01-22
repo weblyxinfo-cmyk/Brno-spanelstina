@@ -55,7 +55,7 @@ export default function AdminNastaveniPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C41E3A]"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#E07B53]"></div>
       </div>
     );
   }
@@ -71,7 +71,7 @@ export default function AdminNastaveniPage() {
         {/* Stats Settings */}
         <div className="bg-white rounded-2xl p-6 mb-6">
           <h2 className="text-xl font-bold text-[#1F1A17] mb-6 flex items-center gap-2">
-            <BarChart3 className="w-5 h-5 text-[#C41E3A]" />
+            <BarChart3 className="w-5 h-5 text-[#E07B53]" />
             Statistiky na stránce Reference
           </h2>
 
@@ -82,14 +82,14 @@ export default function AdminNastaveniPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <label className="flex items-center gap-2 text-sm font-semibold text-[#1F1A17] mb-2">
-                <Users className="w-4 h-4 text-[#C41E3A]" />
+                <Users className="w-4 h-4 text-[#E07B53]" />
                 Počet studentů
               </label>
               <input
                 type="text"
                 value={formData.stats_students}
                 onChange={(e) => setFormData({ ...formData, stats_students: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                 placeholder="např. 500+"
               />
               <p className="text-xs text-[#6B5D54] mt-1">Zobrazí se jako &quot;spokojených studentů&quot;</p>
@@ -97,14 +97,14 @@ export default function AdminNastaveniPage() {
 
             <div>
               <label className="flex items-center gap-2 text-sm font-semibold text-[#1F1A17] mb-2">
-                <Calendar className="w-4 h-4 text-[#C41E3A]" />
+                <Calendar className="w-4 h-4 text-[#E07B53]" />
                 Let zkušeností
               </label>
               <input
                 type="text"
                 value={formData.stats_years}
                 onChange={(e) => setFormData({ ...formData, stats_years: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                 placeholder="např. 15+"
               />
               <p className="text-xs text-[#6B5D54] mt-1">Zobrazí se jako &quot;let zkušeností&quot;</p>
@@ -112,14 +112,14 @@ export default function AdminNastaveniPage() {
 
             <div>
               <label className="flex items-center gap-2 text-sm font-semibold text-[#1F1A17] mb-2">
-                <Award className="w-4 h-4 text-[#C41E3A]" />
+                <Award className="w-4 h-4 text-[#E07B53]" />
                 Úspěšnost u DELE
               </label>
               <input
                 type="text"
                 value={formData.stats_dele}
                 onChange={(e) => setFormData({ ...formData, stats_dele: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                 placeholder="např. 98%"
               />
               <p className="text-xs text-[#6B5D54] mt-1">Zobrazí se jako &quot;úspěšnost u DELE&quot;</p>
@@ -127,7 +127,7 @@ export default function AdminNastaveniPage() {
           </div>
 
           <div className="mt-6 p-4 bg-[#FFE5E5]/30 rounded-xl">
-            <p className="text-sm text-[#9E1830]">
+            <p className="text-sm text-[#C4613D]">
               <strong>Průměrné hodnocení</strong> se počítá automaticky ze všech schválených recenzí a nelze jej ručně upravit.
             </p>
           </div>
@@ -136,7 +136,7 @@ export default function AdminNastaveniPage() {
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex items-center gap-2 bg-[#C41E3A] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#9E1830] transition-colors disabled:opacity-50"
+          className="inline-flex items-center gap-2 bg-[#E07B53] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#C4613D] transition-colors disabled:opacity-50"
         >
           <Save className="w-5 h-5" />
           {saving ? "Ukládám..." : "Uložit nastavení"}

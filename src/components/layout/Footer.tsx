@@ -27,7 +27,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block">
               <span className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-[#1F1A17]">
-                Španělština <span className="text-[#C41E3A]">Brno</span>
+                Španělština <span className="text-[#E07B53]">Brno</span>
               </span>
             </Link>
             <p className="mt-4 text-[#6B5D54] text-sm leading-relaxed max-w-xs">
@@ -45,7 +45,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-[#1F1A17] hover:text-[#C41E3A] transition-colors text-sm"
+                    className="text-[#1F1A17] hover:text-[#E07B53] transition-colors text-sm"
                   >
                     {link.name}
                   </Link>
@@ -64,7 +64,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-[#1F1A17] hover:text-[#C41E3A] transition-colors text-sm"
+                    className="text-[#1F1A17] hover:text-[#E07B53] transition-colors text-sm"
                   >
                     {link.name}
                   </Link>
@@ -84,7 +84,7 @@ export default function Footer() {
                   href={SITE_CONFIG.contact.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-2 text-[#1F1A17] hover:text-[#C41E3A] transition-colors text-sm"
+                  className="flex items-start gap-2 text-[#1F1A17] hover:text-[#E07B53] transition-colors text-sm"
                 >
                   <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
                   <span>{SITE_CONFIG.contact.address}</span>
@@ -93,7 +93,7 @@ export default function Footer() {
               <li>
                 <a
                   href={`mailto:${SITE_CONFIG.contact.email}`}
-                  className="flex items-center gap-2 text-[#1F1A17] hover:text-[#C41E3A] transition-colors text-sm"
+                  className="flex items-center gap-2 text-[#1F1A17] hover:text-[#E07B53] transition-colors text-sm"
                 >
                   <Mail className="h-4 w-4 flex-shrink-0" />
                   <span>{SITE_CONFIG.contact.email}</span>
@@ -108,7 +108,7 @@ export default function Footer() {
                   href={SITE_CONFIG.contact.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-[#1F1A17] hover:text-[#C41E3A] transition-colors text-sm"
+                  className="flex items-center gap-2 text-[#1F1A17] hover:text-[#E07B53] transition-colors text-sm"
                 >
                   <Facebook className="h-4 w-4 flex-shrink-0" />
                   <span>Facebook</span>
@@ -130,7 +130,7 @@ export default function Footer() {
               href="https://weblyx.cz"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#C41E3A] hover:underline"
+              className="text-[#E07B53] hover:underline"
             >
               Weblyx.cz
             </a>

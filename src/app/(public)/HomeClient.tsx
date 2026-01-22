@@ -106,7 +106,7 @@ export default function HomeClient({ courses, testimonials, content }: HomeClien
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-flex items-center gap-2 bg-white text-[#C41E3A] px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm mb-8">
+            <span className="inline-flex items-center gap-2 bg-white text-[#E07B53] px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm mb-8">
               <span>🇪🇸</span> Kurzy španělštiny v Brně
             </span>
           </motion.div>
@@ -119,7 +119,7 @@ export default function HomeClient({ courses, testimonials, content }: HomeClien
           >
             {heroTitle}
             <br />
-            <span className="font-[family-name:var(--font-playfair)] italic font-medium text-[#C41E3A]">
+            <span className="font-[family-name:var(--font-playfair)] italic font-medium text-[#E07B53]">
               {heroSubtitle}
             </span>
           </motion.h1>
@@ -141,14 +141,14 @@ export default function HomeClient({ courses, testimonials, content }: HomeClien
           >
             <Link
               href="/kontakt"
-              className="inline-flex items-center justify-center gap-2 bg-[#C41E3A] text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg shadow-[#C41E3A]/30 hover:bg-[#9E1830] hover:-translate-y-1 transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 bg-[#E07B53] text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg shadow-[#E07B53]/30 hover:bg-[#C4613D] hover:-translate-y-1 transition-all duration-200"
             >
               {heroCtaText}
               <ArrowRight className="h-5 w-5" />
             </Link>
             <Link
               href="/kurzy"
-              className="inline-flex items-center justify-center gap-2 bg-white text-[#1F1A17] px-8 py-4 rounded-full font-semibold text-lg border-2 border-[#EBE6DF] hover:border-[#C41E3A] hover:text-[#C41E3A] transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 bg-white text-[#1F1A17] px-8 py-4 rounded-full font-semibold text-lg border-2 border-[#EBE6DF] hover:border-[#E07B53] hover:text-[#E07B53] transition-all duration-200"
             >
               Prohlédnout kurzy
             </Link>
@@ -185,7 +185,7 @@ export default function HomeClient({ courses, testimonials, content }: HomeClien
               {aboutTitle.includes(" ") ? (
                 <>
                   {aboutTitle.split(" ").slice(0, -1).join(" ")}{" "}
-                  <span className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A]">
+                  <span className="font-[family-name:var(--font-playfair)] italic text-[#E07B53]">
                     {aboutTitle.split(" ").slice(-1)}
                   </span>
                 </>
@@ -204,9 +204,9 @@ export default function HomeClient({ courses, testimonials, content }: HomeClien
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-[32px] p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-2 border-transparent hover:border-[#C41E3A]"
+                className="bg-white rounded-[32px] p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-2 border-transparent hover:border-[#E07B53]"
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-[#C41E3A] to-[#9E1830] rounded-2xl flex items-center justify-center mb-6">
+                <div className="w-14 h-14 bg-gradient-to-br from-[#E07B53] to-[#C4613D] rounded-2xl flex items-center justify-center mb-6">
                   <usp.icon className="h-7 w-7 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-[#1F1A17] mb-2">
@@ -227,7 +227,7 @@ export default function HomeClient({ courses, testimonials, content }: HomeClien
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#1F1A17] mb-4">
               Vyberte si{" "}
-              <span className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A]">
+              <span className="font-[family-name:var(--font-playfair)] italic text-[#E07B53]">
                 svůj kurz
               </span>
             </h2>
@@ -247,24 +247,24 @@ export default function HomeClient({ courses, testimonials, content }: HomeClien
               >
                 <Link
                   href={`/kurzy#${course.category}`}
-                  className="group block bg-[#FBF9F6] rounded-[32px] p-8 hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-[#C41E3A] relative overflow-hidden"
+                  className="group block bg-[#FBF9F6] rounded-[32px] p-8 hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-[#E07B53] relative overflow-hidden"
                 >
                   {course.badge && (
-                    <span className="absolute top-6 right-6 bg-[#C41E3A] text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide">
+                    <span className="absolute top-6 right-6 bg-[#E07B53] text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide">
                       {course.badge}
                     </span>
                   )}
                   <span className="text-5xl mb-6 block">{course.icon}</span>
-                  <h3 className="text-2xl font-bold text-[#1F1A17] mb-1 group-hover:text-[#C41E3A] transition-colors">
+                  <h3 className="text-2xl font-bold text-[#1F1A17] mb-1 group-hover:text-[#E07B53] transition-colors">
                     {course.title}
                   </h3>
-                  <p className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A] mb-4">
+                  <p className="font-[family-name:var(--font-playfair)] italic text-[#E07B53] mb-4">
                     {course.subtitle}
                   </p>
                   <p className="text-[#6B5D54] leading-relaxed mb-6">
                     {course.description}
                   </p>
-                  <span className="inline-flex items-center gap-2 text-[#C41E3A] font-semibold group-hover:gap-3 transition-all">
+                  <span className="inline-flex items-center gap-2 text-[#E07B53] font-semibold group-hover:gap-3 transition-all">
                     Více informací
                     <ArrowRight className="h-4 w-4" />
                   </span>
@@ -276,7 +276,7 @@ export default function HomeClient({ courses, testimonials, content }: HomeClien
           <div className="text-center mt-12">
             <Link
               href="/kurzy"
-              className="inline-flex items-center justify-center gap-2 bg-[#1F1A17] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-[#C41E3A] transition-colors duration-200"
+              className="inline-flex items-center justify-center gap-2 bg-[#1F1A17] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-[#E07B53] transition-colors duration-200"
             >
               Zobrazit všechny kurzy
               <ArrowRight className="h-5 w-5" />
@@ -291,7 +291,7 @@ export default function HomeClient({ courses, testimonials, content }: HomeClien
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#1F1A17] mb-4">
               Co říkají{" "}
-              <span className="font-[family-name:var(--font-playfair)] italic text-[#C41E3A]">
+              <span className="font-[family-name:var(--font-playfair)] italic text-[#E07B53]">
                 naši studenti
               </span>
             </h2>
@@ -311,7 +311,7 @@ export default function HomeClient({ courses, testimonials, content }: HomeClien
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className="h-5 w-5 fill-[#C41E3A] text-[#C41E3A]"
+                      className="h-5 w-5 fill-[#E07B53] text-[#E07B53]"
                     />
                   ))}
                 </div>
@@ -329,7 +329,7 @@ export default function HomeClient({ courses, testimonials, content }: HomeClien
           <div className="text-center mt-12">
             <Link
               href="/reference"
-              className="inline-flex items-center gap-2 text-[#C41E3A] font-semibold hover:gap-3 transition-all"
+              className="inline-flex items-center gap-2 text-[#E07B53] font-semibold hover:gap-3 transition-all"
             >
               Přečíst další reference
               <ArrowRight className="h-4 w-4" />
@@ -341,7 +341,7 @@ export default function HomeClient({ courses, testimonials, content }: HomeClien
       {/* CTA Section */}
       <section className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="bg-gradient-to-br from-[#C41E3A] to-[#9E1830] rounded-[48px] p-12 md:p-16 text-center relative overflow-hidden">
+          <div className="bg-gradient-to-br from-[#E07B53] to-[#C4613D] rounded-[48px] p-12 md:p-16 text-center relative overflow-hidden">
             {/* Decorative circle */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
 
@@ -361,7 +361,7 @@ export default function HomeClient({ courses, testimonials, content }: HomeClien
               </p>
               <Link
                 href="/kontakt"
-                className="inline-flex items-center justify-center gap-2 bg-white text-[#C41E3A] px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 bg-white text-[#E07B53] px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200"
               >
                 {ctaButtonText}
                 <ArrowRight className="h-5 w-5" />

@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lektoři | Španělština Brno – Rodrigo Valenzuela</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --cream: #FBF9F6;
+      --white: #FFFFFF;
+      --terracotta: #D35233;
+      --terracotta-dark: #B5412A;
+      --terracotta-light: #FADDD6;
+      --brown: #1F1A17;
+      --brown-mid: #6B5D54;
+      --sand: #EBE6DF;
+      --radius-sm: 16px;
+      --radius-md: 24px;
+      --radius-lg: 32px;
+      --radius-xl: 48px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--cream);
+      color: var(--brown);
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection {
+      background: var(--terracotta);
+      color: white;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      right: 1rem;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--brown);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .logo span {
+      color: var(--terracotta);
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--brown-mid);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--terracotta);
+    }
+
+    .nav-cta {
+      background: var(--terracotta);
+      color: white !important;
+      padding: 0.75rem 1.5rem;
+      border-radius: 100px;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+
+    .nav-cta:hover {
+      background: var(--terracotta-dark) !important;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(211,82,51,0.3);
+    }
+
+    /* Page Hero */
+    .page-hero {
+      padding: 10rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, var(--terracotta-light) 0%, transparent 70%);
+      opacity: 0.4;
+      z-index: 0;
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      color: var(--terracotta);
+      padding: 0.6rem 1.25rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .page-hero h1 {
+      font-size: clamp(3rem, 7vw, 5rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .page-hero h1 .outline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--terracotta);
+    }
+
+    .page-hero p {
+      font-size: 1.2rem;
+      color: var(--brown-mid);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* Lektoři Grid */
+    .lektori {
+      padding: 4rem 2rem 8rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .lektor-card {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 4rem;
+      align-items: center;
+      margin-bottom: 8rem;
+    }
+
+    .lektor-card:nth-child(even) {
+      direction: rtl;
+    }
+
+    .lektor-card:nth-child(even) > * {
+      direction: ltr;
+    }
+
+    .lektor-image {
+      position: relative;
+    }
+
+    .lektor-image-main {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: var(--sand);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+    }
+
+    .lektor-image-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .lektor-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--terracotta);
+      color: white;
+      padding: 1.25rem 1.75rem;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 15px 40px rgba(211,82,51,0.35);
+    }
+
+    .lektor-badge-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .lektor-card:nth-child(even) .lektor-badge {
+      right: auto;
+      left: -20px;
+    }
+
+    .lektor-content {
+      padding: 2rem 0;
+    }
+
+    .lektor-origin {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--terracotta-light);
+      color: var(--terracotta-dark);
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+
+    .lektor-name {
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      line-height: 1.1;
+    }
+
+    .lektor-role {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--terracotta);
+      margin-bottom: 1.5rem;
+    }
+
+    .lektor-bio {
+      font-size: 1.1rem;
+      color: var(--brown-mid);
+      line-height: 1.9;
+      margin-bottom: 2rem;
+    }
+
+    .lektor-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .lektor-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      padding: 0.65rem 1.25rem;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid var(--sand);
+    }
+
+    .lektor-highlight-icon {
+      font-size: 1rem;
+    }
+
+    /* Quote section */
+    .quote-section {
+      background: var(--brown);
+      padding: 6rem 2rem;
+      margin: 0 2rem;
+      border-radius: var(--radius-xl);
+    }
+
+    .quote-container {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      color: white;
+    }
+
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      line-height: 1.6;
+      font-style: italic;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+    }
+
+    .quote-author {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--terracotta-light);
+    }
+
+    /* Team summary */
+    .team-summary {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .team-summary-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .team-summary-header h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      margin-bottom: 1rem;
+    }
+
+    .team-summary-header h2 .serif {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .team-summary-header p {
+      color: var(--brown-mid);
+      font-size: 1.1rem;
+      max-width: 550px;
+      margin: 0 auto;
+    }
+
+    .team-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .team-stat {
+      background: white;
+      padding: 2.5rem;
+      border-radius: var(--radius-lg);
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .team-stat:hover {
+      border-color: var(--terracotta);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+    }
+
+    .team-stat-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .team-stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--terracotta);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .team-stat-label {
+      font-size: 1rem;
+      color: var(--brown-mid);
+      font-weight: 500;
+    }
+
+    /* CTA */
+    .cta {
+      padding: 6rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .cta-container {
+      background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
+      border-radius: var(--radius-xl);
+      padding: 5rem;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cta-container::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.05;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-content h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+
+    .cta-content h2 .light {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+
+    .cta-content p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.1rem;
+      line-height: 1.75;
+      max-width: 450px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: white;
+      color: var(--terracotta);
+      padding: 1.1rem 2rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 100px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .btn-white:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: transparent;
+      color: white;
+      padding: 1.1rem 2rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 100px;
+      border: 2px solid rgba(255,255,255,0.4);
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: white;
+    }
+
+    /* Footer */
+    footer {
+      padding: 4rem 2rem;
+      background: white;
+      border-top: 1px solid var(--sand);
+    }
+
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand span {
+      color: var(--terracotta);
+    }
+
+    .footer-desc {
+      color: var(--brown-mid);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 300px;
+    }
+
+    .footer-column h4 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1.25rem;
+      color: var(--brown-mid);
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-column a {
+      color: var(--brown);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-column a:hover {
+      color: var(--terracotta);
+    }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid var(--sand);
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--brown-mid);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      header {
+        margin: 0.75rem;
+        left: 0.75rem;
+        right: 0.75rem;
+        top: 0.75rem;
+      }
+
+      nav a:not(.nav-cta) {
+        display: none;
+      }
+
+      .lektor-card {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .lektor-card:nth-child(even) {
+        direction: ltr;
+      }
+
+      .lektor-badge {
+        right: 20px !important;
+        left: auto !important;
+        bottom: -15px;
+      }
+
+      .team-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-container {
+        grid-template-columns: 1fr;
+        padding: 3rem 2rem;
+        gap: 2.5rem;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      .quote-section {
+        margin: 0 1rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 0.75rem;
+        text-align: center;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="brno-spanelstina-FINAL-homepage.html" class="logo">Španělština <span>Brno</span></a>
+    <nav>
+      <a href="#">Kurzy</a>
+      <a href="#">O nás</a>
+      <a href="#" class="active">Lektoři</a>
+      <a href="#">Reference</a>
+      <a href="#">Kontakt</a>
+      <a href="#" class="nav-cta">Zkusit zdarma</a>
+    </nav>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-hero-tag">👨‍🏫 Náš tým</div>
+      <h1>Poznejte naše <span class="outline">lektory</span></h1>
+      <p>Lektoři, kteří umí španělsky nejenom mluvit, ale umí španělsky i žít. S námi se nemusíte bát suchopárné akademické nudy.</p>
+    </div>
+  </section>
+
+  <section class="lektori">
+    
+    <!-- Rodrigo -->
+    <div class="lektor-card">
+      <div class="lektor-image">
+        <div class="lektor-image-main">
+          <img src="http://www.brno-spanelstina.cz/images/template/rodrigo2.jpg" alt="Rodrigo Valenzuela">
+        </div>
+        <div class="lektor-badge">
+          <div class="lektor-badge-icon">🚢</div>
+          Zakladatel školy
+        </div>
+      </div>
+      <div class="lektor-content">
+        <div class="lektor-origin">🇨🇱 Chile</div>
+        <h2 class="lektor-name">Rodrigo Valenzuela</h2>
+        <div class="lektor-role">Lektor & zakladatel</div>
+        <p class="lektor-bio">
+          Jmenuji se Rodrigo a pocházím z Chile. Šest dobrodružných let jsem se jako námořník plavil vlnami přes širé oceány. V Německu jsem vystudoval ekonomii, kde jsem také začal s výukou a překlady španělštiny. Tato práce mě zaujala natolik, že jsem se rozhodl pokračovat i v Česku, kde jsem založil svoji rodinu.
+        </p>
+        <p class="lektor-bio">
+          Za důležité považuji, že v malých skupinkách vzniká pro každého studenta dostatečný prostor a může díky tomu ve vlastním rytmu zdolávat nástrahy a objevovat krásy španělštiny. Rád svoje studenty na této dobrodružné výpravě provázím a podporuji.
+        </p>
+        <div class="lektor-highlights">
+          <span class="lektor-highlight"><span class="lektor-highlight-icon">🌊</span> 6 let na moři</span>
+          <span class="lektor-highlight"><span class="lektor-highlight-icon">🎓</span> Ekonomie v Německu</span>
+          <span class="lektor-highlight"><span class="lektor-highlight-icon">📅</span> 15+ let výuky</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Olga -->
+    <div class="lektor-card">
+      <div class="lektor-image">
+        <div class="lektor-image-main">
+          <img src="http://www.brno-spanelstina.cz/images/template/olga.jpg" alt="Olga Trampotová">
+        </div>
+        <div class="lektor-badge">
+          <div class="lektor-badge-icon">☀️</div>
+          Universidad de Sevilla
+        </div>
+      </div>
+      <div class="lektor-content">
+        <div class="lektor-origin">🇨🇿 Česko → 🇪🇸 Andalusie</div>
+        <h2 class="lektor-name">Olga Trampotová</h2>
+        <div class="lektor-role">Lektorka španělštiny</div>
+        <p class="lektor-bio">
+          Strávila jsem několik krásných let v jižním Španělsku v Andalusii, kde jsem pochytila řeč horkokrevných jižních ulic, studovala španělštinu a psychologii na Universidad de Sevilla a také začala s výukou jazyků. Do Česka jsem se vrátila v létě 2012 a od té doby spolupracuji s Rodrigem.
+        </p>
+        <p class="lektor-bio">
+          Díky našemu jižnímu nastavení a milým studentům vzniká v hodinách příjemná a pohodová atmosféra, bezpečný prostor pro poznávání tohoto krásně rytmického a jiskrného jazyka. Vedle lektorování se věnuji vedení seberozvojových kurzů, píšu popularizační psychočlánky a studuji doktorát.
+        </p>
+        <div class="lektor-highlights">
+          <span class="lektor-highlight"><span class="lektor-highlight-icon">🎓</span> Universidad de Sevilla</span>
+          <span class="lektor-highlight"><span class="lektor-highlight-icon">🧠</span> Psychologie</span>
+          <span class="lektor-highlight"><span class="lektor-highlight-icon">✍️</span> Autorka článků</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Xabi -->
+    <div class="lektor-card">
+      <div class="lektor-image">
+        <div class="lektor-image-main">
+          <img src="http://www.brno-spanelstina.cz/images/template/xabi.jpg" alt="Xabi">
+        </div>
+        <div class="lektor-badge">
+          <div class="lektor-badge-icon">🇪🇸</div>
+          Rodilý mluvčí
+        </div>
+      </div>
+      <div class="lektor-content">
+        <div class="lektor-origin">🇪🇸 Baskicko, Španělsko</div>
+        <h2 class="lektor-name">Xabi</h2>
+        <div class="lektor-role">Lektor španělštiny</div>
+        <p class="lektor-bio">
+          Jmenuji se Xabi a pocházím z malé vesničky z Baskicka. Vystudoval jsem architekturu a vedle toho, že rád kreslím a navrhuju domečky a hangáry, jsem jako správný jižan blázen do fotbalu. Po dvou letech v Brně jsem se taky stal fanouškem českého piva a jídla.
+        </p>
+        <p class="lektor-bio">
+          Mám rád své přátele, užívám si cestování, poznávání nových zemí, kultur a lidí. A proto mě baví učení španělštiny – mám možnost setkat se s mnoha zajímavými lidmi, poznat je, něco zajímavého jim předat. Tak přijďte taky k nám – spolu si určitě porozumíme i španělsky.
+        </p>
+        <div class="lektor-highlights">
+          <span class="lektor-highlight"><span class="lektor-highlight-icon">🏛️</span> Architekt</span>
+          <span class="lektor-highlight"><span class="lektor-highlight-icon">⚽</span> Fanoušek fotbalu</span>
+          <span class="lektor-highlight"><span class="lektor-highlight-icon">🍺</span> Miluje české pivo</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="quote-section">
+    <div class="quote-container">
+      <p class="quote-text">„Nejen, že se vám v našich kurzech španělština ukotví v mozku, začne také tepat vaším srdcem!"</p>
+      <div class="quote-author">— Filozofie naší školy</div>
+    </div>
+  </section>
+
+  <section class="team-summary">
+    <div class="team-summary-header">
+      <h2>Proč učíme <span class="serif">ve dvou?</span></h2>
+      <p>Každý kurz vedou vždy dva lektoři. Proč? Abyste slyšeli španělštinu z obou břehů Atlantiku.</p>
+    </div>
+    <div class="team-stats">
+      <div class="team-stat">
+        <div class="team-stat-icon">🌎</div>
+        <div class="team-stat-number">2</div>
+        <div class="team-stat-label">přízvuky v každém kurzu</div>
+      </div>
+      <div class="team-stat">
+        <div class="team-stat-icon">🇪🇸</div>
+        <div class="team-stat-number">1</div>
+        <div class="team-stat-label">evropská španělština</div>
+      </div>
+      <div class="team-stat">
+        <div class="team-stat-icon">🌴</div>
+        <div class="team-stat-number">1</div>
+        <div class="team-stat-label">latinskoamerická španělština</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="cta-container">
+      <div class="cta-content">
+        <h2>Chcete nás <span class="light">poznat osobně?</span></h2>
+        <p>Přijďte na zkušební hodinu zdarma. Poznáte naše lektory, uvidíte jak učíme a zjistíte, jestli vám to u nás sedí.</p>
+      </div>
+      <div class="cta-buttons">
+        <a href="#" class="btn-white">
+          Zkušební hodina zdarma
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="#" class="btn-outline">Zpět na kurzy</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">Španělština <span>Brno</span></div>
+          <p class="footer-desc">Učíme španělsky s osobním přístupem od roku 2010. Malé skupiny, velké výsledky.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Kurzy</h4>
+          <ul>
+            <li><a href="#">Skupinové</a></li>
+            <li><a href="#">Individuální</a></li>
+            <li><a href="#">Intenzivní</a></li>
+            <li><a href="#">DELE příprava</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Škola</h4>
+          <ul>
+            <li><a href="#">O nás</a></li>
+            <li><a href="#">Lektoři</a></li>
+            <li><a href="#">Reference</a></li>
+            <li><a href="#">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Kontakt</h4>
+          <ul>
+            <li><a href="#">Zábrdovická 2, Brno</a></li>
+            <li><a href="#"><span class="__cf_email__" data-cfemail="056c6b636a4567776b6a287675646b606976716c6b642b667f">[email&#160;protected]</span></a></li>
+            <li><a href="#">Tramvaj 2, 3</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Rodrigo Valenzuela</sp

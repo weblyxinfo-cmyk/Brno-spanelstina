@@ -84,7 +84,7 @@ export default function Breadcrumbs() {
             ) : (
               <Link
                 href={breadcrumb.href}
-                className="text-[#6B5D54] hover:text-[#C41E3A] transition-colors flex items-center gap-1.5"
+                className="text-[#6B5D54] hover:text-[#E07B53] transition-colors flex items-center gap-1.5"
               >
                 {index === 0 && <Home className="w-4 h-4" />}
                 {breadcrumb.label}

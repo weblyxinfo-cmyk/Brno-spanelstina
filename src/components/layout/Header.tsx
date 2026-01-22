@@ -24,7 +24,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <span className="font-[family-name:var(--font-playfair)] text-xl font-bold text-[#1F1A17]">
-              Španělština <span className="text-[#C41E3A]">Brno</span>
+              Španělština <span className="text-[#E07B53]">Brno</span>
             </span>
           </Link>
 
@@ -34,14 +34,14 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-[#6B5D54] hover:text-[#C41E3A] transition-colors duration-200"
+                className="text-sm font-medium text-[#6B5D54] hover:text-[#E07B53] transition-colors duration-200"
               >
                 {item.name}
               </Link>
             ))}
             <Link
               href="/kontakt"
-              className="rounded-full bg-[#C41E3A] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#C41E3A]/30 hover:bg-[#9E1830] hover:-translate-y-0.5 transition-all duration-200"
+              className="rounded-full bg-[#E07B53] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#E07B53]/30 hover:bg-[#C4613D] hover:-translate-y-0.5 transition-all duration-200"
             >
               Zkusit zdarma
             </Link>
@@ -77,7 +77,7 @@ export default function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="block rounded-2xl px-4 py-3 text-base font-medium text-[#6B5D54] hover:bg-[#EBE6DF] hover:text-[#C41E3A] transition-colors"
+                    className="block rounded-2xl px-4 py-3 text-base font-medium text-[#6B5D54] hover:bg-[#EBE6DF] hover:text-[#E07B53] transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
@@ -85,7 +85,7 @@ export default function Header() {
                 ))}
                 <Link
                   href="/kontakt"
-                  className="block rounded-full bg-[#C41E3A] px-4 py-3 text-center text-base font-semibold text-white hover:bg-[#9E1830] transition-colors mt-4"
+                  className="block rounded-full bg-[#E07B53] px-4 py-3 text-center text-base font-semibold text-white hover:bg-[#C4613D] transition-colors mt-4"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Zkusit zdarma

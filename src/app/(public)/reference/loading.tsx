@@ -108,7 +108,7 @@ export default function ReferenceLoading() {
       {/* CTA Section Skeleton */}
       <section className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="bg-gradient-to-br from-[#C41E3A] to-[#9E1830] rounded-[48px] p-12 md:p-16 text-center relative overflow-hidden">
+          <div className="bg-gradient-to-br from-[#E07B53] to-[#C4613D] rounded-[48px] p-12 md:p-16 text-center relative overflow-hidden">
             <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
 
             <div className="relative z-10">

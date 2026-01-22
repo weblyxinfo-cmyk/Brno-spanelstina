@@ -137,7 +137,7 @@ export default function AdminCenikPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C41E3A]"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#E07B53]"></div>
       </div>
     );
   }
@@ -155,7 +155,7 @@ export default function AdminCenikPage() {
               setFormData((prev) => ({ ...prev, sortOrder: pricing.length }));
               setIsCreating(true);
             }}
-            className="inline-flex items-center gap-2 bg-[#C41E3A] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#9E1830] transition-colors"
+            className="inline-flex items-center gap-2 bg-[#E07B53] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#C4613D] transition-colors"
           >
             <Plus className="w-5 h-5" />
             Přidat položku
@@ -189,7 +189,7 @@ export default function AdminCenikPage() {
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. Skupinový kurz"
                 />
               </div>
@@ -202,7 +202,7 @@ export default function AdminCenikPage() {
                   type="text"
                   value={formData.icon}
                   onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. 👥"
                 />
               </div>
@@ -216,7 +216,7 @@ export default function AdminCenikPage() {
                   required
                   value={formData.price}
                   onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. 2 990 Kč"
                 />
               </div>
@@ -229,7 +229,7 @@ export default function AdminCenikPage() {
                   type="text"
                   value={formData.period}
                   onChange={(e) => setFormData({ ...formData, period: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                   placeholder="např. /měsíc"
                 />
               </div>
@@ -242,7 +242,7 @@ export default function AdminCenikPage() {
                   type="number"
                   value={formData.sortOrder}
                   onChange={(e) => setFormData({ ...formData, sortOrder: parseInt(e.target.value) || 0 })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                 />
               </div>
 
@@ -254,7 +254,7 @@ export default function AdminCenikPage() {
                     onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
                     className="sr-only peer"
                   />
-                  <div className="w-11 h-6 bg-[#EBE6DF] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#C41E3A]"></div>
+                  <div className="w-11 h-6 bg-[#EBE6DF] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#E07B53]"></div>
                 </label>
                 <span className="text-sm font-semibold text-[#1F1A17]">
                   Zvýrazněná položka
@@ -270,7 +270,7 @@ export default function AdminCenikPage() {
                 type="text"
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                 placeholder="např. Nejoblíbenější volba"
               />
             </div>
@@ -287,7 +287,7 @@ export default function AdminCenikPage() {
                       type="text"
                       value={feature}
                       onChange={(e) => updateFeature(index, e.target.value)}
-                      className="flex-1 px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#C41E3A] focus:outline-none transition-colors"
+                      className="flex-1 px-4 py-3 rounded-xl border-2 border-[#EBE6DF] focus:border-[#E07B53] focus:outline-none transition-colors"
                       placeholder="např. 90 minut týdně"
                     />
                     <button
@@ -302,7 +302,7 @@ export default function AdminCenikPage() {
                 <button
                   type="button"
                   onClick={addFeature}
-                  className="text-sm text-[#C41E3A] font-semibold hover:underline"
+                  className="text-sm text-[#E07B53] font-semibold hover:underline"
                 >
                   + Přidat položku
                 </button>
@@ -312,7 +312,7 @@ export default function AdminCenikPage() {
             <div className="flex gap-3">
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 bg-[#C41E3A] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#9E1830] transition-colors"
+                className="inline-flex items-center gap-2 bg-[#E07B53] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#C4613D] transition-colors"
               >
                 <Check className="w-5 h-5" />
                 {editingId ? "Uložit změny" : "Vytvořit položku"}
@@ -343,7 +343,7 @@ export default function AdminCenikPage() {
             <div
               key={item.id}
               className={`bg-white rounded-2xl p-6 relative group ${
-                item.featured ? "ring-2 ring-[#C41E3A]" : ""
+                item.featured ? "ring-2 ring-[#E07B53]" : ""
               }`}
             >
               <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -351,7 +351,7 @@ export default function AdminCenikPage() {
                   onClick={() => startEdit(item)}
                   className="p-2 bg-[#FBF9F6] hover:bg-[#FFE5E5] rounded-lg transition-colors"
                 >
-                  <Pencil className="w-4 h-4 text-[#C41E3A]" />
+                  <Pencil className="w-4 h-4 text-[#E07B53]" />
                 </button>
                 <button
                   onClick={() => handleDelete(item.id)}
@@ -362,14 +362,14 @@ export default function AdminCenikPage() {
               </div>
 
               {item.featured && (
-                <span className="absolute -top-3 left-6 bg-[#C41E3A] text-white text-xs font-semibold px-3 py-1 rounded-full">
+                <span className="absolute -top-3 left-6 bg-[#E07B53] text-white text-xs font-semibold px-3 py-1 rounded-full">
                   Doporučeno
                 </span>
               )}
 
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-12 bg-[#FFE5E5] rounded-xl flex items-center justify-center text-2xl">
-                  {item.icon || <CreditCard className="w-6 h-6 text-[#C41E3A]" />}
+                  {item.icon || <CreditCard className="w-6 h-6 text-[#E07B53]" />}
                 </div>
                 <div>
                   <h3 className="font-bold text-[#1F1A17]">{item.name}</h3>

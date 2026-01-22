@@ -7,7 +7,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#C41E3A",
+  themeColor: "#E07B53",
 };
 
 const outfit = Outfit({
