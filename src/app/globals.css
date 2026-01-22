@@ -1,21 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  /* Spanish Brand Colors */
+  /* Spanish Brand Colors - Terracotta/Orange Theme */
   --cream: #FFFBF5;
   --white: #FFFFFF;
-  --spanish-red: #C41E3A;
-  --spanish-red-dark: #9E1830;
-  --spanish-red-light: #FFE5E5;
+  --terracotta: #E07B53;
+  --terracotta-dark: #C4613D;
+  --terracotta-light: #FFF0E5;
   --spanish-yellow: #FFC300;
   --spanish-yellow-light: #FFF4CC;
   --brown: #2D2926;
   --brown-mid: #6B5D54;
   --sand: #F5EDE4;
-  /* Legacy aliases */
-  --terracotta: var(--spanish-red);
-  --terracotta-dark: var(--spanish-red-dark);
-  --terracotta-light: var(--spanish-red-light);
+  /* Legacy aliases for compatibility */
+  --spanish-red: var(--terracotta);
+  --spanish-red-dark: var(--terracotta-dark);
+  --spanish-red-light: var(--terracotta-light);
 
   /* Border Radius */
   --radius-sm: 16px;
