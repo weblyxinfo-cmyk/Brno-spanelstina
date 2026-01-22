@@ -10,28 +10,20 @@ const requiredEnvVars = [
   "JWT_SECRET",
 ] as const;
 
-// Only validate in production builds, not during development
-if (process.env.NODE_ENV === "production") {
-  const missing = requiredEnvVars.filter((key) => !process.env[key]);
-
-  if (missing.length > 0) {
-    console.error("\n");
-    console.error("=".repeat(60));
-    console.error("BUILD ERROR: Missing required environment variables");
-    console.error("=".repeat(60));
-    missing.forEach((key) => {
-      console.error(`  - ${key}`);
-    });
-    console.error("");
-    console.error("Please set these variables in your deployment environment.");
-    console.error("See .env.example for documentation.");
-    console.error("=".repeat(60));
-    console.error("\n");
-
-    throw new Error(
-      `Missing required environment variables: ${missing.join(", ")}`
-    );
-  }
+// Warn about missing env vars (don't fail build - validate at runtime instead)
+const missing = requiredEnvVars.filter((key) => !process.env[key]);
+if (missing.length > 0) {
+  console.warn("\n");
+  console.warn("=".repeat(60));
+  console.warn("WARNING: Missing environment variables");
+  console.warn("=".repeat(60));
+  missing.forEach((key) => {
+    console.warn(`  - ${key}`);
+  });
+  console.warn("");
+  console.warn("The app will fail at runtime if these are not set.");
+  console.warn("=".repeat(60));
+  console.warn("\n");
 }
 
 // ===========================================
