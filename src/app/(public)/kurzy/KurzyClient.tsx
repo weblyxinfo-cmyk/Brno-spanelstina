@@ -22,6 +22,7 @@ import { useState } from "react";
 const courseImages: Record<string, string> = {
   skupinove: "/images/kurzy/skupinove.avif",
   individualni: "/images/kurzy/individualni.jpg",
+  intenzivni: "/images/kurzy/intenzivni.avif",
   specializovane: "/images/kurzy/dele.avif",
 };
 
