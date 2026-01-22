@@ -18,13 +18,23 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-// Course images mapping
-const courseImages: Record<string, string> = {
+// Course images mapping - by category
+const courseImagesByCategory: Record<string, string> = {
   skupinove: "/images/kurzy/skupinove.avif",
   individualni: "/images/kurzy/individualni.jpg",
   intenzivni: "/images/kurzy/intenzivni.avif",
   specializovane: "/images/kurzy/dele.avif",
 };
+
+// Course images mapping - by specific course title (overrides category)
+const courseImagesByTitle: Record<string, string> = {
+  "Erasmus v Telči": "/images/kurzy/erasmus.jpg",
+};
+
+// Helper to get course image
+function getCourseImage(title: string, category: string): string | undefined {
+  return courseImagesByTitle[title] || courseImagesByCategory[category];
+}
 
 const filters = [
   { id: "all", label: "Všechny kurzy" },
@@ -205,9 +215,9 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
                   <div className="grid grid-cols-1 md:grid-cols-2">
                     {/* Image */}
                     <div className="relative bg-gradient-to-br from-[#FFE5E5] to-[#EBE6DF] flex items-center justify-center min-h-[280px]">
-                      {courseImages[course.category] ? (
+                      {getCourseImage(course.title, course.category) ? (
                         <Image
-                          src={courseImages[course.category]}
+                          src={getCourseImage(course.title, course.category)!}
                           alt={course.title}
                           fill
                           className="object-cover"
