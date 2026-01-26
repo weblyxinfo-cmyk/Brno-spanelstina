@@ -368,7 +368,7 @@ export default function KontaktClient({ content }: KontaktClientProps) {
               },
               {
                 q: "Co když nevím, jakou mám úroveň?",
-                a: "Nevadí! Při první konzultaci si spolu popovídáme a zjistíme, kam vás zařadit. Můžete se také podívat na stránku Jazykové úrovně.",
+                a: "Nevadí! Máme speciální kvíz na rozřazování do skupin. Zabere vám jen 2 minuty a dozvíte se, která úroveň je pro vás ideální.",
               },
               {
                 q: "Kdy začínají kurzy?",
