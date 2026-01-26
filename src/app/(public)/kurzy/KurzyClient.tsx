@@ -23,12 +23,13 @@ const courseImagesByCategory: Record<string, string> = {
   skupinove: "/images/kurzy/skupinove.avif",
   individualni: "/images/kurzy/individualni.jpg",
   intenzivni: "/images/kurzy/intenzivni.avif",
-  specializovane: "/images/kurzy/dele.avif",
+  specializovane: "/kurzy/dele.jpg",
 };
 
 // Course images mapping - by specific course title (overrides category)
 const courseImagesByTitle: Record<string, string> = {
   "Erasmus v Telči": "/images/kurzy/erasmus.jpg",
+  "Obchodní španělština": "/kurzy/obchodni.jpg",
 };
 
 // Helper to get course image
@@ -164,7 +165,7 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg sm:text-xl text-[#6B5D54] leading-relaxed"
+            className="text-lg sm:text-xl text-[#6B5D54] leading-relaxed max-w-2xl mx-auto"
           >
             {heroDescription}
           </motion.p>

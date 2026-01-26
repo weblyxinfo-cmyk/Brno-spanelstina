@@ -4,6 +4,7 @@ import { eq, asc, desc, sql } from "drizzle-orm";
 
 // Courses
 export async function getCourses(category?: string) {
+  if (!db) return [];
   if (category && category !== "all") {
     return db.select().from(courses).where(eq(courses.category, category));
   }
@@ -11,36 +12,43 @@ export async function getCourses(category?: string) {
 }
 
 export async function getFeaturedCourses() {
+  if (!db) return [];
   return db.select().from(courses).where(eq(courses.featured, true));
 }
 
 export async function getCourseById(id: number) {
+  if (!db) return null;
   const result = await db.select().from(courses).where(eq(courses.id, id));
   return result[0] || null;
 }
 
 // Lektoři
 export async function getLektori() {
+  if (!db) return [];
   return db.select().from(lektori);
 }
 
 export async function getLektorById(id: number) {
+  if (!db) return null;
   const result = await db.select().from(lektori).where(eq(lektori.id, id));
   return result[0] || null;
 }
 
 // Jazykové úrovně
 export async function getLevels() {
+  if (!db) return [];
   return db.select().from(levels).orderBy(asc(levels.sortOrder));
 }
 
 export async function getLevelByCode(code: string) {
+  if (!db) return null;
   const result = await db.select().from(levels).where(eq(levels.code, code));
   return result[0] || null;
 }
 
 // Testimonials / Reference - only approved for public display
 export async function getTestimonials(featuredOnly = false) {
+  if (!db) return [];
   if (featuredOnly) {
     return db.select().from(testimonials)
       .where(eq(testimonials.approved, true))
@@ -52,6 +60,7 @@ export async function getTestimonials(featuredOnly = false) {
 }
 
 export async function getFeaturedTestimonials(limit = 3) {
+  if (!db) return [];
   // Featured AND approved testimonials for homepage
   const result = await db
     .select()
@@ -64,6 +73,7 @@ export async function getFeaturedTestimonials(limit = 3) {
 
 // Ceník
 export async function getPricing() {
+  if (!db) return [];
   return db.select().from(pricing).orderBy(asc(pricing.sortOrder));
 }
 
@@ -81,6 +91,7 @@ export function parseJsonField<T>(field: string | null): T {
 export type ContentMap = Record<string, Record<string, string>>;
 
 export async function getPageContent(page: string): Promise<ContentMap> {
+  if (!db) return {};
   const content = await db.select().from(pageContent).where(eq(pageContent.page, page));
 
   // Convert to nested map: section -> key -> value
@@ -116,6 +127,7 @@ export interface SeoData {
 }
 
 export async function getPageSeo(page: string): Promise<SeoData | null> {
+  if (!db) return null;
   const result = await db.select().from(seoMeta).where(eq(seoMeta.page, page));
   if (result.length === 0) return null;
 
@@ -145,12 +157,14 @@ export function generateMetadata(seo: SeoData | null, defaults: { title: string;
 
 // Page Views / Návštěvnost
 export async function getPageViews(): Promise<number> {
+  if (!db) return 0;
   const result = await db.select().from(pageViews).where(eq(pageViews.id, 1));
   if (result.length === 0) return 0;
   return result[0].count;
 }
 
 export async function incrementPageViews(): Promise<number> {
+  if (!db) return 0;
   // Try to update existing record
   const existing = await db.select().from(pageViews).where(eq(pageViews.id, 1));
 
@@ -174,6 +188,7 @@ export async function incrementPageViews(): Promise<number> {
 export type SettingsMap = Record<string, string>;
 
 export async function getSettings(): Promise<SettingsMap> {
+  if (!db) return {};
   const result = await db.select().from(settings);
   const settingsMap: SettingsMap = {};
   result.forEach((item) => {
@@ -183,6 +198,7 @@ export async function getSettings(): Promise<SettingsMap> {
 }
 
 export async function getSetting(key: string): Promise<string | null> {
+  if (!db) return null;
   const result = await db.select().from(settings).where(eq(settings.key, key));
   return result[0]?.value || null;
 }

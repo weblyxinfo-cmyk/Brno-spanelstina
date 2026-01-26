@@ -101,6 +101,37 @@ export default function JazykoveUrovneClient({ levels, content }: JazykoveUrovne
         </motion.p>
       </section>
 
+      {/* Quiz CTA Section */}
+      <section className="py-8 px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="max-w-4xl mx-auto"
+        >
+          <div className="bg-gradient-to-br from-[#FFE5E5] to-[#FFDDD3] rounded-[48px] p-10 md:p-14 text-center relative overflow-hidden">
+            <div className="absolute top-0 right-0 text-[200px] opacity-10 pointer-events-none">🇪🇸</div>
+            <span className="text-5xl mb-4 block">📝</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#1F1A17] mb-4">
+              Zjistěte svoji úroveň{" "}
+              <span className="font-[family-name:var(--font-playfair)] italic font-medium text-[#E07B53]">
+                online
+              </span>
+            </h2>
+            <p className="text-lg text-[#6B5D54] mb-8 max-w-xl mx-auto">
+              Krátký test na 2 minuty. Odpovíte na 10 otázek a dozvíte se, do které skupiny patříte.
+            </p>
+            <Link
+              href="/kviz"
+              className="inline-flex items-center justify-center gap-2 bg-[#E07B53] text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg shadow-[#E07B53]/30 hover:bg-[#C4613D] hover:-translate-y-1 transition-all duration-200"
+            >
+              Spustit kvíz
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+          </div>
+        </motion.div>
+      </section>
+
       {/* Levels */}
       <section className="px-6 pb-20">
         <div className="max-w-4xl mx-auto space-y-6">
