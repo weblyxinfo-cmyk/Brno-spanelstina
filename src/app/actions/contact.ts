@@ -7,6 +7,14 @@ import { eq, desc } from "drizzle-orm";
 import { sendContactNotification, sendConfirmationEmail } from "@/lib/email";
 import { checkRateLimit } from "@/lib/rateLimit";
 
+// Helper to ensure db is available
+function getDb() {
+  if (!db) {
+    throw new Error("Database not configured");
+  }
+  return db;
+}
+
 interface ContactFormData {
   name: string;
   email: string;
@@ -106,7 +114,7 @@ export async function submitContactForm(formData: ContactFormData) {
     };
 
     // Insert into database
-    await db.insert(contactMessages).values(sanitizedData);
+    await getDb().insert(contactMessages).values(sanitizedData);
 
     // Send email notifications (don't fail if email fails)
     try {
@@ -132,7 +140,7 @@ export async function submitContactForm(formData: ContactFormData) {
 // Admin function to get contact messages
 export async function getContactMessages() {
   try {
-    const messages = await db
+    const messages = await getDb()
       .select()
       .from(contactMessages)
       .orderBy(desc(contactMessages.id));
@@ -146,7 +154,7 @@ export async function getContactMessages() {
 // Admin function to mark message as read
 export async function markMessageAsRead(id: number) {
   try {
-    await db
+    await getDb()
       .update(contactMessages)
       .set({ read: true })
       .where(eq(contactMessages.id, id));

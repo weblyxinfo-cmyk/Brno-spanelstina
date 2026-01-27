@@ -4,6 +4,14 @@ import { db } from "@/lib/db";
 import { testimonials } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 
+// Helper to ensure db is available
+function getDb() {
+  if (!db) {
+    throw new Error("Database not configured");
+  }
+  return db;
+}
+
 interface TestimonialFormData {
   text: string;
   author: string;
@@ -51,7 +59,7 @@ export async function submitTestimonial(formData: TestimonialFormData) {
   }
 
   try {
-    await db.insert(testimonials).values({
+    await getDb().insert(testimonials).values({
       text: formData.text.trim(),
       author: formData.author.trim(),
       course: formData.course?.trim() || null,
@@ -75,7 +83,7 @@ export async function submitTestimonial(formData: TestimonialFormData) {
 
 // Get only approved testimonials for public display
 export async function getPublicTestimonials() {
-  return db.select().from(testimonials)
+  return getDb().select().from(testimonials)
     .where(eq(testimonials.approved, true))
     .orderBy(testimonials.id);
 }

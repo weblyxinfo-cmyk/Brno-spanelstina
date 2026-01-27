@@ -1,11 +1,19 @@
 import { db } from "./index";
 import { courses, lektori, levels, testimonials, pricing, settings, pageContent } from "./schema";
 
+// Helper to ensure db is available
+function getDb() {
+  if (!db) {
+    throw new Error("Database not configured - check TURSO_DATABASE_URL and TURSO_AUTH_TOKEN environment variables");
+  }
+  return db;
+}
+
 async function seed() {
   console.log("Seeding database...");
 
   // Kurzy
-  await db.insert(courses).values([
+  await getDb().insert(courses).values([
     {
       title: "Skupinové kurzy",
       subtitle: "Semestrální výuka",
@@ -61,7 +69,7 @@ async function seed() {
   console.log("✓ Courses seeded");
 
   // Lektoři
-  await db.insert(lektori).values([
+  await getDb().insert(lektori).values([
     {
       name: "Rodrigo Valenzuela",
       role: "Zakladatel a hlavní lektor",
@@ -120,7 +128,7 @@ async function seed() {
   console.log("✓ Lektori seeded");
 
   // Jazykové úrovně
-  await db.insert(levels).values([
+  await getDb().insert(levels).values([
     {
       code: "A1",
       label: "Úplný začátečník",
@@ -221,7 +229,7 @@ async function seed() {
   console.log("✓ Levels seeded");
 
   // Reference
-  await db.insert(testimonials).values([
+  await getDb().insert(testimonials).values([
     {
       text: "Skvělá atmosféra a perfektní lektoři. Po roce už se dokážu bez problémů domluvit ve Španělsku!",
       author: "Petra K.",
@@ -298,7 +306,7 @@ async function seed() {
   console.log("✓ Testimonials seeded");
 
   // Ceník
-  await db.insert(pricing).values([
+  await getDb().insert(pricing).values([
     {
       icon: "👤",
       name: "Individuální výuka",
@@ -348,7 +356,7 @@ async function seed() {
   console.log("✓ Pricing seeded");
 
   // Site Settings
-  await db.insert(settings).values([
+  await getDb().insert(settings).values([
     { key: "semester_info", value: "Zimní semestr 2025" },
     { key: "semester_start", value: "15.9.2025" },
     { key: "contact_phone", value: "+420 777 123 456" },
@@ -360,7 +368,7 @@ async function seed() {
   console.log("✓ Settings seeded");
 
   // Homepage Content (for hero section quick info)
-  await db.insert(pageContent).values([
+  await getDb().insert(pageContent).values([
     { page: "homepage", section: "quick_info", key: "semester_text", value: "Zimní semestr od 15.9.2025" },
     { page: "homepage", section: "quick_info", key: "schedule_text", value: "2× týdně 90 minut" },
     { page: "homepage", section: "quick_info", key: "location_text", value: "Zábrdovická 2, Brno" },

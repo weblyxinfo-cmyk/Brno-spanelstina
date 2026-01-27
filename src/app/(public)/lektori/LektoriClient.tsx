@@ -127,14 +127,6 @@ export default function LektoriClient({ lektori, content }: LektoriClientProps) 
                     <span className="text-[150px]">{lektor.avatar || "👨‍🏫"}</span>
                   )}
                 </div>
-                <div
-                  className={`absolute -bottom-4 ${
-                    index % 2 === 1 ? "left-4 lg:-left-4" : "right-4 lg:-right-4"
-                  } bg-[#E07B53] text-white px-6 py-4 rounded-[24px] shadow-lg`}
-                >
-                  <span className="text-2xl block mb-1">{lektor.badgeIcon}</span>
-                  <span className="font-bold text-sm">{lektor.badge}</span>
-                </div>
               </div>
 
               {/* Content */}

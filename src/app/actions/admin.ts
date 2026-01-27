@@ -5,10 +5,18 @@ import { courses, lektori, levels, testimonials, pricing, contactMessages, pageV
 import { eq, desc, asc } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
+// Helper to ensure db is available
+function getDb() {
+  if (!db) {
+    throw new Error("Database not configured");
+  }
+  return db;
+}
+
 // ============ COURSES ============
 
 export async function getCourses() {
-  return db.select().from(courses);
+  return getDb().select().from(courses);
 }
 
 export async function createCourse(data: {
@@ -21,7 +29,7 @@ export async function createCourse(data: {
   featured?: boolean;
 }) {
   try {
-    await db.insert(courses).values({
+    await getDb().insert(courses).values({
       title: data.title,
       subtitle: data.subtitle || null,
       description: data.description || null,
@@ -53,7 +61,7 @@ export async function updateCourse(
   }
 ) {
   try {
-    await db
+    await getDb()
       .update(courses)
       .set({
         title: data.title,
@@ -77,7 +85,7 @@ export async function updateCourse(
 
 export async function deleteCourse(id: number) {
   try {
-    await db.delete(courses).where(eq(courses.id, id));
+    await getDb().delete(courses).where(eq(courses.id, id));
     revalidatePath("/admin/kurzy");
     revalidatePath("/kurzy");
     revalidatePath("/");
@@ -91,7 +99,7 @@ export async function deleteCourse(id: number) {
 // ============ LEKTORI ============
 
 export async function getLektori() {
-  return db.select().from(lektori);
+  return getDb().select().from(lektori);
 }
 
 export async function createLektor(data: {
@@ -106,7 +114,7 @@ export async function createLektor(data: {
   highlights?: Array<{ icon: string; text: string }>;
 }) {
   try {
-    await db.insert(lektori).values({
+    await getDb().insert(lektori).values({
       name: data.name,
       role: data.role || null,
       origin: data.origin || null,
@@ -141,7 +149,7 @@ export async function updateLektor(
   }
 ) {
   try {
-    await db
+    await getDb()
       .update(lektori)
       .set({
         name: data.name,
@@ -166,7 +174,7 @@ export async function updateLektor(
 
 export async function deleteLektor(id: number) {
   try {
-    await db.delete(lektori).where(eq(lektori.id, id));
+    await getDb().delete(lektori).where(eq(lektori.id, id));
     revalidatePath("/admin/lektori");
     revalidatePath("/lektori");
     return { success: true };
@@ -179,7 +187,7 @@ export async function deleteLektor(id: number) {
 // ============ LEVELS ============
 
 export async function getLevels() {
-  return db.select().from(levels).orderBy(asc(levels.sortOrder));
+  return getDb().select().from(levels).orderBy(asc(levels.sortOrder));
 }
 
 export async function createLevel(data: {
@@ -194,7 +202,7 @@ export async function createLevel(data: {
   sortOrder?: number;
 }) {
   try {
-    await db.insert(levels).values({
+    await getDb().insert(levels).values({
       code: data.code,
       label: data.label || null,
       title: data.title,
@@ -229,7 +237,7 @@ export async function updateLevel(
   }
 ) {
   try {
-    await db
+    await getDb()
       .update(levels)
       .set({
         code: data.code,
@@ -254,7 +262,7 @@ export async function updateLevel(
 
 export async function deleteLevel(id: number) {
   try {
-    await db.delete(levels).where(eq(levels.id, id));
+    await getDb().delete(levels).where(eq(levels.id, id));
     revalidatePath("/admin/urovne");
     revalidatePath("/jazykove-urovne");
     return { success: true };
@@ -267,16 +275,16 @@ export async function deleteLevel(id: number) {
 // ============ TESTIMONIALS ============
 
 export async function getTestimonials() {
-  return db.select().from(testimonials).orderBy(desc(testimonials.id));
+  return getDb().select().from(testimonials).orderBy(desc(testimonials.id));
 }
 
 export async function getApprovedTestimonials(featuredOnly = false) {
   if (featuredOnly) {
-    return db.select().from(testimonials)
+    return getDb().select().from(testimonials)
       .where(eq(testimonials.approved, true))
       .orderBy(desc(testimonials.id));
   }
-  return db.select().from(testimonials)
+  return getDb().select().from(testimonials)
     .where(eq(testimonials.approved, true))
     .orderBy(desc(testimonials.id));
 }
@@ -291,7 +299,7 @@ export async function createTestimonial(data: {
   approved?: boolean;
 }) {
   try {
-    await db.insert(testimonials).values({
+    await getDb().insert(testimonials).values({
       text: data.text,
       author: data.author,
       role: data.role || null,
@@ -323,7 +331,7 @@ export async function updateTestimonial(
   }
 ) {
   try {
-    await db
+    await getDb()
       .update(testimonials)
       .set({
         text: data.text,
@@ -347,7 +355,7 @@ export async function updateTestimonial(
 
 export async function approveTestimonial(id: number, approved: boolean) {
   try {
-    await db
+    await getDb()
       .update(testimonials)
       .set({ approved })
       .where(eq(testimonials.id, id));
@@ -363,7 +371,7 @@ export async function approveTestimonial(id: number, approved: boolean) {
 
 export async function deleteTestimonial(id: number) {
   try {
-    await db.delete(testimonials).where(eq(testimonials.id, id));
+    await getDb().delete(testimonials).where(eq(testimonials.id, id));
     revalidatePath("/admin/reference");
     revalidatePath("/reference");
     revalidatePath("/");
@@ -377,7 +385,7 @@ export async function deleteTestimonial(id: number) {
 // ============ PRICING ============
 
 export async function getPricing() {
-  return db.select().from(pricing).orderBy(asc(pricing.sortOrder));
+  return getDb().select().from(pricing).orderBy(asc(pricing.sortOrder));
 }
 
 export async function createPricing(data: {
@@ -391,7 +399,7 @@ export async function createPricing(data: {
   sortOrder?: number;
 }) {
   try {
-    await db.insert(pricing).values({
+    await getDb().insert(pricing).values({
       name: data.name,
       description: data.description || null,
       price: data.price,
@@ -424,7 +432,7 @@ export async function updatePricing(
   }
 ) {
   try {
-    await db
+    await getDb()
       .update(pricing)
       .set({
         name: data.name,
@@ -448,7 +456,7 @@ export async function updatePricing(
 
 export async function deletePricing(id: number) {
   try {
-    await db.delete(pricing).where(eq(pricing.id, id));
+    await getDb().delete(pricing).where(eq(pricing.id, id));
     revalidatePath("/admin/cenik");
     revalidatePath("/kurzy");
     return { success: true };
@@ -461,12 +469,12 @@ export async function deletePricing(id: number) {
 // ============ CONTACT MESSAGES ============
 
 export async function getMessages() {
-  return db.select().from(contactMessages).orderBy(desc(contactMessages.id));
+  return getDb().select().from(contactMessages).orderBy(desc(contactMessages.id));
 }
 
 export async function markAsRead(id: number) {
   try {
-    await db
+    await getDb()
       .update(contactMessages)
       .set({ read: true })
       .where(eq(contactMessages.id, id));
@@ -480,7 +488,7 @@ export async function markAsRead(id: number) {
 
 export async function deleteMessage(id: number) {
   try {
-    await db.delete(contactMessages).where(eq(contactMessages.id, id));
+    await getDb().delete(contactMessages).where(eq(contactMessages.id, id));
     revalidatePath("/admin/zpravy");
     return { success: true };
   } catch (error) {
@@ -494,11 +502,11 @@ export async function deleteMessage(id: number) {
 export async function getDashboardStats() {
   const [coursesCount, lektoriCount, testimonialsData, messagesData, pageViewsData] =
     await Promise.all([
-      db.select().from(courses),
-      db.select().from(lektori),
-      db.select().from(testimonials),
-      db.select().from(contactMessages),
-      db.select().from(pageViews).where(eq(pageViews.id, 1)),
+      getDb().select().from(courses),
+      getDb().select().from(lektori),
+      getDb().select().from(testimonials),
+      getDb().select().from(contactMessages),
+      getDb().select().from(pageViews).where(eq(pageViews.id, 1)),
     ]);
 
   const unreadMessages = messagesData.filter((m) => !m.read).length;
@@ -521,23 +529,23 @@ export async function getDashboardStats() {
 import { settings } from "@/lib/db/schema";
 
 export async function getSettings() {
-  return db.select().from(settings);
+  return getDb().select().from(settings);
 }
 
 export async function getSetting(key: string) {
-  const result = await db.select().from(settings).where(eq(settings.key, key));
+  const result = await getDb().select().from(settings).where(eq(settings.key, key));
   return result[0]?.value || null;
 }
 
 export async function updateSetting(key: string, value: string) {
   try {
     // Try to update existing
-    const existing = await db.select().from(settings).where(eq(settings.key, key));
+    const existing = await getDb().select().from(settings).where(eq(settings.key, key));
 
     if (existing.length > 0) {
-      await db.update(settings).set({ value }).where(eq(settings.key, key));
+      await getDb().update(settings).set({ value }).where(eq(settings.key, key));
     } else {
-      await db.insert(settings).values({ key, value });
+      await getDb().insert(settings).values({ key, value });
     }
 
     revalidatePath("/admin/nastaveni");
@@ -553,12 +561,12 @@ export async function updateSetting(key: string, value: string) {
 export async function updateMultipleSettings(settingsData: Record<string, string>) {
   try {
     for (const [key, value] of Object.entries(settingsData)) {
-      const existing = await db.select().from(settings).where(eq(settings.key, key));
+      const existing = await getDb().select().from(settings).where(eq(settings.key, key));
 
       if (existing.length > 0) {
-        await db.update(settings).set({ value }).where(eq(settings.key, key));
+        await getDb().update(settings).set({ value }).where(eq(settings.key, key));
       } else {
-        await db.insert(settings).values({ key, value });
+        await getDb().insert(settings).values({ key, value });
       }
     }
 
@@ -576,8 +584,8 @@ export async function updateMultipleSettings(settingsData: Record<string, string
 
 export async function getPublicStats() {
   const [testimonialsData, settingsData] = await Promise.all([
-    db.select().from(testimonials).where(eq(testimonials.approved, true)),
-    db.select().from(settings),
+    getDb().select().from(testimonials).where(eq(testimonials.approved, true)),
+    getDb().select().from(settings),
   ]);
 
   // Calculate average rating from approved testimonials
@@ -606,11 +614,11 @@ export async function getPublicStats() {
 import { pageContent, seoMeta } from "@/lib/db/schema";
 
 export async function getPageContent(page: string) {
-  return db.select().from(pageContent).where(eq(pageContent.page, page));
+  return getDb().select().from(pageContent).where(eq(pageContent.page, page));
 }
 
 export async function getAllPageContent() {
-  return db.select().from(pageContent);
+  return getDb().select().from(pageContent);
 }
 
 export async function updatePageContent(
@@ -621,7 +629,7 @@ export async function updatePageContent(
 ) {
   try {
     // Check if exists
-    const existing = await db
+    const existing = await getDb()
       .select()
       .from(pageContent)
       .where(eq(pageContent.page, page));
@@ -631,12 +639,12 @@ export async function updatePageContent(
     );
 
     if (found) {
-      await db
+      await getDb()
         .update(pageContent)
         .set({ value })
         .where(eq(pageContent.id, found.id));
     } else {
-      await db.insert(pageContent).values({ page, section, key, value });
+      await getDb().insert(pageContent).values({ page, section, key, value });
     }
 
     revalidatePath("/admin/obsah");
@@ -665,12 +673,12 @@ export async function updateMultiplePageContent(
 // ============ SEO METADATA ============
 
 export async function getSeoMeta(page: string) {
-  const result = await db.select().from(seoMeta).where(eq(seoMeta.page, page));
+  const result = await getDb().select().from(seoMeta).where(eq(seoMeta.page, page));
   return result[0] || null;
 }
 
 export async function getAllSeoMeta() {
-  return db.select().from(seoMeta);
+  return getDb().select().from(seoMeta);
 }
 
 export async function updateSeoMeta(
@@ -685,10 +693,10 @@ export async function updateSeoMeta(
   }
 ) {
   try {
-    const existing = await db.select().from(seoMeta).where(eq(seoMeta.page, page));
+    const existing = await getDb().select().from(seoMeta).where(eq(seoMeta.page, page));
 
     if (existing.length > 0) {
-      await db
+      await getDb()
         .update(seoMeta)
         .set({
           title: data.title || null,
@@ -700,7 +708,7 @@ export async function updateSeoMeta(
         })
         .where(eq(seoMeta.page, page));
     } else {
-      await db.insert(seoMeta).values({
+      await getDb().insert(seoMeta).values({
         page,
         title: data.title || null,
         description: data.description || null,
