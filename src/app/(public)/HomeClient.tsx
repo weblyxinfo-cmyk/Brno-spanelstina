@@ -14,6 +14,7 @@ import {
   MapPin,
 } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
+import BookingCTA from "@/components/booking/BookingCTA";
 
 const usps = [
   {
@@ -335,6 +336,17 @@ export default function HomeClient({ courses, testimonials, content }: HomeClien
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Booking CTA Section */}
+      <section className="py-12 px-6 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <BookingCTA
+            title="Rezervujte si lekci online"
+            subtitle="Vyberte termín, zaplaťte kartou a potvrzení máte hned na emailu. Jednoduché a rychlé."
+            buttonText="Zobrazit volné termíny"
+          />
         </div>
       </section>
 

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import BookingCTA from "@/components/booking/BookingCTA";
 
 interface Level {
   id: number;
@@ -130,6 +131,17 @@ export default function JazykoveUrovneClient({ levels, content }: JazykoveUrovne
             </Link>
           </div>
         </motion.div>
+      </section>
+
+      {/* Booking CTA - pod kvízem */}
+      <section className="py-8 px-6">
+        <div className="max-w-4xl mx-auto">
+          <BookingCTA
+            title="Nebo si rovnou rezervujte lekci"
+            subtitle="Už víte svou úroveň? Vyberte si termín a zaplaťte online."
+            buttonText="Rezervovat termín"
+          />
+        </div>
       </section>
 
       {/* Levels */}

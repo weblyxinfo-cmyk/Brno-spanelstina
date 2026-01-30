@@ -10,6 +10,9 @@ import {
   Settings,
   FileText,
   Search,
+  Calendar,
+  Clock,
+  CalendarCheck,
 } from "lucide-react";
 import { LogoutButton } from "./components/LogoutButton";
 import AdminContent from "@/components/admin/AdminContent";
@@ -25,6 +28,10 @@ const navigation = [
   { name: "Ceník", href: "/admin/cenik", icon: CreditCard },
   { name: "Zprávy", href: "/admin/zpravy", icon: Mail },
   { name: "Nastavení", href: "/admin/nastaveni", icon: Settings },
+  { name: "---", href: "#", icon: null }, // Separator
+  { name: "Rezervace", href: "/admin/rezervace", icon: CalendarCheck },
+  { name: "Lekce", href: "/admin/lekce", icon: Calendar },
+  { name: "Termíny", href: "/admin/terminy", icon: Clock },
 ];
 
 export default function AdminLayout({
@@ -55,16 +62,24 @@ export default function AdminLayout({
       {/* Sidebar */}
       <aside className="fixed left-0 top-16 bottom-0 w-64 bg-white border-r border-[#EBE6DF] overflow-y-auto z-40">
         <nav className="p-4 space-y-1">
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="flex items-center gap-3 px-4 py-3 rounded-xl text-[#6B5D54] hover:bg-[#FBF9F6] hover:text-[#E07B53] transition-colors group"
-            >
-              <item.icon className="w-5 h-5 group-hover:text-[#E07B53]" />
-              <span className="font-medium">{item.name}</span>
-            </Link>
-          ))}
+          {navigation.map((item, index) => {
+            if (item.name === "---") {
+              return (
+                <div key={`sep-${index}`} className="my-4 border-t border-[#EBE6DF]" />
+              );
+            }
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-[#6B5D54] hover:bg-[#FBF9F6] hover:text-[#E07B53] transition-colors group"
+              >
+                {Icon && <Icon className="w-5 h-5 group-hover:text-[#E07B53]" />}
+                <span className="font-medium">{item.name}</span>
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-[#EBE6DF]">

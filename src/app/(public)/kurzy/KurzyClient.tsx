@@ -17,6 +17,7 @@ import {
   Check,
 } from "lucide-react";
 import { useState } from "react";
+import BookingCTA from "@/components/booking/BookingCTA";
 
 // Course images mapping - by category
 const courseImagesByCategory: Record<string, string> = {
@@ -378,6 +379,17 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Booking CTA Section */}
+      <section className="py-12 px-6 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <BookingCTA
+            title="Rezervujte si individuální lekci"
+            subtitle="Preferujete lekci 1 na 1? Vyberte si termín online a hned víte, kdy se uvidíme."
+            buttonText="Zobrazit volné termíny"
+          />
         </div>
       </section>
 

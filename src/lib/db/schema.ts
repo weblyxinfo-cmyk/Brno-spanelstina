@@ -118,3 +118,42 @@ export const pageViews = sqliteTable("page_views", {
   count: integer("count").notNull().default(0),
   updatedAt: text("updated_at").default(sql`CURRENT_TIMESTAMP`),
 });
+
+// ============ BOOKING SYSTEM ============
+
+// Typy lekcí
+export const lessons = sqliteTable("lessons", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  name: text("name").notNull(),
+  description: text("description"),
+  durationMinutes: integer("duration_minutes").notNull().default(60),
+  priceCzk: integer("price_czk").notNull(),
+  maxStudents: integer("max_students").default(1),
+  category: text("category").notNull(), // 'individual', 'group', 'intensive'
+  active: integer("active", { mode: "boolean" }).default(true),
+  sortOrder: integer("sort_order").default(0),
+});
+
+// Časové sloty
+export const timeSlots = sqliteTable("time_slots", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  lessonId: integer("lesson_id").references(() => lessons.id),
+  startTime: text("start_time").notNull(), // ISO datetime
+  endTime: text("end_time").notNull(),
+  available: integer("available", { mode: "boolean" }).default(true),
+});
+
+// Rezervace
+export const bookings = sqliteTable("bookings", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  timeSlotId: integer("time_slot_id").references(() => timeSlots.id),
+  lessonId: integer("lesson_id").references(() => lessons.id),
+  studentName: text("student_name").notNull(),
+  studentEmail: text("student_email").notNull(),
+  studentPhone: text("student_phone"),
+  status: text("status").notNull().default("pending"), // pending, paid, cancelled
+  stripeSessionId: text("stripe_session_id"),
+  pricePaid: integer("price_paid"),
+  notes: text("notes"),
+  createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
+});

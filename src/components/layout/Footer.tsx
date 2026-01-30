@@ -22,6 +22,7 @@ const footerLinks = {
     { name: "Lektoři", href: "/lektori" },
     { name: "Reference", href: "/reference" },
     { name: "Jazykové úrovně", href: "/jazykove-urovne" },
+    { name: "Rezervace online", href: "/rezervace" },
   ],
 };
 

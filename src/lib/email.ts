@@ -148,3 +148,197 @@ export async function sendConfirmationEmail(data: ContactEmailData) {
     return { success: false, error };
   }
 }
+
+// ============ BOOKING EMAILS ============
+
+interface BookingEmailData {
+  studentName: string;
+  studentEmail: string;
+  studentPhone?: string | null;
+  lessonName: string;
+  startTime: string;
+  pricePaid: number;
+}
+
+function formatDateTime(isoString: string): string {
+  const date = new Date(isoString);
+  return date.toLocaleDateString("cs-CZ", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+function formatPrice(priceCzk: number): string {
+  return new Intl.NumberFormat("cs-CZ", {
+    style: "currency",
+    currency: "CZK",
+    minimumFractionDigits: 0,
+  }).format(priceCzk);
+}
+
+export async function sendBookingConfirmation(data: BookingEmailData) {
+  if (!resend) {
+    console.log("RESEND_API_KEY not set, skipping booking confirmation email");
+    return { success: true, skipped: true };
+  }
+
+  try {
+    const { error } = await resend.emails.send({
+      from: getEmailFrom(),
+      to: data.studentEmail,
+      subject: `Potvrzení rezervace - ${data.lessonName}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="background: linear-gradient(135deg, #E07B53, #C4613D); padding: 24px; border-radius: 16px 16px 0 0;">
+            <h1 style="color: white; margin: 0; font-size: 24px;">Rezervace potvrzena!</h1>
+          </div>
+
+          <div style="background: #FBF9F6; padding: 24px; border: 1px solid #EBE6DF; border-top: none; border-radius: 0 0 16px 16px;">
+            <p style="color: #1F1A17; font-size: 16px; line-height: 1.6;">
+              ¡Hola ${data.studentName}!
+            </p>
+
+            <p style="color: #1F1A17; font-size: 16px; line-height: 1.6;">
+              Děkujeme za vaši rezervaci. Vaše platba byla úspěšně přijata.
+            </p>
+
+            <div style="margin-top: 24px; padding: 20px; background: white; border-radius: 16px; border: 2px solid #E07B53;">
+              <h2 style="color: #E07B53; margin: 0 0 16px 0; font-size: 18px;">Detail rezervace</h2>
+
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 8px 0; color: #6B5D54; width: 120px;">Lekce:</td>
+                  <td style="padding: 8px 0; color: #1F1A17; font-weight: bold;">${data.lessonName}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 0; color: #6B5D54;">Termín:</td>
+                  <td style="padding: 8px 0; color: #1F1A17; font-weight: bold;">${formatDateTime(data.startTime)}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 0; color: #6B5D54;">Cena:</td>
+                  <td style="padding: 8px 0; color: #1F1A17; font-weight: bold;">${formatPrice(data.pricePaid)}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 0; color: #6B5D54;">Místo:</td>
+                  <td style="padding: 8px 0; color: #1F1A17;">${SITE_CONFIG.contact.address}</td>
+                </tr>
+              </table>
+            </div>
+
+            <div style="margin-top: 24px; padding: 16px; background: #FFE5E5; border-radius: 12px;">
+              <p style="color: #C4613D; margin: 0; font-size: 14px;">
+                <strong>Důležité:</strong> Pokud potřebujete rezervaci změnit nebo zrušit, kontaktujte nás prosím na emailu
+                <a href="mailto:${SITE_CONFIG.contact.email}" style="color: #E07B53;">${SITE_CONFIG.contact.email}</a>
+              </p>
+            </div>
+
+            <p style="color: #1F1A17; font-size: 16px; line-height: 1.6; margin-top: 24px;">
+              Těšíme se na vás!<br>
+              <strong>Tým Španělština Brno</strong>
+            </p>
+          </div>
+
+          <div style="text-align: center; margin-top: 24px;">
+            <p style="color: #6B5D54; font-size: 12px; margin: 0;">
+              ${SITE_CONFIG.email.fromName} | ${SITE_CONFIG.contact.address}<br>
+              <a href="mailto:${SITE_CONFIG.contact.email}" style="color: #E07B53;">${SITE_CONFIG.contact.email}</a>
+            </p>
+          </div>
+        </div>
+      `,
+    });
+
+    if (error) {
+      console.error("Error sending booking confirmation:", error);
+      return { success: false, error };
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error sending booking confirmation:", error);
+    return { success: false, error };
+  }
+}
+
+export async function sendBookingNotification(data: BookingEmailData) {
+  if (!resend) {
+    console.log("RESEND_API_KEY not set, skipping booking notification");
+    return { success: true, skipped: true };
+  }
+
+  try {
+    const { error } = await resend.emails.send({
+      from: getEmailFrom(),
+      to: process.env.ADMIN_EMAIL || SITE_CONFIG.contact.email,
+      replyTo: data.studentEmail,
+      subject: `Nová rezervace - ${data.lessonName}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="background: linear-gradient(135deg, #E07B53, #C4613D); padding: 24px; border-radius: 16px 16px 0 0;">
+            <h1 style="color: white; margin: 0; font-size: 24px;">Nová rezervace!</h1>
+          </div>
+
+          <div style="background: #FBF9F6; padding: 24px; border: 1px solid #EBE6DF; border-top: none; border-radius: 0 0 16px 16px;">
+            <div style="background: #d4edda; color: #155724; padding: 12px 16px; border-radius: 8px; margin-bottom: 20px;">
+              Platba byla úspěšně přijata
+            </div>
+
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr>
+                <td style="padding: 8px 0; color: #6B5D54; width: 120px;">Student:</td>
+                <td style="padding: 8px 0; color: #1F1A17; font-weight: bold;">${data.studentName}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; color: #6B5D54;">Email:</td>
+                <td style="padding: 8px 0;"><a href="mailto:${data.studentEmail}" style="color: #E07B53;">${data.studentEmail}</a></td>
+              </tr>
+              ${data.studentPhone ? `
+              <tr>
+                <td style="padding: 8px 0; color: #6B5D54;">Telefon:</td>
+                <td style="padding: 8px 0;"><a href="tel:${data.studentPhone}" style="color: #E07B53;">${data.studentPhone}</a></td>
+              </tr>
+              ` : ""}
+              <tr>
+                <td style="padding: 8px 0; color: #6B5D54;">Lekce:</td>
+                <td style="padding: 8px 0; color: #1F1A17; font-weight: bold;">${data.lessonName}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; color: #6B5D54;">Termín:</td>
+                <td style="padding: 8px 0; color: #1F1A17; font-weight: bold;">${formatDateTime(data.startTime)}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; color: #6B5D54;">Zaplaceno:</td>
+                <td style="padding: 8px 0; color: #1F1A17; font-weight: bold;">${formatPrice(data.pricePaid)}</td>
+              </tr>
+            </table>
+
+            <div style="margin-top: 24px;">
+              <a href="mailto:${data.studentEmail}?subject=Re: Rezervace lekce španělštiny"
+                 style="display: inline-block; background: #E07B53; color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: bold;">
+                Kontaktovat studenta
+              </a>
+            </div>
+          </div>
+
+          <p style="color: #6B5D54; font-size: 12px; text-align: center; margin-top: 16px;">
+            Toto je automatická notifikace z rezervačního systému
+          </p>
+        </div>
+      `,
+    });
+
+    if (error) {
+      console.error("Error sending booking notification:", error);
+      return { success: false, error };
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error sending booking notification:", error);
+    return { success: false, error };
+  }
+}

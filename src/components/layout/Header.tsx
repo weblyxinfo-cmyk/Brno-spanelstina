@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const navigation = [
   { name: "Kurzy", href: "/kurzy" },
+  { name: "Rezervace", href: "/rezervace" },
   { name: "O nás", href: "/o-nas" },
   { name: "Lektoři", href: "/lektori" },
   { name: "Jazykové úrovně", href: "/jazykove-urovne" },
@@ -40,10 +41,10 @@ export default function Header() {
               </Link>
             ))}
             <Link
-              href="/kontakt"
+              href="/rezervace"
               className="rounded-full bg-[#E07B53] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#E07B53]/30 hover:bg-[#C4613D] hover:-translate-y-0.5 transition-all duration-200"
             >
-              Zkusit zdarma
+              Rezervovat
             </Link>
           </div>
 

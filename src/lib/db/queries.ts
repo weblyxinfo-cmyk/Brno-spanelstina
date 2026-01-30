@@ -202,3 +202,35 @@ export async function getSetting(key: string): Promise<string | null> {
   const result = await db.select().from(settings).where(eq(settings.key, key));
   return result[0]?.value || null;
 }
+
+// ============ BOOKING QUERIES ============
+
+import { lessons, timeSlots, bookings } from "./schema";
+import { and, gte } from "drizzle-orm";
+
+export async function getActiveLessons() {
+  if (!db) return [];
+  return db.select().from(lessons).where(eq(lessons.active, true)).orderBy(asc(lessons.sortOrder));
+}
+
+export async function getAvailableTimeSlots(lessonId: number) {
+  if (!db) return [];
+  const now = new Date().toISOString();
+  return db
+    .select()
+    .from(timeSlots)
+    .where(
+      and(
+        eq(timeSlots.lessonId, lessonId),
+        eq(timeSlots.available, true),
+        gte(timeSlots.startTime, now)
+      )
+    )
+    .orderBy(asc(timeSlots.startTime));
+}
+
+export async function getBookingById(id: number) {
+  if (!db) return null;
+  const result = await db.select().from(bookings).where(eq(bookings.id, id));
+  return result[0] || null;
+}
