@@ -18,6 +18,27 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import BookingCTA from "@/components/booking/BookingCTA";
+import CourseTable, { type ScheduleCourse } from "@/components/CourseTable";
+
+// ============ JARNÍ KURZY DATA ============
+
+const morningCourses: ScheduleCourse[] = [
+  { uroven: "začátečníci A1", den: "Dle domluvy", cas: "09:00–10:30", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč" },
+  { uroven: "začátečníci A2", den: "Dle domluvy", cas: "08:00–13:00", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč" },
+  { uroven: "mírně pokročilí B1", den: "čtvrtek", cas: "09:00–10:30", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč" },
+  { uroven: "mírně pokročilí B1 plus", den: "pátek", cas: "08:30–10:00", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč" },
+  { uroven: "začátečníci A1", den: "sobota", cas: "09:00–10:30", popis: "1x90min, max 4 studenti", lekci: 19, cena: "7 600 Kč", isHighlighted: true, badge: "novinka" },
+];
+
+const afternoonCourses: ScheduleCourse[] = [
+  { uroven: "začátečníci A1", den: "čtvrtek / dle domluvy", cas: "14:30–20:15", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč" },
+  { uroven: "začátečnický A1+", den: "úterý", cas: "13:00–14:30", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč" },
+  { uroven: "začátečníci A2", den: "čtvrtek", cas: "14:00–15:30", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč" },
+  { uroven: "mírně pokročilí B1", den: "středa", cas: "17:00–18:30", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč" },
+  { uroven: "pokročilí B2", den: "pondělí", cas: "18:45–20:15", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč" },
+  { uroven: "pokročilí B2", den: "čtvrtek", cas: "17:00–18:30", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč" },
+  { uroven: "pokročilí B2+", den: "pondělí", cas: "18:45–20:15", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč" },
+];
 
 // Course images mapping - by category
 const courseImagesByCategory: Record<string, string> = {
@@ -276,6 +297,68 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Spring Semester Schedule */}
+      <section className="py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          {/* Semester heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="inline-flex items-center gap-2 bg-white text-[#E07B53] px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm mb-6 uppercase tracking-wider">
+              <span>📅</span> Jarní semestr 2026
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#1F1A17] mb-4">
+              Jarní{" "}
+              <span className="font-[family-name:var(--font-playfair)] italic font-medium text-[#E07B53]">
+                kurzy
+              </span>
+            </h2>
+            <p className="text-lg text-[#6B5D54]">
+              16. 2. 2026 – 26. 6. 2026
+            </p>
+          </motion.div>
+
+          {/* Morning courses */}
+          <div className="mb-12">
+            <CourseTable
+              title="Dopolední kurzy"
+              icon="🌅"
+              courses={morningCourses}
+            />
+          </div>
+
+          {/* Afternoon courses */}
+          <div className="mb-12">
+            <CourseTable
+              title="Odpolední kurzy"
+              icon="🌇"
+              courses={afternoonCourses}
+            />
+          </div>
+
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <Link
+              href="/kontakt"
+              className="inline-flex items-center justify-center gap-2 bg-[#E07B53] text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg shadow-[#E07B53]/30 hover:bg-[#C4613D] hover:-translate-y-1 transition-all duration-200"
+            >
+              Mám zájem o kurz
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+          </motion.div>
         </div>
       </section>
 
