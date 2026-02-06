@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { CalendarPlus } from "lucide-react";
 
 export interface ScheduleCourse {
   uroven: string;
@@ -17,9 +18,10 @@ interface CourseTableProps {
   title: string;
   icon: string;
   courses: ScheduleCourse[];
+  onReserveCourse?: (course: ScheduleCourse) => void;
 }
 
-export default function CourseTable({ title, icon, courses }: CourseTableProps) {
+export default function CourseTable({ title, icon, courses, onReserveCourse }: CourseTableProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -59,6 +61,11 @@ export default function CourseTable({ title, icon, courses }: CourseTableProps) 
                 <th className="text-right px-6 py-4 text-sm font-semibold text-[#6B5D54]">
                   Cena
                 </th>
+                {onReserveCourse && (
+                  <th className="text-center px-6 py-4 text-sm font-semibold text-[#6B5D54]">
+
+                  </th>
+                )}
               </tr>
             </thead>
             <tbody className="divide-y divide-[#EBE6DF]">
@@ -94,6 +101,17 @@ export default function CourseTable({ title, icon, courses }: CourseTableProps) 
                   <td className="px-6 py-4 text-right font-bold text-[#1F1A17] whitespace-nowrap">
                     {course.cena}
                   </td>
+                  {onReserveCourse && (
+                    <td className="px-6 py-4 text-center">
+                      <button
+                        onClick={() => onReserveCourse(course)}
+                        className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#E07B53] text-white text-sm font-semibold rounded-full hover:bg-[#C4613D] transition-all duration-200 hover:scale-105 shadow-sm"
+                      >
+                        <CalendarPlus className="w-4 h-4" />
+                        <span className="hidden lg:inline">Rezervovat</span>
+                      </button>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>
@@ -139,6 +157,15 @@ export default function CourseTable({ title, icon, courses }: CourseTableProps) 
               </div>
             </div>
             <p className="text-xs text-[#6B5D54] mt-2">{course.popis}</p>
+            {onReserveCourse && (
+              <button
+                onClick={() => onReserveCourse(course)}
+                className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-3 bg-[#E07B53] text-white text-sm font-semibold rounded-xl hover:bg-[#C4613D] transition-colors"
+              >
+                <CalendarPlus className="w-4 h-4" />
+                Mám zájem o kurz
+              </button>
+            )}
           </div>
         ))}
       </div>

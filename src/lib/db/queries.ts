@@ -234,3 +234,119 @@ export async function getBookingById(id: number) {
   const result = await db.select().from(bookings).where(eq(bookings.id, id));
   return result[0] || null;
 }
+
+// ============ SEMESTER COURSES QUERIES ============
+
+import { semesterCourses, semesterEnrollments } from "./schema";
+
+export interface SemesterCourseWithAvailability {
+  id: number;
+  semester: string;
+  semesterName: string;
+  semesterStart: string;
+  semesterEnd: string;
+  level: string;
+  dayOfWeek: string;
+  timeStart: string;
+  timeEnd: string;
+  description: string | null;
+  lessonsCount: number;
+  priceCzk: number;
+  maxStudents: number;
+  currentStudents: number;
+  availableSpots: number;
+  type: string;
+  isHighlighted: boolean | null;
+  badge: string | null;
+  isFull: boolean;
+  almostFull: boolean; // less than 2 spots
+}
+
+export async function getSemesterCourses(semester?: string): Promise<SemesterCourseWithAvailability[]> {
+  if (!db) return [];
+
+  let query = db.select().from(semesterCourses).where(eq(semesterCourses.active, true));
+
+  if (semester) {
+    query = db.select().from(semesterCourses).where(
+      and(
+        eq(semesterCourses.active, true),
+        eq(semesterCourses.semester, semester)
+      )
+    );
+  }
+
+  const result = await query;
+
+  return result.map(course => {
+    const availableSpots = course.maxStudents - course.currentStudents;
+    return {
+      ...course,
+      availableSpots,
+      isFull: availableSpots <= 0,
+      almostFull: availableSpots > 0 && availableSpots <= 1,
+    };
+  });
+}
+
+export async function getSemesterCourseById(id: number): Promise<SemesterCourseWithAvailability | null> {
+  if (!db) return null;
+  const result = await db.select().from(semesterCourses).where(eq(semesterCourses.id, id));
+  if (result.length === 0) return null;
+
+  const course = result[0];
+  const availableSpots = course.maxStudents - course.currentStudents;
+
+  return {
+    ...course,
+    availableSpots,
+    isFull: availableSpots <= 0,
+    almostFull: availableSpots > 0 && availableSpots <= 1,
+  };
+}
+
+export async function createSemesterEnrollment(data: {
+  semesterCourseId: number;
+  studentName: string;
+  studentEmail: string;
+  studentPhone: string;
+  message?: string;
+  quizLevel?: string;
+}) {
+  if (!db) throw new Error("Database not configured");
+
+  // Check availability
+  const course = await getSemesterCourseById(data.semesterCourseId);
+  if (!course) throw new Error("Kurz nenalezen");
+  if (course.isFull) throw new Error("Kurz je již obsazen");
+
+  // Create enrollment
+  const enrollment = await db.insert(semesterEnrollments).values({
+    semesterCourseId: data.semesterCourseId,
+    studentName: data.studentName,
+    studentEmail: data.studentEmail,
+    studentPhone: data.studentPhone,
+    message: data.message || null,
+    quizLevel: data.quizLevel || null,
+    status: "pending",
+  }).returning();
+
+  // Update current students count
+  await db.update(semesterCourses)
+    .set({ currentStudents: course.currentStudents + 1 })
+    .where(eq(semesterCourses.id, data.semesterCourseId));
+
+  return enrollment[0];
+}
+
+export async function getSemesterEnrollments(semesterCourseId?: number) {
+  if (!db) return [];
+
+  if (semesterCourseId) {
+    return db.select().from(semesterEnrollments)
+      .where(eq(semesterEnrollments.semesterCourseId, semesterCourseId))
+      .orderBy(desc(semesterEnrollments.createdAt));
+  }
+
+  return db.select().from(semesterEnrollments).orderBy(desc(semesterEnrollments.createdAt));
+}

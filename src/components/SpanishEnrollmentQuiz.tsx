@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { courseMatchesLevel } from '@/lib/levelMapping';
 
 // Data
 const questions = [
@@ -79,6 +80,36 @@ const goalOptions = [
   'Jen tak pro radost',
 ];
 
+// Course schedule data for matching
+interface ScheduleCourse {
+  uroven: string;
+  den: string;
+  cas: string;
+  popis: string;
+  lekci: number;
+  cena: string;
+  isHighlighted?: boolean;
+  badge?: string;
+  type: 'morning' | 'afternoon';
+}
+
+const allCourses: ScheduleCourse[] = [
+  // Morning courses
+  { uroven: "začátečníci A1", den: "Dle domluvy", cas: "09:00–10:30", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč", type: 'morning' },
+  { uroven: "začátečníci A2", den: "Dle domluvy", cas: "08:00–13:00", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč", type: 'morning' },
+  { uroven: "mírně pokročilí B1", den: "čtvrtek", cas: "09:00–10:30", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč", type: 'morning' },
+  { uroven: "mírně pokročilí B1 plus", den: "pátek", cas: "08:30–10:00", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč", type: 'morning' },
+  { uroven: "začátečníci A1", den: "sobota", cas: "09:00–10:30", popis: "1x90min, max 4 studenti", lekci: 19, cena: "7 600 Kč", isHighlighted: true, badge: "novinka", type: 'morning' },
+  // Afternoon courses
+  { uroven: "začátečníci A1", den: "čtvrtek / dle domluvy", cas: "14:30–20:15", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč", type: 'afternoon' },
+  { uroven: "začátečnický A1+", den: "úterý", cas: "13:00–14:30", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč", type: 'afternoon' },
+  { uroven: "začátečníci A2", den: "čtvrtek", cas: "14:00–15:30", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč", type: 'afternoon' },
+  { uroven: "mírně pokročilí B1", den: "středa", cas: "17:00–18:30", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč", type: 'afternoon' },
+  { uroven: "pokročilí B2", den: "pondělí", cas: "18:45–20:15", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč", type: 'afternoon' },
+  { uroven: "pokročilí B2", den: "čtvrtek", cas: "17:00–18:30", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč", type: 'afternoon' },
+  { uroven: "pokročilí B2+", den: "pondělí", cas: "18:45–20:15", popis: "1x90min, max 4 studenti", lekci: 19, cena: "6 175 Kč", type: 'afternoon' },
+];
+
 const levelDescriptions: Record<string, { name: string; spanish: string; description: string; emoji: string; color: string }> = {
   A1: {
     name: 'Úplný začátečník',
@@ -144,6 +175,7 @@ interface FormData {
 }
 
 export default function SpanishEnrollmentQuiz() {
+  const router = useRouter();
   const [step, setStep] = useState<Step>('intro');
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -158,6 +190,11 @@ export default function SpanishEnrollmentQuiz() {
   const [resultLevel, setResultLevel] = useState('');
 
   const isFormValid = formData.name && formData.email && formData.experience;
+
+  // Get courses matching the result level
+  const matchingCourses = resultLevel
+    ? allCourses.filter(course => courseMatchesLevel(course.uroven, resultLevel))
+    : [];
 
   const handleFormSubmit = () => {
     const exp = experienceOptions.find(o => o.id === formData.experience);
@@ -593,10 +630,12 @@ export default function SpanishEnrollmentQuiz() {
           background: 'white',
           borderRadius: '32px',
           padding: '48px 40px',
-          maxWidth: '580px',
+          maxWidth: '680px',
           width: '100%',
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15)',
           textAlign: 'center',
+          maxHeight: '90vh',
+          overflowY: 'auto',
         }}>
           <div style={{ fontSize: '72px', marginBottom: '16px' }}>{level.emoji}</div>
 
@@ -654,6 +693,58 @@ export default function SpanishEnrollmentQuiz() {
             {level.description}
           </p>
 
+          {/* Matching Courses */}
+          {matchingCourses.length > 0 && (
+            <div style={{
+              background: '#f9fafb',
+              borderRadius: '16px',
+              padding: '20px',
+              marginBottom: '24px',
+              textAlign: 'left',
+            }}>
+              <h3 style={{ fontSize: '14px', fontWeight: 600, color: '#6b7280', marginBottom: '16px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                Doporučené kurzy pro vás ({matchingCourses.length})
+              </h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {matchingCourses.slice(0, 4).map((course, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      background: 'white',
+                      borderRadius: '12px',
+                      padding: '16px',
+                      border: course.isHighlighted ? '2px solid #E07B53' : '1px solid #e5e7eb',
+                    }}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+                      <span style={{ fontWeight: 600, color: '#1f2937', textTransform: 'capitalize' }}>
+                        {course.uroven}
+                      </span>
+                      {course.badge && (
+                        <span style={{
+                          background: '#E07B53',
+                          color: 'white',
+                          padding: '4px 10px',
+                          borderRadius: '50px',
+                          fontSize: '10px',
+                          fontWeight: 700,
+                          textTransform: 'uppercase',
+                        }}>
+                          {course.badge}
+                        </span>
+                      )}
+                    </div>
+                    <div style={{ display: 'flex', gap: '16px', fontSize: '14px', color: '#6b7280', flexWrap: 'wrap' }}>
+                      <span>{course.type === 'morning' ? '🌅' : '🌇'} {course.den}</span>
+                      <span>🕐 {course.cas}</span>
+                      <span style={{ fontWeight: 600, color: '#1f2937' }}>{course.cena}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Summary */}
           <div style={{
             background: '#f9fafb',
@@ -663,7 +754,7 @@ export default function SpanishEnrollmentQuiz() {
             textAlign: 'left',
           }}>
             <h3 style={{ fontSize: '14px', fontWeight: 600, color: '#6b7280', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-              Vaše přihláška
+              Vaše údaje
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -680,19 +771,23 @@ export default function SpanishEnrollmentQuiz() {
                   <span style={{ fontWeight: 600, color: '#1f2937' }}>{formData.phone}</span>
                 </div>
               )}
-              {formData.goals.length > 0 && (
-                <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '4px' }}>
-                  <span style={{ color: '#6b7280' }}>Cíle:</span>
-                  <span style={{ fontWeight: 600, color: '#1f2937', textAlign: 'right' }}>{formData.goals.join(', ')}</span>
-                </div>
-              )}
             </div>
           </div>
 
-          <Link
-            href={contactUrl}
+          {/* CTA - Navigate to courses page with level filter */}
+          <button
+            onClick={() => {
+              const params = new URLSearchParams({
+                level: resultLevel,
+                name: formData.name,
+                email: formData.email,
+                phone: formData.phone || '',
+              });
+              router.push(`/kurzy?${params.toString()}`);
+            }}
             style={{
               display: 'block',
+              width: '100%',
               background: 'linear-gradient(135deg, #E07B53, #C4613D)',
               color: 'white',
               border: 'none',
@@ -700,14 +795,22 @@ export default function SpanishEnrollmentQuiz() {
               padding: '18px 40px',
               fontSize: '18px',
               fontWeight: 600,
-              textDecoration: 'none',
+              cursor: 'pointer',
               boxShadow: '0 10px 30px -5px rgba(217, 119, 6, 0.4)',
               transition: 'transform 0.2s, box-shadow 0.2s',
               marginBottom: '16px',
             }}
+            onMouseOver={e => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 15px 35px -5px rgba(217, 119, 6, 0.5)';
+            }}
+            onMouseOut={e => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 10px 30px -5px rgba(217, 119, 6, 0.4)';
+            }}
           >
-            Chci zkušební lekci zdarma →
-          </Link>
+            Rezervovat kurz →
+          </button>
 
           <button
             onClick={handleReset}

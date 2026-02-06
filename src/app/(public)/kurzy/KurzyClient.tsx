@@ -16,8 +16,14 @@ import {
   Castle,
   Check,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import CourseTable, { type ScheduleCourse } from "@/components/CourseTable";
+import CalendarReservationModal from "@/components/CalendarReservationModal";
+import { type CalendarCourse } from "@/components/MonthlyCalendar";
+import { courseMatchesLevel, getLevelInfo } from "@/lib/levelMapping";
+import { staticSemesterCourses } from "@/lib/db/seedSemesterCourses";
+import { submitSemesterEnrollment } from "@/app/actions/semester-enrollment";
 
 // ============ JARNÍ KURZY DATA ============
 
@@ -138,8 +144,117 @@ function c(content: ContentMap, section: string, key: string, fallback: string):
   return content[section]?.[key] || fallback;
 }
 
+// Combine all courses for the modal dropdown
+const allScheduleCourses: ScheduleCourse[] = [...morningCourses, ...afternoonCourses];
+
+// Convert static semester courses to CalendarCourse format
+const calendarCourses: CalendarCourse[] = staticSemesterCourses.map((course) => ({
+  id: course.id,
+  level: course.level,
+  dayOfWeek: course.dayOfWeek,
+  timeStart: course.timeStart,
+  timeEnd: course.timeEnd,
+  description: course.description,
+  lessonsCount: course.lessonsCount,
+  priceCzk: course.priceCzk,
+  maxStudents: course.maxStudents,
+  currentStudents: course.currentStudents,
+  availableSpots: course.availableSpots,
+  type: course.type as "morning" | "afternoon",
+  isHighlighted: course.isHighlighted || false,
+  badge: course.badge || null,
+  isFull: course.isFull,
+  almostFull: course.almostFull,
+  semesterStart: course.semesterStart,
+  semesterEnd: course.semesterEnd,
+}));
+
 export default function KurzyClient({ courses, pricing, content }: KurzyClientProps) {
+  const searchParams = useSearchParams();
   const [activeFilter, setActiveFilter] = useState("all");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCourseId, setSelectedCourseId] = useState<number | null>(null);
+  const [quizUserData, setQuizUserData] = useState<{ name: string; email: string; phone: string } | null>(null);
+  const [quizLevel, setQuizLevel] = useState<string | null>(null);
+  const [showQuizBanner, setShowQuizBanner] = useState(false);
+
+  // Handle URL parameters from quiz
+  useEffect(() => {
+    const level = searchParams.get("level");
+    const name = searchParams.get("name");
+    const email = searchParams.get("email");
+    const phone = searchParams.get("phone");
+
+    if (level && name && email) {
+      setQuizLevel(level);
+      setQuizUserData({
+        name: decodeURIComponent(name),
+        email: decodeURIComponent(email),
+        phone: phone ? decodeURIComponent(phone) : "",
+      });
+      setShowQuizBanner(true);
+
+      // Find matching calendar courses
+      const matchingCourses = calendarCourses.filter((course) =>
+        courseMatchesLevel(course.level, level) && !course.isFull
+      );
+
+      if (matchingCourses.length > 0) {
+        // Small delay to ensure smooth transition
+        setTimeout(() => {
+          setSelectedCourseId(matchingCourses[0].id);
+          setIsModalOpen(true);
+        }, 500);
+      } else {
+        setTimeout(() => {
+          setIsModalOpen(true);
+        }, 500);
+      }
+    }
+  }, [searchParams]);
+
+  // Get courses filtered by quiz level
+  const getRecommendedCourses = () => {
+    if (!quizLevel) return calendarCourses;
+    const recommended = calendarCourses.filter((course) =>
+      courseMatchesLevel(course.level, quizLevel)
+    );
+    // If no recommended courses, return all
+    return recommended.length > 0 ? recommended : calendarCourses;
+  };
+
+  const recommendedCourses = getRecommendedCourses();
+  const levelInfo = quizLevel ? getLevelInfo(quizLevel) : null;
+
+  const handleReserveCourse = (course: ScheduleCourse) => {
+    // Find matching calendar course
+    const calendarCourse = calendarCourses.find(
+      (c) => c.level.toLowerCase() === course.uroven.toLowerCase() &&
+             c.dayOfWeek.toLowerCase().includes(course.den.toLowerCase().split(" ")[0])
+    );
+    if (calendarCourse) {
+      setSelectedCourseId(calendarCourse.id);
+    } else {
+      setSelectedCourseId(null);
+    }
+    setIsModalOpen(true);
+  };
+
+  const handleOpenModalWithoutCourse = () => {
+    setSelectedCourseId(null);
+    setIsModalOpen(true);
+  };
+
+  const handleEnrollmentSubmit = async (data: {
+    courseId: number;
+    name: string;
+    email: string;
+    phone: string;
+    message: string;
+    quizLevel?: string;
+  }) => {
+    return submitSemesterEnrollment(data);
+  };
 
   const filteredCourses =
     activeFilter === "all"
@@ -190,8 +305,106 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
           >
             {heroDescription}
           </motion.p>
+
+          {/* User type selection - only show if not coming from quiz */}
+          {!quizLevel && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
+            >
+              {/* New student - go to quiz */}
+              <Link
+                href="/kviz"
+                className="group flex items-center gap-4 bg-white border-2 border-[#EBE6DF] hover:border-[#E07B53] rounded-2xl px-6 py-4 transition-all duration-200 hover:shadow-lg"
+              >
+                <span className="text-3xl">🎯</span>
+                <div className="text-left">
+                  <p className="font-bold text-[#1F1A17] group-hover:text-[#E07B53] transition-colors">
+                    Jsem nový student
+                  </p>
+                  <p className="text-sm text-[#6B5D54]">
+                    Nevím jakou mám úroveň
+                  </p>
+                </div>
+                <ArrowRight className="w-5 h-5 text-[#6B5D54] group-hover:text-[#E07B53] transition-colors ml-2" />
+              </Link>
+
+              {/* Existing student - scroll to courses */}
+              <button
+                onClick={() => {
+                  document.getElementById("jarni-kurzy")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="group flex items-center gap-4 bg-white border-2 border-[#EBE6DF] hover:border-[#E07B53] rounded-2xl px-6 py-4 transition-all duration-200 hover:shadow-lg"
+              >
+                <span className="text-3xl">📚</span>
+                <div className="text-left">
+                  <p className="font-bold text-[#1F1A17] group-hover:text-[#E07B53] transition-colors">
+                    Již navštěvuji kurzy
+                  </p>
+                  <p className="text-sm text-[#6B5D54]">
+                    Znám svou úroveň
+                  </p>
+                </div>
+                <ArrowRight className="w-5 h-5 text-[#6B5D54] group-hover:text-[#E07B53] transition-colors ml-2" />
+              </button>
+            </motion.div>
+          )}
         </div>
       </section>
+
+      {/* Quiz Result Banner */}
+      {showQuizBanner && quizLevel && levelInfo && (
+        <motion.section
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="px-6 pb-8"
+        >
+          <div className="max-w-5xl mx-auto">
+            <div className="bg-gradient-to-r from-[#E07B53] to-[#C4613D] rounded-3xl p-6 text-white relative overflow-hidden">
+              <button
+                onClick={() => setShowQuizBanner(false)}
+                className="absolute top-4 right-4 p-2 hover:bg-white/20 rounded-full transition-colors"
+              >
+                <span className="sr-only">Zavřít</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="text-6xl">🎉</div>
+                <div className="flex-1 text-center md:text-left">
+                  <p className="text-white/80 text-sm uppercase tracking-wider mb-1">
+                    Váš výsledek z testu
+                  </p>
+                  <h3 className="text-2xl font-bold mb-2">
+                    Doporučená úroveň: {quizLevel} – {levelInfo.displayName}
+                  </h3>
+                  <p className="text-white/90">
+                    {quizUserData?.name}, našli jsme pro vás {recommendedCourses.length} vhodných kurzů.
+                    Vyberte si termín, který vám vyhovuje.
+                  </p>
+                </div>
+                <button
+                  onClick={() => {
+                    if (recommendedCourses.length > 0 && !recommendedCourses[0].isFull) {
+                      setSelectedCourseId(recommendedCourses[0].id);
+                    } else {
+                      setSelectedCourseId(null);
+                    }
+                    setIsModalOpen(true);
+                  }}
+                  className="bg-white text-[#E07B53] px-6 py-3 rounded-full font-bold hover:bg-white/90 transition-colors whitespace-nowrap"
+                >
+                  Rezervovat kurz
+                </button>
+              </div>
+            </div>
+          </div>
+        </motion.section>
+      )}
 
       {/* Filter Tabs */}
       <motion.section
@@ -300,7 +513,7 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
       </section>
 
       {/* Spring Semester Schedule */}
-      <section className="py-20 px-6">
+      <section id="jarni-kurzy" className="py-20 px-6 scroll-mt-24">
         <div className="max-w-5xl mx-auto">
           {/* Semester heading */}
           <motion.div
@@ -330,6 +543,7 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
               title="Dopolední kurzy"
               icon="🌅"
               courses={morningCourses}
+              onReserveCourse={handleReserveCourse}
             />
           </div>
 
@@ -339,6 +553,7 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
               title="Odpolední kurzy"
               icon="🌇"
               courses={afternoonCourses}
+              onReserveCourse={handleReserveCourse}
             />
           </div>
 
@@ -350,13 +565,13 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
             viewport={{ once: true }}
             className="text-center"
           >
-            <Link
-              href="/kontakt"
+            <button
+              onClick={handleOpenModalWithoutCourse}
               className="inline-flex items-center justify-center gap-2 bg-[#E07B53] text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg shadow-[#E07B53]/30 hover:bg-[#C4613D] hover:-translate-y-1 transition-all duration-200"
             >
               Mám zájem o kurz
               <ArrowRight className="h-5 w-5" />
-            </Link>
+            </button>
           </motion.div>
         </div>
       </section>
@@ -496,6 +711,17 @@ export default function KurzyClient({ courses, pricing, content }: KurzyClientPr
           </motion.div>
         </div>
       </section>
+
+      {/* Calendar Reservation Modal */}
+      <CalendarReservationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        courses={quizLevel ? recommendedCourses : calendarCourses}
+        preselectedCourseId={selectedCourseId}
+        prefillData={quizUserData}
+        quizLevel={quizLevel}
+        onSubmit={handleEnrollmentSubmit}
+      />
     </div>
   );
 }

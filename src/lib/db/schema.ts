@@ -157,3 +157,41 @@ export const bookings = sqliteTable("bookings", {
   notes: text("notes"),
   createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
 });
+
+// ============ SEMESTER COURSES ============
+
+// Semestrální kurzy s kapacitou
+export const semesterCourses = sqliteTable("semester_courses", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  semester: text("semester").notNull(), // "jaro-2026", "podzim-2026"
+  semesterName: text("semester_name").notNull(), // "Jarní semestr 2026"
+  semesterStart: text("semester_start").notNull(), // "2026-02-16"
+  semesterEnd: text("semester_end").notNull(), // "2026-06-26"
+  level: text("level").notNull(), // "začátečníci A1", "mírně pokročilí B1", etc.
+  dayOfWeek: text("day_of_week").notNull(), // "pondělí", "úterý", etc.
+  timeStart: text("time_start").notNull(), // "09:00"
+  timeEnd: text("time_end").notNull(), // "10:30"
+  description: text("description"), // "1x90min, max 4 studenti"
+  lessonsCount: integer("lessons_count").notNull().default(19),
+  priceCzk: integer("price_czk").notNull(),
+  maxStudents: integer("max_students").notNull().default(4),
+  currentStudents: integer("current_students").notNull().default(0),
+  type: text("type").notNull().default("afternoon"), // "morning", "afternoon"
+  isHighlighted: integer("is_highlighted", { mode: "boolean" }).default(false),
+  badge: text("badge"), // "novinka", "oblíbené", etc.
+  active: integer("active", { mode: "boolean" }).default(true),
+  createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
+});
+
+// Přihlášky do semestrálních kurzů
+export const semesterEnrollments = sqliteTable("semester_enrollments", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  semesterCourseId: integer("semester_course_id").references(() => semesterCourses.id),
+  studentName: text("student_name").notNull(),
+  studentEmail: text("student_email").notNull(),
+  studentPhone: text("student_phone").notNull(),
+  message: text("message"),
+  status: text("status").notNull().default("pending"), // "pending", "confirmed", "cancelled", "waitlist"
+  quizLevel: text("quiz_level"), // pokud přišel z kvízu
+  createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
+});
